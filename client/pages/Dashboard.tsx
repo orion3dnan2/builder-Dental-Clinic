@@ -126,13 +126,13 @@ export default function Dashboard() {
       remindersSent: "التذكيرات المُرسلة",
       quickActions: "الإجراءات السريعة",
       newAppointment: "حجز موعد جديد",
-      newPatient: "تسجيل مريض ج��يد",
+      newPatient: "تسجيل مريض جديد",
       viewReports: "استعراض التقارير",
       manageSettings: "إعدادات النظام",
       viewPatients: "سجل المرضى",
       invoices: "الفواتير المالية",
       financialReports: "التقارير المالية",
-      viewAppointments: "جدول المواعيد",
+      viewAppointments: "جدول ال��واعيد",
       upcomingAppointments: "المواعيد القادمة",
       viewAll: "عرض الجميع",
       recentActivity: "آخر الأنشطة",
@@ -292,7 +292,7 @@ export default function Dashboard() {
                   {isArabic ? "أخصائي طب الأسنان العام" : "General Dentistry"}
                 </Badge>
                 <Badge variant="outline" className="text-xs">
-                  {isArabic ? "العيادة رقم 1 - الطابق الأول" : "Clinic 1 - First Floor"}
+                  {isArabic ? "ا��عيادة رقم 1 - الطابق الأول" : "Clinic 1 - First Floor"}
                 </Badge>
                 <Badge variant="secondary" className="text-xs">
                   {isArabic ? "متوفر للحالات الطارئة" : "Available for Emergencies"}
@@ -498,7 +498,7 @@ export default function Dashboard() {
                   </Button>
                   <Button size="sm">
                     <UserCheck className="h-4 w-4 mr-2" />
-                    {isArabic ? "تسجيل حضور" : "Check In"}
+                    {isArabic ? "تس��يل حضور" : "Check In"}
                   </Button>
                 </div>
               </CardHeader>
@@ -518,7 +518,7 @@ export default function Dashboard() {
                         <div>
                           <h4 className="font-medium">{patient.name}</h4>
                           <p className="text-sm text-muted-foreground">
-                            {isArabic ? "موعد" : "Appointment"} {patient.time} • {isArabic ? "ينتظر" : "waiting"} {patient.waitingTime}
+                            {isArabic ? "مو��د" : "Appointment"} {patient.time} • {isArabic ? "ينتظر" : "waiting"} {patient.waitingTime}
                           </p>
                         </div>
                       </div>
@@ -544,10 +544,10 @@ export default function Dashboard() {
                 <div>
                   <CardTitle className="flex items-center gap-2">
                     <Stethoscope className="h-5 w-5 text-primary" />
-                    {isArabic ? "مرضى في الانتظار" : "Patients Waiting"}
+                    {isArabic ? "المرضى في قائمة الانتظار" : "Patients Waiting"}
                   </CardTitle>
                   <CardDescription>
-                    {stats.waitingPatients} {isArabic ? "مريض في انتظار الفحص" : "patients waiting for examination"}
+                    {stats.waitingPatients} {isArabic ? "مريض في انتظار الكشف الطبي" : "patients waiting for examination"}
                   </CardDescription>
                 </div>
                 <div className="flex gap-2">
@@ -566,7 +566,7 @@ export default function Dashboard() {
                   {[
                     { id: "1", name: "أحمد محمد العلي", appointmentTime: "09:30", waitingTime: "15 دقيقة", condition: "فحص دور��", priority: "normal" },
                     { id: "2", name: "فاطمة سالم", appointmentTime: "10:00", waitingTime: "5 دقائق", condition: "متابعة علاج", priority: "normal" },
-                    { id: "3", name: "محمد الأحمد", appointmentTime: "10:30", waitingTime: "استعداد", condition: "ألم شديد", priority: "urgent" },
+                    { id: "3", name: "محمد الأحمد", appointmentTime: "10:30", waitingTime: "استعدا��", condition: "ألم شديد", priority: "urgent" },
                   ].map((patient) => (
                     <div
                       key={patient.id}
@@ -774,7 +774,7 @@ export default function Dashboard() {
                 </div>
                 <div className="mt-4 pt-3 border-t">
                   <Button variant="outline" className="w-full" size="sm">
-                    {isArabic ? "عرض جميع المكالمات" : "View All Calls"}
+                    {isArabic ? "��رض جميع المكالمات" : "View All Calls"}
                   </Button>
                 </div>
               </CardContent>
