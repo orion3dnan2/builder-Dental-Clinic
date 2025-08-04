@@ -126,7 +126,7 @@ export default function Dashboard() {
       remindersSent: "التذكيرات المُرسلة",
       quickActions: "الإجراءات السريعة",
       newAppointment: "حجز موعد جديد",
-      newPatient: "تسجيل مريض جديد",
+      newPatient: "تسجيل مريض ج��يد",
       viewReports: "استعراض التقارير",
       manageSettings: "إعدادات النظام",
       viewPatients: "سجل المرضى",
@@ -314,15 +314,15 @@ export default function Dashboard() {
             <div className="flex gap-2">
               <Button size="sm" variant="outline">
                 <UserCheck className="h-4 w-4 mr-2" />
-                {isArabic ? "المريض التالي" : "Next Patient"}
+                {isArabic ? "المريض القادم" : "Next Patient"}
               </Button>
               <Button size="sm" variant="outline">
                 <FileText className="h-4 w-4 mr-2" />
-                {isArabic ? "كتابة وصفة" : "Prescription"}
+                {isArabic ? "تحرير روشتة" : "Prescription"}
               </Button>
               <Button size="sm">
                 <Clock className="h-4 w-4 mr-2" />
-                {isArabic ? "استراحة" : "Break"}
+                {isArabic ? "فترة راحة" : "Break"}
               </Button>
             </div>
           ) : null}
@@ -693,7 +693,7 @@ export default function Dashboard() {
                           {isArabic ? "إيرادات اليوم" : "Today's Revenue"}
                         </h4>
                         <p className="text-2xl font-bold text-success">
-                          4,850 {isArabic ? "ري��ل" : "SAR"}
+                          4,850 {isArabic ? "ريال" : "SAR"}
                         </p>
                       </div>
                     </div>
@@ -1102,7 +1102,7 @@ export default function Dashboard() {
                   },
                   {
                     action: isArabic
-                      ? "تم تحديث السجل ا��طبي"
+                      ? "تم تحديث السجل الطبي"
                       : "Medical record updated",
                     patient: "سعد الخالدي",
                     time: "35 دقيقة",
