@@ -358,7 +358,7 @@ export default function NewAppointment() {
               ) : (
                 <div className="text-center py-8 text-muted-foreground">
                   <User className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                  <p>{isArabic ? "لا توجد نتائج للبحث" : "No patients found"}</p>
+                  <p>{isArabic ? "لا توجد ��تائج للبحث" : "No patients found"}</p>
                 </div>
               )}
             </div>
@@ -645,7 +645,7 @@ export default function NewAppointment() {
             {isArabic ? "ملخص الموعد" : "Appointment Summary"}
           </h3>
           <p className="text-muted-foreground">
-            {isArabic ? "يرجى مراجعة التفاصيل قبل التأكيد" : "Please review details before confirming"}
+            {isArabic ? "��رجى مراجعة التفاصيل قبل التأكيد" : "Please review details before confirming"}
           </p>
         </div>
 
@@ -767,13 +767,17 @@ export default function NewAppointment() {
   const canProceedToNext = () => {
     switch (currentStep) {
       case 1:
+        if (isNewPatient) {
+          return newPatientData.name.trim() && newPatientData.phone.trim() && newPatientData.nationalId.trim();
+        }
         return selectedPatient !== null;
       case 2:
         return selectedDoctor !== null;
       case 3:
         return selectedDate && selectedTime && selectedTreatment;
       case 4:
-        return selectedPatient && selectedDoctor && selectedDate && selectedTime && selectedTreatment;
+        const hasPatient = selectedPatient || (isNewPatient && newPatientData.name.trim());
+        return hasPatient && selectedDoctor && selectedDate && selectedTime && selectedTreatment;
       default:
         return false;
     }
