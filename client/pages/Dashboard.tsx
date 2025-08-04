@@ -127,7 +127,7 @@ export default function Dashboard() {
       quickActions: "الإجراءات السريعة",
       newAppointment: "حجز موعد جديد",
       newPatient: "تسجيل مريض جديد",
-      viewReports: "استعراض ال��قارير",
+      viewReports: "استعراض التقارير",
       manageSettings: "إعدادات النظام",
       viewPatients: "سجل المرضى",
       invoices: "الفواتير المالية",
@@ -289,13 +289,13 @@ export default function Dashboard() {
               <div className="mt-3 flex flex-wrap gap-2">
                 <Badge variant="outline" className="text-xs flex items-center gap-1">
                   <Stethoscope className="h-3 w-3" />
-                  {isArabic ? "طب الأسنان العام" : "General Dentistry"}
+                  {isArabic ? "أخصائي طب الأسنان العام" : "General Dentistry"}
                 </Badge>
                 <Badge variant="outline" className="text-xs">
-                  {isArabic ? "العيادة 1 - الدور الأول" : "Clinic 1 - First Floor"}
+                  {isArabic ? "العيادة رقم 1 - الطابق الأول" : "Clinic 1 - First Floor"}
                 </Badge>
                 <Badge variant="secondary" className="text-xs">
-                  {isArabic ? "متاح للطوارئ" : "Available for Emergencies"}
+                  {isArabic ? "متوفر للحالات الطارئة" : "Available for Emergencies"}
                 </Badge>
               </div>
             )}
@@ -693,7 +693,7 @@ export default function Dashboard() {
                           {isArabic ? "إيرادات اليوم" : "Today's Revenue"}
                         </h4>
                         <p className="text-2xl font-bold text-success">
-                          4,850 {isArabic ? "ريال" : "SAR"}
+                          4,850 {isArabic ? "ري��ل" : "SAR"}
                         </p>
                       </div>
                     </div>
@@ -1075,7 +1075,7 @@ export default function Dashboard() {
                     color: "text-primary",
                   },
                   {
-                    action: isArabic ? "تم إرسال تذك��ر" : "Reminder sent",
+                    action: isArabic ? "تم إرسال تذكير" : "Reminder sent",
                     patient: "فاطمة سالم",
                     time: "45 دقيقة",
                     icon: Mail,
@@ -1102,7 +1102,7 @@ export default function Dashboard() {
                   },
                   {
                     action: isArabic
-                      ? "تم تحديث السجل الطبي"
+                      ? "تم تحديث السجل ا��طبي"
                       : "Medical record updated",
                     patient: "سعد الخالدي",
                     time: "35 دقيقة",
