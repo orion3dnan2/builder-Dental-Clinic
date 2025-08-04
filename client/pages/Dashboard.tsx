@@ -123,7 +123,7 @@ export default function Dashboard() {
       confirmed: "مؤكدة",
       callsToMake: "اتصالات مطلوبة",
       checkedInToday: "حضور اليوم",
-      remindersSent: "تذكيرات مرس��ة",
+      remindersSent: "تذكيرات مرسلة",
       quickActions: "إجراءات سريعة",
       newAppointment: "موعد جديد",
       newPatient: "مريض جديد",
@@ -388,7 +388,7 @@ export default function Dashboard() {
               <CardContent>
                 <div className="text-2xl font-bold">6</div>
                 <p className="text-xs text-muted-foreground">
-                  {isArabic ? "��رضى حضروا اليوم" : "patients arrived today"}
+                  {isArabic ? "مرضى حضروا اليوم" : "patients arrived today"}
                 </p>
               </CardContent>
             </Card>
@@ -424,7 +424,7 @@ export default function Dashboard() {
                     {isArabic ? "قائمة الانتظار" : "Waiting List"}
                   </CardTitle>
                   <CardDescription>
-                    {stats.waitingPatients} {isArabic ? "مريض في الانتظار" : "patients waiting"}
+                    {stats.waitingPatients} {isArabic ? "مريض في الانتظا��" : "patients waiting"}
                   </CardDescription>
                 </div>
                 <div className="flex gap-2">
@@ -603,9 +603,59 @@ export default function Dashboard() {
             </Card>
           )}
 
+          {/* Call Management - لموظف الاستقبال فقط */}
+          {user?.type === "receptionist" && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Phone className="h-5 w-5 text-warning" />
+                  {isArabic ? "مكالمات مطلوبة" : "Required Calls"}
+                </CardTitle>
+                <CardDescription>
+                  {isArabic ? "تذكيرات ومتابعات اليوم" : "Today's reminders and follow-ups"}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {[
+                    { name: "أحمد سالم", reason: "تذكير بموعد غداً", phone: "+966501234567", priority: "normal" },
+                    { name: "فاطمة علي", reason: "تأكيد موعد الأسبوع القادم", phone: "+966507654321", priority: "normal" },
+                    { name: "محمد الأحمد", reason: "إلغاء وإعادة جدولة", phone: "+966509876543", priority: "urgent" },
+                  ].map((call, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-accent/50 transition-medical"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-2 h-2 rounded-full ${call.priority === "urgent" ? "bg-destructive" : "bg-warning"}`}></div>
+                        <div>
+                          <h4 className="font-medium text-sm">{call.name}</h4>
+                          <p className="text-xs text-muted-foreground">{call.reason}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                          <Phone className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                          <Mail className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 pt-3 border-t">
+                  <Button variant="outline" className="w-full" size="sm">
+                    {isArabic ? "عرض جميع المكالمات" : "View All Calls"}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Quick Actions */}
           <Card
-            className={`${user?.type === "accountant" ? "md:col-span-1 lg:col-span-2" : ""}`}
+            className={`${user?.type === "accountant" ? "md:col-span-1 lg:col-span-2" : user?.type === "receptionist" ? "" : ""}`}
           >
             <CardHeader>
               <CardTitle>{t.quickActions}</CardTitle>
