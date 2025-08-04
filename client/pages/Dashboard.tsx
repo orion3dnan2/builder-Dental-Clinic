@@ -27,7 +27,6 @@ import {
   Settings,
   Receipt,
   BarChart3,
-  Globe,
 } from "lucide-react";
 
 interface DashboardStats {
@@ -60,56 +59,48 @@ export default function Dashboard() {
     cancelledAppointments: 0,
   });
 
-  const appointmentsData = [
+  const [todayAppointments, setTodayAppointments] = useState<Appointment[]>([
     {
       id: "1",
-      patientName: { ar: "أحمد محمد العلي", en: "Ahmed Mohammed Al-Ali" },
+      patientName: "أحمد محمد العلي",
       time: "09:00",
-      type: { ar: "فحص دوري", en: "Routine Checkup" },
+      type: "فحص دوري",
       status: "confirmed",
       phone: "+966501234567",
     },
     {
       id: "2",
-      patientName: { ar: "فاطمة أحمد", en: "Fatima Ahmed" },
+      patientName: "فاطمة أحمد",
       time: "10:30",
-      type: { ar: "تنظيف أسنان", en: "Teeth Cleaning" },
+      type: "تنظيف أسنان",
       status: "completed",
       phone: "+966507654321",
     },
     {
       id: "3",
-      patientName: { ar: "محمد عبدالله", en: "Mohammed Abdullah" },
+      patientName: "محمد عبدالله",
       time: "11:00",
-      type: { ar: "حشو ضرس", en: "Tooth Filling" },
+      type: "حشو ضرس",
       status: "pending",
       phone: "+966509876543",
     },
     {
       id: "4",
-      patientName: { ar: "نورا سالم", en: "Nora Salem" },
+      patientName: "نورا سالم",
       time: "14:00",
-      type: { ar: "تقويم أسنان", en: "Dental Braces" },
+      type: "تقويم أسنان",
       status: "confirmed",
       phone: "+966502345678",
     },
     {
       id: "5",
-      patientName: { ar: "خالد أحمد", en: "Khalid Ahmed" },
+      patientName: "خالد أحمد",
       time: "15:30",
-      type: { ar: "زراعة أسنان", en: "Dental Implant" },
+      type: "زراعة أسنان",
       status: "pending",
       phone: "+966508765432",
     },
-  ];
-
-  const [todayAppointments, setTodayAppointments] = useState<Appointment[]>(
-    appointmentsData.map(apt => ({
-      ...apt,
-      patientName: isArabic ? apt.patientName.ar : apt.patientName.en,
-      type: isArabic ? apt.type.ar : apt.type.en,
-    }))
-  );
+  ]);
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -118,31 +109,21 @@ export default function Dashboard() {
     }
   }, []);
 
-  useEffect(() => {
-    setTodayAppointments(
-      appointmentsData.map(apt => ({
-        ...apt,
-        patientName: isArabic ? apt.patientName.ar : apt.patientName.en,
-        type: isArabic ? apt.type.ar : apt.type.en,
-      }))
-    );
-  }, [isArabic]);
-
   const content = {
     ar: {
       welcome: "أهلاً وسهلاً",
       todayOverview: "ملخص اليوم",
       todayAppointments: "حجوزات اليوم",
-      totalPatients: "عدد ال��رضى الكلي",
+      totalPatients: "عدد المرضى الكلي",
       waitingPatients: "المرضى المنتظرون",
       appointmentStatus: "حالة الحجوزات",
       completed: "مُنجزة",
-      pending: "معلق��",
+      pending: "معلقة",
       cancelled: "مُلغاة",
       confirmed: "مُؤكدة",
       callsToMake: "مكالمات مطلوبة",
-      checkedInToday: "الحاضرون ��ليوم",
-      remindersSent: "الت��كي��ات المُرسلة",
+      checkedInToday: "الحاضرون اليوم",
+      remindersSent: "التذكيرات المُرسلة",
       quickActions: "الإجراءات السريعة",
       newAppointment: "حجز موعد جديد",
       newPatient: "تسجيل مريض جديد",
@@ -165,7 +146,7 @@ export default function Dashboard() {
       appointmentsToday: "مواعيد اليوم",
       appointmentsCompleted: "الحجوزات المُنجزة اليوم",
       patientsExamined: "المرضى المُفحوصون",
-      averageTime: "متوسط مدة ا���كشف",
+      averageTime: "متوسط مدة الكشف",
       patientSatisfaction: "مستوى رضا ال��رضى",
       patientsThisMonth: "مرضى الشهر الجاري",
       revenue: "الإيرادات المالية",
@@ -305,7 +286,7 @@ export default function Dashboard() {
                 </Badge>
                 <Badge variant="outline" className="text-xs">
                   {isArabic
-                    ? "الطبيب ال����ناوب: د. أحمد محمد"
+                    ? "الطبيب المُناوب: د. أحمد محمد"
                     : "Current Doctor: Dr. Ahmed Mohammed"}
                 </Badge>
               </div>
@@ -455,7 +436,7 @@ export default function Dashboard() {
                 <div className="text-2xl font-bold">9</div>
                 <p className="text-xs text-muted-foreground">
                   {isArabic
-                    ? "مواعيد مؤكدة الي��م"
+                    ? "مواعيد مؤكدة اليوم"
                     : "confirmed appointments today"}
                 </p>
               </CardContent>
@@ -514,7 +495,7 @@ export default function Dashboard() {
         <div
           className={`grid gap-6 ${user?.type === "receptionist" || user?.type === "doctor" || user?.type === "admin" ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-1 lg:grid-cols-2"}`}
         >
-          {/* Waiting List - لموظف الاستقبال ��قط */}
+          {/* Waiting List - لموظف الاستقبال فقط */}
           {user?.type === "receptionist" && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
@@ -531,7 +512,7 @@ export default function Dashboard() {
                 <div className="flex gap-2">
                   <Button size="sm" variant="outline">
                     <Phone className="h-4 w-4 mr-2" />
-                    {isArabic ? "��شعار التالي" : "Call Next"}
+                    {isArabic ? "إشعار التالي" : "Call Next"}
                   </Button>
                   <Button size="sm">
                     <UserCheck className="h-4 w-4 mr-2" />
@@ -544,23 +525,23 @@ export default function Dashboard() {
                   {[
                     {
                       id: "1",
-                      name: isArabic ? "عبدالله م��مد" : "Abdullah Mohammed",
+                      name: "عبدالله محمد",
                       time: "09:15",
-                      waitingTime: isArabic ? "15 دقيقة" : "15 minutes",
+                      waitingTime: "15 دقيقة",
                       priority: "normal",
                     },
                     {
                       id: "2",
-                      name: isArabic ? "منى أحمد" : "Mona Ahmed",
+                      name: "منى أحمد",
                       time: "09:30",
-                      waitingTime: isArabic ? "30 دقيقة" : "30 minutes",
+                      waitingTime: "30 دقيقة",
                       priority: "urgent",
                     },
                     {
                       id: "3",
-                      name: isArabic ? "سعد الخالدي" : "Saad Al-Khalidi",
+                      name: "سعد الخالدي",
                       time: "10:00",
-                      waitingTime: isArabic ? "10 دقائق" : "10 minutes",
+                      waitingTime: "10 دقائق",
                       priority: "normal",
                     },
                   ].map((patient) => (
@@ -628,26 +609,26 @@ export default function Dashboard() {
                   {[
                     {
                       id: "1",
-                      name: isArabic ? "أحمد محمد العلي" : "Ahmed Mohammed Al-Ali",
+                      name: "أحمد محمد العلي",
                       appointmentTime: "09:30",
-                      waitingTime: isArabic ? "15 دقيقة" : "15 minutes",
-                      condition: isArabic ? "فحص دوري" : "Routine Checkup",
+                      waitingTime: "15 دقيقة",
+                      condition: "فحص دور��",
                       priority: "normal",
                     },
                     {
                       id: "2",
-                      name: isArabic ? "فاطمة سالم" : "Fatima Salem",
+                      name: "فاطمة سالم",
                       appointmentTime: "10:00",
-                      waitingTime: isArabic ? "5 دقائق" : "5 minutes",
-                      condition: isArabic ? "متابعة علاج" : "Follow-up",
+                      waitingTime: "5 دقائق",
+                      condition: "متابعة علاج",
                       priority: "normal",
                     },
                     {
                       id: "3",
-                      name: isArabic ? "محمد الأحمد" : "Mohammed Al-Ahmad",
+                      name: "محمد الأحمد",
                       appointmentTime: "10:30",
-                      waitingTime: isArabic ? "استعداد" : "Ready",
-                      condition: isArabic ? "ألم شديد" : "Severe Pain",
+                      waitingTime: "استعداد",
+                      condition: "ألم شديد",
                       priority: "urgent",
                     },
                   ].map((patient) => (
@@ -767,7 +748,7 @@ export default function Dashboard() {
                   </CardTitle>
                   <CardDescription>
                     {isArabic
-                      ? "نظرة عامة على ��لوضع المالي اليوم"
+                      ? "نظرة عامة على الوضع المالي اليوم"
                       : "Today's financial status"}
                   </CardDescription>
                 </div>
@@ -790,7 +771,7 @@ export default function Dashboard() {
                           {isArabic ? "إيرادات اليوم" : "Today's Revenue"}
                         </h4>
                         <p className="text-2xl font-bold text-success">
-                          4,850 {isArabic ? "ريا��" : "SAR"}
+                          4,850 {isArabic ? "ريال" : "SAR"}
                         </p>
                       </div>
                     </div>
@@ -846,20 +827,20 @@ export default function Dashboard() {
                 <div className="space-y-3">
                   {[
                     {
-                      name: isArabic ? "أحمد سالم" : "Ahmed Salem",
-                      reason: isArabic ? "تذكير بموعد غداً" : "Tomorrow appointment reminder",
+                      name: "أحمد سالم",
+                      reason: "تذكي�� بموعد غداً",
                       phone: "+966501234567",
                       priority: "normal",
                     },
                     {
-                      name: isArabic ? "فاطمة علي" : "Fatima Ali",
-                      reason: isArabic ? "تأكيد موعد الأسبوع القادم" : "Confirm next week appointment",
+                      name: "فاطمة علي",
+                      reason: "تأكيد موعد الأسبوع ال��ادم",
                       phone: "+966507654321",
                       priority: "normal",
                     },
                     {
-                      name: isArabic ? "محمد الأحمد" : "Mohammed Al-Ahmad",
-                      reason: isArabic ? "إلغاء وإعادة جدولة" : "Cancel and reschedule",
+                      name: "محمد الأحمد",
+                      reason: "إلغاء وإعادة جدولة",
                       phone: "+966509876543",
                       priority: "urgent",
                     },
@@ -961,7 +942,7 @@ export default function Dashboard() {
                   </Button>
                   <Button className="w-full justify-start" variant="outline">
                     <Clock className="h-4 w-4 mr-2" />
-                    {isArabic ? "تسجيل حضور مري��" : "Check-in Patient"}
+                    {isArabic ? "تسجيل حضور مريض" : "Check-in Patient"}
                   </Button>
                   <Button className="w-full justify-start" variant="outline">
                     <Mail className="h-4 w-4 mr-2" />
@@ -1008,7 +989,7 @@ export default function Dashboard() {
                   <Link to="/invoices" className="block">
                     <Button className="w-full justify-start" variant="outline">
                       <Receipt className="h-4 w-4 mr-2" />
-                      {isArabic ? "الفو��تير" : "Invoices"}
+                      {isArabic ? "الفواتير" : "Invoices"}
                     </Button>
                   </Link>
                   <Link to="/reports" className="block">
@@ -1062,7 +1043,7 @@ export default function Dashboard() {
                     : "Your work statistics today"
                   : user?.type === "doctor"
                     ? isArabic
-                      ? "إحصائيات النشاط ال��بي اليوم"
+                      ? "إحصائيات النشاط الطبي اليوم"
                       : "Your medical work statistics today"
                     : isArabic
                       ? "مؤشرات أداء العيادة هذا الشهر"
@@ -1201,8 +1182,8 @@ export default function Dashboard() {
                         action: isArabic
                           ? "تم تسجيل مريض جديد"
                           : "New patient registered",
-                        patient: isArabic ? "سارة أحمد" : "Sarah Ahmed",
-                        time: isArabic ? "10 دقائق" : "10 minutes ago",
+                        patient: "سارة أحمد",
+                        time: "10 دقائق",
                         icon: UserCheck,
                         color: "text-success",
                       },
@@ -1210,15 +1191,15 @@ export default function Dashboard() {
                         action: isArabic
                           ? "تم حجز موعد جديد"
                           : "New appointment booked",
-                        patient: isArabic ? "أحمد محمد" : "Ahmed Mohammed",
-                        time: isArabic ? "25 دقيقة" : "25 minutes ago",
+                        patient: "أحمد محمد",
+                        time: "25 دقيقة",
                         icon: Calendar,
                         color: "text-primary",
                       },
                       {
                         action: isArabic ? "تم إرسال تذكير" : "Reminder sent",
-                        patient: isArabic ? "فاطمة سالم" : "Fatima Salem",
-                        time: isArabic ? "45 دقيقة" : "45 minutes ago",
+                        patient: "فاطمة سالم",
+                        time: "45 دقيقة",
                         icon: Mail,
                         color: "text-warning",
                       },
@@ -1229,8 +1210,8 @@ export default function Dashboard() {
                           action: isArabic
                             ? "تم إنجاز الكشف الطبي"
                             : "Patient examination completed",
-                          patient: isArabic ? "محمد علي" : "Mohammed Ali",
-                          time: isArabic ? "10 دقائق" : "10 minutes ago",
+                          patient: "محمد علي",
+                          time: "10 دقائق",
                           icon: Stethoscope,
                           color: "text-success",
                         },
@@ -1238,8 +1219,8 @@ export default function Dashboard() {
                           action: isArabic
                             ? "تم تحرير الروشتة الطبية"
                             : "Prescription written",
-                          patient: isArabic ? "نورا سالم" : "Nora Salem",
-                          time: isArabic ? "20 دقيقة" : "20 minutes ago",
+                          patient: "نورا سالم",
+                          time: "20 دقيقة",
                           icon: FileText,
                           color: "text-primary",
                         },
@@ -1247,8 +1228,8 @@ export default function Dashboard() {
                           action: isArabic
                             ? "تم تحديث الملف الطبي"
                             : "Medical record updated",
-                          patient: isArabic ? "سعد الخالدي" : "Saad Al-Khalidi",
-                          time: isArabic ? "35 دقيقة" : "35 minutes ago",
+                          patient: "سعد الخالدي",
+                          time: "35 دقيقة",
                           icon: UserCheck,
                           color: "text-warning",
                         },
@@ -1258,8 +1239,8 @@ export default function Dashboard() {
                           action: isArabic
                             ? "تم تسجيل مريض جديد"
                             : "New patient registered",
-                          patient: isArabic ? "سارة أحمد" : "Sarah Ahmed",
-                          time: isArabic ? "10 دقائق" : "10 minutes ago",
+                          patient: "سارة أحمد",
+                          time: "10 دقائق",
                           icon: UserCheck,
                           color: "text-success",
                         },
@@ -1267,15 +1248,15 @@ export default function Dashboard() {
                           action: isArabic
                             ? "تم إكمال موعد"
                             : "Appointment completed",
-                          patient: isArabic ? "محمد علي" : "Mohammed Ali",
-                          time: isArabic ? "30 دقيقة" : "30 minutes ago",
+                          patient: "محمد علي",
+                          time: "30 دقيقة",
                           icon: Clock,
                           color: "text-primary",
                         },
                         {
-                          action: isArabic ? "تم إرسال فاتور��" : "Invoice sent",
-                          patient: isArabic ? "فاطمة سالم" : "Fatima Salem",
-                          time: isArabic ? "1 ساعة" : "1 hour ago",
+                          action: isArabic ? "تم إرسال فاتورة" : "Invoice sent",
+                          patient: "فاطمة سالم",
+                          time: "1 ساعة",
                           icon: FileText,
                           color: "text-warning",
                         },
