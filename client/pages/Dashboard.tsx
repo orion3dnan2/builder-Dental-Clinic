@@ -27,6 +27,7 @@ import {
   Settings,
   Receipt,
   BarChart3,
+  Globe,
 } from "lucide-react";
 
 interface DashboardStats {
@@ -141,7 +142,7 @@ export default function Dashboard() {
       confirmed: "مُؤكدة",
       callsToMake: "مكالمات مطلوبة",
       checkedInToday: "الحاضرون ��ليوم",
-      remindersSent: "الت��كي����ت المُرسلة",
+      remindersSent: "الت��كي��ات المُرسلة",
       quickActions: "الإجراءات السريعة",
       newAppointment: "حجز موعد جديد",
       newPatient: "تسجيل مريض جديد",
@@ -1061,7 +1062,7 @@ export default function Dashboard() {
                     : "Your work statistics today"
                   : user?.type === "doctor"
                     ? isArabic
-                      ? "إحصائيات النشاط الطبي اليوم"
+                      ? "إحصائيات النشاط ال��بي اليوم"
                       : "Your medical work statistics today"
                     : isArabic
                       ? "مؤشرات أداء العيادة هذا الشهر"
