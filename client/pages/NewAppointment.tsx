@@ -65,7 +65,7 @@ interface TreatmentType {
 
 export default function NewAppointment() {
   const navigate = useNavigate();
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [selectedTime, setSelectedTime] = useState("");
