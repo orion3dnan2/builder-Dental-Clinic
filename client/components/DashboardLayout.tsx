@@ -72,7 +72,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic, toggleLanguage } = useLanguage();
   const getNotificationsForUser = (userType: string) => {
     const baseNotifications = [
       {
