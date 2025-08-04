@@ -21,9 +21,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { format } from "date-fns";
+
 import {
   Calendar as CalendarIcon,
   Clock,
@@ -94,7 +92,7 @@ export default function NewAppointment() {
     {
       id: "3",
       name: "د. محمد الأحمد",
-      specialization: "جراحة الفم والأسنان",
+      specialization: "جراحة الفم و��لأسنان",
       availability: ["08:00", "10:00", "13:00", "15:00"],
     },
   ];
