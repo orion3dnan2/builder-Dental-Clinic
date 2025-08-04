@@ -136,7 +136,7 @@ export default function Dashboard() {
       waitingPatients: "المرضى المنتظرون",
       appointmentStatus: "حالة الحجوزات",
       completed: "مُنجزة",
-      pending: "معلقة",
+      pending: "معلق��",
       cancelled: "مُلغاة",
       confirmed: "مُؤكدة",
       callsToMake: "مكالمات مطلوبة",
@@ -454,7 +454,7 @@ export default function Dashboard() {
                 <div className="text-2xl font-bold">9</div>
                 <p className="text-xs text-muted-foreground">
                   {isArabic
-                    ? "مواعيد مؤكدة اليوم"
+                    ? "مواعيد مؤكدة الي��م"
                     : "confirmed appointments today"}
                 </p>
               </CardContent>
@@ -513,7 +513,7 @@ export default function Dashboard() {
         <div
           className={`grid gap-6 ${user?.type === "receptionist" || user?.type === "doctor" || user?.type === "admin" ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-1 lg:grid-cols-2"}`}
         >
-          {/* Waiting List - لموظف الاستقبال فقط */}
+          {/* Waiting List - لموظف الاستقبال ��قط */}
           {user?.type === "receptionist" && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
@@ -643,10 +643,10 @@ export default function Dashboard() {
                     },
                     {
                       id: "3",
-                      name: "محمد الأحمد",
+                      name: isArabic ? "محمد الأحمد" : "Mohammed Al-Ahmad",
                       appointmentTime: "10:30",
-                      waitingTime: "استعداد",
-                      condition: "ألم شديد",
+                      waitingTime: isArabic ? "استعداد" : "Ready",
+                      condition: isArabic ? "ألم شديد" : "Severe Pain",
                       priority: "urgent",
                     },
                   ].map((patient) => (
@@ -789,7 +789,7 @@ export default function Dashboard() {
                           {isArabic ? "إيرادات اليوم" : "Today's Revenue"}
                         </h4>
                         <p className="text-2xl font-bold text-success">
-                          4,850 {isArabic ? "ريال" : "SAR"}
+                          4,850 {isArabic ? "ريا��" : "SAR"}
                         </p>
                       </div>
                     </div>
@@ -814,7 +814,7 @@ export default function Dashboard() {
                       </div>
                       <div>
                         <h4 className="font-medium text-primary">
-                          {isArabic ? "صافي ��لربح" : "Net Profit"}
+                          {isArabic ? "صافي الربح" : "Net Profit"}
                         </h4>
                         <p className="text-2xl font-bold text-primary">
                           80,600 {isArabic ? "ريال" : "SAR"}
@@ -1272,7 +1272,7 @@ export default function Dashboard() {
                           color: "text-primary",
                         },
                         {
-                          action: isArabic ? "تم إ��سال فاتورة" : "Invoice sent",
+                          action: isArabic ? "تم إرسال فاتورة" : "Invoice sent",
                           patient: "فاطمة سالم",
                           time: "1 ساعة",
                           icon: FileText,
