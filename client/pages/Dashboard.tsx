@@ -359,7 +359,16 @@ export default function Dashboard() {
             <CardHeader>
               <CardTitle>{t.quickActions}</CardTitle>
               <CardDescription>
-                {isArabic ? 'إجراءات سريعة لل��مل��ات الش����عة' : 'Quick access to common tasks'}
+                {isArabic ?
+                  `إجراءات سريعة لـ${user?.type === 'admin' ? 'مدير النظام' :
+                    user?.type === 'doctor' ? 'الطبيب' :
+                    user?.type === 'receptionist' ? 'موظف الاستقبال' :
+                    user?.type === 'accountant' ? 'المحاسب' : 'المستخدم'}` :
+                  `Quick access for ${user?.type === 'admin' ? 'System Admin' :
+                    user?.type === 'doctor' ? 'Doctor' :
+                    user?.type === 'receptionist' ? 'Receptionist' :
+                    user?.type === 'accountant' ? 'Accountant' : 'User'} tasks`
+                }
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -453,7 +462,7 @@ export default function Dashboard() {
                 {t.clinicPerformance}
               </CardTitle>
               <CardDescription>
-                {isArabic ? 'أداء العيادة هذا الشهر' : 'Clinic performance this month'}
+                {isArabic ? 'أداء العيا��ة هذا الشهر' : 'Clinic performance this month'}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
