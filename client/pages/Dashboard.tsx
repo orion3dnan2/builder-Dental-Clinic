@@ -315,7 +315,17 @@ export default function Dashboard() {
             )}
           </div>
           {/* أزرار الإجراءات السريعة */}
-          {user?.type === "receptionist" || user?.type === "admin" ? (
+          <div className="flex gap-2 items-center flex-wrap">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setIsArabic(!isArabic)}
+              className="flex items-center gap-2"
+            >
+              <Globe className="h-4 w-4" />
+              {isArabic ? "EN" : "AR"}
+            </Button>
+            {user?.type === "receptionist" || user?.type === "admin" ? (
             <div className="flex gap-2">
               <Link to="/appointments/new">
                 <Button>
@@ -339,7 +349,8 @@ export default function Dashboard() {
                 {isArabic ? "فترة راحة" : "Break"}
               </Button>
             </div>
-          ) : null}
+            ) : null}
+          </div>
         </div>
 
         {/* Stats Overview */}
