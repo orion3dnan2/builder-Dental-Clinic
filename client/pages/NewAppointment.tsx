@@ -371,14 +371,24 @@ export default function NewAppointment() {
                   <User className="h-4 w-4 inline mr-1" />
                   {t.patientName} *
                 </Label>
-                <Input id="patientName" placeholder={isArabic ? "أدخل اسم المريض الكامل" : "Enter full patient name"} />
+                <Input
+                  id="patientName"
+                  placeholder={isArabic ? "أدخل اسم المريض الكامل" : "Enter full patient name"}
+                  value={newPatientData.name}
+                  onChange={(e) => setNewPatientData(prev => ({ ...prev, name: e.target.value }))}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="phone" className="text-sm font-medium">
                   <Phone className="h-4 w-4 inline mr-1" />
                   {t.phone} *
                 </Label>
-                <Input id="phone" placeholder="+966xxxxxxxxx" />
+                <Input
+                  id="phone"
+                  placeholder="+966xxxxxxxxx"
+                  value={newPatientData.phone}
+                  onChange={(e) => setNewPatientData(prev => ({ ...prev, phone: e.target.value }))}
+                />
               </div>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -387,14 +397,25 @@ export default function NewAppointment() {
                   <Mail className="h-4 w-4 inline mr-1" />
                   {t.email}
                 </Label>
-                <Input id="email" type="email" placeholder="example@email.com" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="example@email.com"
+                  value={newPatientData.email}
+                  onChange={(e) => setNewPatientData(prev => ({ ...prev, email: e.target.value }))}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="nationalId" className="text-sm font-medium">
                   <AlertCircle className="h-4 w-4 inline mr-1" />
                   {t.nationalId} *
                 </Label>
-                <Input id="nationalId" placeholder="1234567890" />
+                <Input
+                  id="nationalId"
+                  placeholder="1234567890"
+                  value={newPatientData.nationalId}
+                  onChange={(e) => setNewPatientData(prev => ({ ...prev, nationalId: e.target.value }))}
+                />
               </div>
             </div>
             <div className="p-3 bg-muted/50 rounded-lg border-l-4 border-l-primary">
@@ -838,7 +859,7 @@ export default function NewAppointment() {
               size="lg"
             >
               <Save className="h-4 w-4 mr-2" />
-              {isArabic ? "تأكيد ال��وعد" : "Confirm Appointment"}
+              {isArabic ? "تأكيد الموعد" : "Confirm Appointment"}
             </Button>
           ) : (
             <Button
