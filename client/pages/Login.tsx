@@ -124,7 +124,7 @@ export default function Login() {
       phone: 'رقم الهاتف',
       clinicName: 'اسم العيادة',
       licenseNumber: 'رقم الترخيص',
-      userType: 'نوع ��لمستخدم',
+      userType: 'نوع المستخدم',
       admin: 'مدير النظام',
       doctor: 'طبيب',
       receptionist: 'موظف الاستقبال',
@@ -219,6 +219,44 @@ export default function Login() {
               <div className="flex items-center gap-3 p-3 rounded-lg bg-accent/20">
                 <Stethoscope className="h-5 w-5 text-primary" />
                 <span className="font-medium">{t.features.reports}</span>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-l-4 border-l-warning">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <User className="h-5 w-5 text-warning" />
+                {isArabic ? 'مستخدمين تجريبيين' : 'Test Users'}
+              </CardTitle>
+              <CardDescription>
+                {isArabic ? 'يمكنك استخدام هذه الحسابات للتجربة' : 'You can use these accounts for testing'}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between items-center p-2 rounded bg-primary/10">
+                  <span className="font-medium">{isArabic ? 'مدير النظام' : 'System Admin'}</span>
+                  <code className="text-xs bg-background px-2 py-1 rounded">admin</code>
+                </div>
+                <div className="flex justify-between items-center p-2 rounded bg-success/10">
+                  <span className="font-medium">{isArabic ? 'طبيب' : 'Doctor'}</span>
+                  <code className="text-xs bg-background px-2 py-1 rounded">doctor</code>
+                </div>
+                <div className="flex justify-between items-center p-2 rounded bg-warning/10">
+                  <span className="font-medium">{isArabic ? 'موظف استقبال' : 'Receptionist'}</span>
+                  <code className="text-xs bg-background px-2 py-1 rounded">reception</code>
+                </div>
+                <div className="flex justify-between items-center p-2 rounded bg-purple-100">
+                  <span className="font-medium">{isArabic ? 'محاسب' : 'Accountant'}</span>
+                  <code className="text-xs bg-background px-2 py-1 rounded">accountant</code>
+                </div>
+                <div className="text-center pt-2 border-t">
+                  <span className="text-xs text-muted-foreground">
+                    {isArabic ? 'كلمة المرور للجميع: ' : 'Password for all: '}
+                    <code>123456</code>
+                  </span>
+                </div>
               </div>
             </CardContent>
           </Card>
