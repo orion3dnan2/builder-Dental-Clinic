@@ -48,25 +48,7 @@ const App = () => (
             }
           />
           <Route path="/accounting" element={<Accounting />} />
-          <Route
-            path="/appointments/new"
-            element={
-              <PlaceholderPage
-                title="حجز موعد جديد"
-                description="نظام حجز موعد جديد للمريض"
-                features={[
-                  "اختيار الطبيب المناسب",
-                  "اختيار التاريخ والوقت",
-                  "تحديد نوع العلاج",
-                  "بيانات المريض",
-                  "ملاحظات خاصة",
-                  "تأكيد الموعد",
-                  "إرسال تذكير SMS",
-                  "طباعة بطاقة الموعد",
-                ]}
-              />
-            }
-          />
+          <Route path="/appointments/new" element={<NewAppointment />} />
           <Route
             path="/appointments"
             element={
@@ -81,7 +63,7 @@ const App = () => (
                   "إدارة أ��قات عمل الأطباء",
                   "تتبع حالة الموعد",
                   "طباعة قوا��م المواعيد",
-                  "إحصا��يات المواعيد",
+                  "إحصائيات المواعيد",
                 ]}
               />
             }
