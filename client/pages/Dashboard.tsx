@@ -80,7 +80,7 @@ export default function Dashboard() {
     },
     {
       id: '4',
-      patientName: 'نورا سالم',
+      patientName: 'نورا س��لم',
       time: '14:00',
       type: 'تقويم أسنان',
       status: 'confirmed',
@@ -304,7 +304,7 @@ export default function Dashboard() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className={`grid gap-6 ${(user?.type === 'receptionist' || user?.type === 'doctor' || user?.type === 'admin') ? 'md:grid-cols-2 lg:grid-cols-3' : 'md:grid-cols-1 lg:grid-cols-2'}`}>
           {/* Today's Appointments - لموظف الاستقبال والطبيب والمدير فقط */}
           {(user?.type === 'receptionist' || user?.type === 'doctor' || user?.type === 'admin') && (
             <Card className="md:col-span-2">
@@ -360,7 +360,7 @@ export default function Dashboard() {
           )}
 
           {/* Quick Actions */}
-          <Card>
+          <Card className={`${(user?.type === 'accountant') ? 'md:col-span-1 lg:col-span-2' : ''}`}>
             <CardHeader>
               <CardTitle>{t.quickActions}</CardTitle>
               <CardDescription>
