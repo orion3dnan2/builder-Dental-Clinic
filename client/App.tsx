@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Patients from "./pages/Patients";
 import Accounting from "./pages/Accounting";
 import Reports from "./pages/Reports";
+import NewAppointment from "./pages/NewAppointment";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 
@@ -47,25 +48,7 @@ const App = () => (
             }
           />
           <Route path="/accounting" element={<Accounting />} />
-          <Route
-            path="/appointments/new"
-            element={
-              <PlaceholderPage
-                title="حجز موعد جديد"
-                description="نظام حجز موعد جديد للمريض"
-                features={[
-                  "اختيار الطبيب المناسب",
-                  "اختيار التاريخ والوقت",
-                  "تحديد نوع العلاج",
-                  "بيانات المريض",
-                  "ملاحظات خاصة",
-                  "تأكيد الموعد",
-                  "إرسال تذكير SMS",
-                  "طباعة بطاقة الموعد",
-                ]}
-              />
-            }
-          />
+          <Route path="/appointments/new" element={<NewAppointment />} />
           <Route
             path="/appointments"
             element={

@@ -17,6 +17,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   Activity,
   LayoutDashboard,
   Users,
@@ -30,6 +35,12 @@ import {
   X,
   UserCheck,
   Clock,
+  AlertTriangle,
+  CheckCircle,
+  User,
+  Phone,
+  Mail,
+  Calendar as CalendarIcon,
   Globe,
   Stethoscope,
 } from "lucide-react";
@@ -38,6 +49,17 @@ interface User {
   name: string;
   type: "admin" | "doctor" | "receptionist" | "accountant";
   isAuthenticated: boolean;
+}
+
+interface Notification {
+  id: string;
+  type: "appointment" | "reminder" | "activity" | "urgent";
+  title: string;
+  message: string;
+  time: string;
+  isRead: boolean;
+  actionUrl?: string;
+  patientName?: string;
 }
 
 interface DashboardLayoutProps {
@@ -50,6 +72,187 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [user, setUser] = useState<User | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isArabic, setIsArabic] = useState(true);
+  const getNotificationsForUser = (userType: string) => {
+    const baseNotifications = [
+      {
+        id: "1",
+        type: "reminder" as const,
+        title: isArabic ? "تذكير بالموعد الطبي" : "Appointment Reminder",
+        message: isArabic
+          ? "موعد المريض أحمد محمد غداً الساعة 10:00 صباحاً"
+          : "Ahmed Mohammed appointment tomorrow at 10:00 AM",
+        time: isArabic ? "منذ 5 دقائق" : "5 minutes ago",
+        isRead: false,
+        actionUrl: "/appointments",
+        patientName: "أحمد محمد",
+      },
+      {
+        id: "2",
+        type: "activity" as const,
+        title: isArabic ? "تسجيل مريض جديد" : "New Patient",
+        message: isArabic
+          ? "تم تسجيل المريضة فاطمة أحمد بنجاح"
+          : "New patient registered: Fatima Ahmed",
+        time: isArabic ? "منذ 15 دقيقة" : "15 minutes ago",
+        isRead: false,
+        actionUrl: "/patients",
+        patientName: "فاطمة أحمد",
+      },
+      {
+        id: "3",
+        type: "urgent" as const,
+        title: isArabic ? "حالة عاجلة" : "Urgent Appointment",
+        message: isArabic
+          ? "يوجد مريض في الانتظار لأكثر من 30 دقيقة"
+          : "Patient waiting for more than 30 minutes",
+        time: isArabic ? "منذ 30 دقيقة" : "30 minutes ago",
+        isRead: false,
+        actionUrl: "/dashboard",
+        patientName: "محمد سالم",
+      },
+    ];
+
+    if (userType === "receptionist") {
+      return [
+        ...baseNotifications,
+        {
+          id: "4",
+          type: "reminder" as const,
+          title: isArabic ? "مكالمة مطلوبة" : "Call Required",
+          message: isArabic
+            ? "تذكير: اتصال بخالد أحمد لتأكيد الموعد"
+            : "Reminder: Call Khalid Ahmed to confirm appointment",
+          time: isArabic ? "منذ ساعة" : "1 hour ago",
+          isRead: false,
+          actionUrl: "/appointments",
+          patientName: "خالد أحمد",
+        },
+        {
+          id: "5",
+          type: "activity" as const,
+          title: isArabic ? "موعد ملغي" : "Appointment Cancelled",
+          message: isArabic
+            ? "تم إلغاء موعد نورا سالم"
+            : "Nora Salem appointment cancelled",
+          time: isArabic ? "منذ ساعتين" : "2 hours ago",
+          isRead: true,
+          actionUrl: "/appointments",
+          patientName: "نورا سالم",
+        },
+      ];
+    }
+
+    if (userType === "doctor") {
+      return [
+        ...baseNotifications.slice(0, 2),
+        {
+          id: "6",
+          type: "appointment" as const,
+          title: isArabic ? "المريض التالي" : "Next Patient",
+          message: isArabic
+            ? "المريض التالي: سعد الخالدي في الساعة 2:30 م"
+            : "Next patient: Saad Al-Khalidi at 2:30 PM",
+          time: isArabic ? "منذ 10 دقائق" : "10 minutes ago",
+          isRead: false,
+          actionUrl: "/patients",
+          patientName: "سعد الخالدي",
+        },
+        {
+          id: "7",
+          type: "urgent" as const,
+          title: isArabic ? "حالة طارئة" : "Emergency Case",
+          message: isArabic
+            ? "مريض يحتاج فحص عاجل"
+            : "Patient needs urgent examination",
+          time: isArabic ? "منذ 45 دقيقة" : "45 minutes ago",
+          isRead: false,
+          actionUrl: "/dashboard",
+          patientName: "عبدالله أحمد",
+        },
+      ];
+    }
+
+    if (userType === "accountant") {
+      return [
+        {
+          id: "8",
+          type: "activity" as const,
+          title: isArabic ? "فاتورة جديدة" : "New Invoice",
+          message: isArabic
+            ? "فاتورة جديدة بقيمة 450 ريال"
+            : "New invoice worth 450 SAR",
+          time: isArabic ? "منذ 20 دقيقة" : "20 minutes ago",
+          isRead: false,
+          actionUrl: "/accounting",
+          patientName: "محمد العلي",
+        },
+        {
+          id: "9",
+          type: "reminder" as const,
+          title: isArabic ? "دفعة متأخرة" : "Overdue Payment",
+          message: isArabic
+            ? "دفعة متأخرة من أحمد سالم"
+            : "Overdue payment from Ahmed Salem",
+          time: isArabic ? "منذ ساعة" : "1 hour ago",
+          isRead: false,
+          actionUrl: "/accounting",
+          patientName: "أحمد سالم",
+        },
+        {
+          id: "10",
+          type: "activity" as const,
+          title: isArabic ? "تقرير شهري" : "Monthly Report",
+          message: isArabic
+            ? "تقرير الإيرادات الشهرية جاهز"
+            : "Monthly revenue report ready",
+          time: isArabic ? "منذ 3 ساعات" : "3 hours ago",
+          isRead: true,
+          actionUrl: "/reports",
+        },
+      ];
+    }
+
+    return baseNotifications;
+  };
+
+  const [notifications, setNotifications] = useState<Notification[]>(
+    getNotificationsForUser(user?.type || "admin"),
+  );
+
+  useEffect(() => {
+    if (user?.type) {
+      setNotifications(getNotificationsForUser(user.type));
+    }
+  }, [user?.type, isArabic]);
+
+  // Simulate live notifications every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newNotifications = [
+        {
+          id: Date.now().toString(),
+          type: "reminder" as const,
+          title: isArabic ? "تذكير جديد" : "New Reminder",
+          message: isArabic
+            ? "حان وقت مراجعة المواعيد"
+            : "Time to review appointments",
+          time: isArabic ? "الآن" : "now",
+          isRead: false,
+          actionUrl: "/appointments",
+        },
+      ];
+
+      // Add new notification only if we have fewer than 10
+      setNotifications((prev) => {
+        if (prev.length < 10) {
+          return [newNotifications[0], ...prev];
+        }
+        return prev;
+      });
+    }, 30000); // Every 30 seconds
+
+    return () => clearInterval(interval);
+  }, [isArabic]);
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -59,6 +262,48 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       navigate("/login");
     }
   }, [navigate]);
+
+  const unreadCount = notifications.filter((n) => !n.isRead).length;
+
+  const markAsRead = (notificationId: string) => {
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === notificationId ? { ...n, isRead: true } : n)),
+    );
+  };
+
+  const markAllAsRead = () => {
+    setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
+  };
+
+  const getNotificationIcon = (type: Notification["type"]) => {
+    switch (type) {
+      case "appointment":
+        return CalendarIcon;
+      case "reminder":
+        return Clock;
+      case "activity":
+        return UserCheck;
+      case "urgent":
+        return AlertTriangle;
+      default:
+        return Bell;
+    }
+  };
+
+  const getNotificationColor = (type: Notification["type"]) => {
+    switch (type) {
+      case "appointment":
+        return "text-primary";
+      case "reminder":
+        return "text-warning";
+      case "activity":
+        return "text-success";
+      case "urgent":
+        return "text-destructive";
+      default:
+        return "text-muted-foreground";
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -75,7 +320,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             : user?.type === "receptionist"
               ? "لوحة الاستقبال"
               : "لوحة التحكم",
-      patients: "المرضى",
+      patients: "��لمرضى",
       appointments: "المواعيد",
       invoices: "الفواتير",
       reports: "التقارير",
@@ -112,7 +357,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       receptionist: "Receptionist",
       accountant: "Accountant",
       clinicName: "Advanced Dental Clinic",
-      switchLang: "العربية",
+      switchLang: "العر��ية",
     },
   };
 
@@ -363,12 +608,191 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
             <div className="flex items-center gap-x-4 lg:gap-x-6 ml-auto">
               {/* Notifications */}
-              <Button variant="ghost" size="sm" className="relative">
-                <Bell className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 h-4 w-4 bg-destructive rounded-full text-xs text-destructive-foreground flex items-center justify-center">
-                  3
-                </span>
-              </Button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="ghost" size="sm" className="relative">
+                    <Bell className="h-5 w-5" />
+                    {unreadCount > 0 && (
+                      <span className="absolute -top-1 -right-1 h-4 w-4 bg-destructive rounded-full text-xs text-destructive-foreground flex items-center justify-center">
+                        {unreadCount}
+                      </span>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-96 p-0" align="end">
+                  <div className="p-4 border-b space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-semibold">
+                        {isArabic ? "الإشعارات" : "Notifications"}
+                        {unreadCount > 0 && (
+                          <Badge variant="destructive" className="ml-2 text-xs">
+                            {unreadCount}
+                          </Badge>
+                        )}
+                      </h3>
+                      {unreadCount > 0 && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={markAllAsRead}
+                          className="text-xs hover:bg-primary/10"
+                        >
+                          <CheckCircle className="h-3 w-3 mr-1" />
+                          {isArabic ? "قراءة الكل" : "Mark all read"}
+                        </Button>
+                      )}
+                    </div>
+                    <div className="flex gap-1">
+                      <Badge
+                        variant="outline"
+                        className="text-xs cursor-pointer hover:bg-accent"
+                      >
+                        {isArabic ? "الكل" : "All"}
+                      </Badge>
+                      <Badge
+                        variant="outline"
+                        className="text-xs cursor-pointer hover:bg-accent"
+                      >
+                        {isArabic ? "تذكيرات" : "Reminders"}
+                      </Badge>
+                      <Badge
+                        variant="outline"
+                        className="text-xs cursor-pointer hover:bg-accent"
+                      >
+                        {isArabic ? "عاجل" : "Urgent"}
+                      </Badge>
+                    </div>
+                  </div>
+                  <div className="max-h-96 overflow-y-auto">
+                    {notifications.length > 0 ? (
+                      notifications.map((notification) => {
+                        const IconComponent = getNotificationIcon(
+                          notification.type,
+                        );
+                        return (
+                          <div
+                            key={notification.id}
+                            className={`p-4 border-b last:border-b-0 hover:bg-accent/50 cursor-pointer transition-all duration-200 ${
+                              !notification.isRead
+                                ? "bg-primary/5 border-l-4 border-l-primary"
+                                : ""
+                            }`}
+                            onClick={() => {
+                              markAsRead(notification.id);
+                              if (notification.actionUrl) {
+                                navigate(notification.actionUrl);
+                              }
+                            }}
+                          >
+                            <div className="flex items-start gap-3">
+                              <div
+                                className={`p-2 rounded-full ${
+                                  notification.type === "urgent"
+                                    ? "bg-destructive/10"
+                                    : notification.type === "reminder"
+                                      ? "bg-warning/10"
+                                      : notification.type === "activity"
+                                        ? "bg-success/10"
+                                        : "bg-primary/10"
+                                }`}
+                              >
+                                <IconComponent
+                                  className={`h-4 w-4 ${getNotificationColor(notification.type)}`}
+                                />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-start justify-between">
+                                  <h4
+                                    className={`text-sm font-medium leading-tight ${
+                                      !notification.isRead
+                                        ? "text-foreground"
+                                        : "text-muted-foreground"
+                                    }`}
+                                  >
+                                    {notification.title}
+                                  </h4>
+                                  <div className="flex items-center gap-2 ml-2">
+                                    {!notification.isRead && (
+                                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                                    )}
+                                    <span className="text-xs text-muted-foreground whitespace-nowrap">
+                                      {notification.time}
+                                    </span>
+                                  </div>
+                                </div>
+                                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                                  {notification.message}
+                                </p>
+                                <div className="flex items-center justify-between mt-3">
+                                  {notification.patientName && (
+                                    <div className="flex items-center gap-1">
+                                      <User className="h-3 w-3 text-muted-foreground" />
+                                      <Badge
+                                        variant="outline"
+                                        className="text-xs"
+                                      >
+                                        {notification.patientName}
+                                      </Badge>
+                                    </div>
+                                  )}
+                                  <div className="flex items-center gap-1">
+                                    {notification.actionUrl && (
+                                      <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className="h-6 px-2 text-xs"
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          navigate(notification.actionUrl!);
+                                        }}
+                                      >
+                                        {isArabic ? "عرض" : "View"}
+                                      </Button>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="p-12 text-center text-muted-foreground">
+                        <div className="w-16 h-16 mx-auto mb-4 bg-muted/50 rounded-full flex items-center justify-center">
+                          <Bell className="h-8 w-8 opacity-50" />
+                        </div>
+                        <h4 className="font-medium mb-2">
+                          {isArabic ? "لا توجد إشعارات" : "No notifications"}
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          {isArabic
+                            ? "ستظهر الإشعارات الجديدة هنا"
+                            : "New notifications will appear here"}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  {notifications.length > 0 && (
+                    <div className="p-3 border-t bg-gradient-to-r from-muted/20 to-muted/10">
+                      <div className="flex items-center justify-between">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-xs hover:bg-primary/10"
+                          onClick={() => navigate("/notifications")}
+                        >
+                          <Bell className="h-3 w-3 mr-1" />
+                          {isArabic ? "جميع الإشعارات" : "All notifications"}
+                        </Button>
+                        <span className="text-xs text-muted-foreground">
+                          {notifications.length}{" "}
+                          {isArabic ? "إشعار" : "notifications"}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </PopoverContent>
+              </Popover>
 
               {/* User Menu */}
               <DropdownMenu>
