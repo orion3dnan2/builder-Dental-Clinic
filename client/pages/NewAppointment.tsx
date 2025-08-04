@@ -783,29 +783,40 @@ export default function NewAppointment() {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-6 bg-muted/30 rounded-xl border">
           <Button
             variant="outline"
             onClick={handlePreviousStep}
             disabled={currentStep === 1}
+            className="w-full sm:w-auto"
+            size="lg"
           >
             <ChevronLeft className="h-4 w-4 mr-2" />
             {t.previous}
           </Button>
-          
+
+          <div className="flex-1 text-center">
+            <p className="text-sm text-muted-foreground">
+              {t.step} {currentStep} {t.of} 4
+            </p>
+          </div>
+
           {currentStep === 4 ? (
             <Button
               onClick={handleSaveAppointment}
               disabled={!canProceedToNext()}
-              className="bg-success hover:bg-success/90"
+              className="w-full sm:w-auto bg-success hover:bg-success/90 shadow-lg"
+              size="lg"
             >
               <Save className="h-4 w-4 mr-2" />
-              {t.save}
+              {isArabic ? "تأكيد الموعد" : "Confirm Appointment"}
             </Button>
           ) : (
             <Button
               onClick={handleNextStep}
               disabled={!canProceedToNext()}
+              className="w-full sm:w-auto shadow-lg"
+              size="lg"
             >
               {t.next}
               <ArrowRight className="h-4 w-4 ml-2" />
