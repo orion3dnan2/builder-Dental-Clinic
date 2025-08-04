@@ -73,6 +73,58 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [user, setUser] = useState<User | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isArabic, setIsArabic] = useState(true);
+  const [notifications, setNotifications] = useState<Notification[]>([
+    {
+      id: "1",
+      type: "reminder",
+      title: isArabic ? "تذكير موعد" : "Appointment Reminder",
+      message: isArabic ? "موعد أحمد محمد غداً الساعة 10:00 ص" : "Ahmed Mohammed appointment tomorrow at 10:00 AM",
+      time: isArabic ? "منذ 5 دقائق" : "5 minutes ago",
+      isRead: false,
+      actionUrl: "/appointments",
+      patientName: "أحمد محمد",
+    },
+    {
+      id: "2",
+      type: "activity",
+      title: isArabic ? "مريض جديد" : "New Patient",
+      message: isArabic ? "تم تسجيل مريض جديد: فاطمة أحمد" : "New patient registered: Fatima Ahmed",
+      time: isArabic ? "منذ 15 دقيقة" : "15 minutes ago",
+      isRead: false,
+      actionUrl: "/patients",
+      patientName: "فاطمة أحمد",
+    },
+    {
+      id: "3",
+      type: "urgent",
+      title: isArabic ? "موعد عاجل" : "Urgent Appointment",
+      message: isArabic ? "مريض في الانتظار لأكثر من 30 دقيقة" : "Patient waiting for more than 30 minutes",
+      time: isArabic ? "منذ 30 دقيقة" : "30 minutes ago",
+      isRead: false,
+      actionUrl: "/dashboard",
+      patientName: "محمد سالم",
+    },
+    {
+      id: "4",
+      type: "appointment",
+      title: isArabic ? "موعد مكتمل" : "Appointment Completed",
+      message: isArabic ? "تم إكمال موعد سارة علي" : "Sara Ali appointment completed",
+      time: isArabic ? "منذ ساعة" : "1 hour ago",
+      isRead: true,
+      actionUrl: "/patients",
+      patientName: "سارة علي",
+    },
+    {
+      id: "5",
+      type: "reminder",
+      title: isArabic ? "مكالمة مطلوبة" : "Call Required",
+      message: isArabic ? "تذكير: اتصال بخالد أحمد لتأكيد الموعد" : "Reminder: Call Khalid Ahmed to confirm appointment",
+      time: isArabic ? "منذ ساعتين" : "2 hours ago",
+      isRead: true,
+      actionUrl: "/appointments",
+      patientName: "خالد أحمد",
+    },
+  ]);
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
