@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Card,
   CardContent,
@@ -369,7 +370,7 @@ export default function NewAppointment() {
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <Phone className="h-3 w-3" />
                             <span>{patient.phone}</span>
-                            <span>•</span>
+                            <span>���</span>
                             <span>{patient.nationalId}</span>
                           </div>
                         </div>
@@ -402,7 +403,7 @@ export default function NewAppointment() {
                   id="patientName"
                   placeholder={
                     isArabic
-                      ? "أدخل اسم المريض الكامل"
+                      ? "أدخل اسم ا��مريض الكامل"
                       : "Enter full patient name"
                   }
                   value={newPatientData.name}
@@ -709,7 +710,7 @@ export default function NewAppointment() {
             id="appointmentNotes"
             placeholder={
               isArabic
-                ? "أضف أي ملاحظات خاصة بالموعد..."
+                ? "أضف أي ملاحظ��ت خاصة بالموعد..."
                 : "Add any special notes for the appointment..."
             }
             value={notes}
