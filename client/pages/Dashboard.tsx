@@ -136,7 +136,7 @@ export default function Dashboard() {
       upcomingAppointments: "المواعيد القادمة",
       viewAll: "عرض الكل",
       recentActivity: "النشاطات الأخيرة",
-      clinicPerformance: "أد��ء العيادة",
+      clinicPerformance: "أداء العيادة",
       doctorPerformance: "أداء الطبيب",
       financialOverview: "الإحصائيات المالية",
       todayRevenue: "إيرادات اليوم",
@@ -478,7 +478,7 @@ export default function Dashboard() {
                   {[
                     { id: "1", name: "عبدالله محمد", time: "09:15", waitingTime: "15 دقيقة", priority: "normal" },
                     { id: "2", name: "منى أحمد", time: "09:30", waitingTime: "30 دقيقة", priority: "urgent" },
-                    { id: "3", name: "سع�� الخالدي", time: "10:00", waitingTime: "10 دقائق", priority: "normal" },
+                    { id: "3", name: "سعد الخالدي", time: "10:00", waitingTime: "10 دقائق", priority: "normal" },
                   ].map((patient) => (
                     <div
                       key={patient.id}
@@ -584,7 +584,7 @@ export default function Dashboard() {
                 <Link to="/accounting">
                   <Button variant="outline" size="sm">
                     <BarChart3 className="h-4 w-4 mr-2" />
-                    {isArabic ? "ع��ض التفاصيل" : "View Details"}
+                    {isArabic ? "عرض التفاصيل" : "View Details"}
                   </Button>
                 </Link>
               </CardHeader>
@@ -681,7 +681,7 @@ export default function Dashboard() {
                 </div>
                 <div className="mt-4 pt-3 border-t">
                   <Button variant="outline" className="w-full" size="sm">
-                    {isArabic ? "عرض جميع المكالمات" : "View All Calls"}
+                    {isArabic ? "عرض جمي�� المكالمات" : "View All Calls"}
                   </Button>
                 </div>
               </CardContent>
@@ -822,12 +822,16 @@ export default function Dashboard() {
                 <TrendingUp className="h-5 w-5 text-success" />
                 {user?.type === "receptionist" ?
                   (isArabic ? "أداء الاستقبال" : "Reception Performance") :
+                  user?.type === "doctor" ?
+                  t.doctorPerformance :
                   t.clinicPerformance
                 }
               </CardTitle>
               <CardDescription>
                 {user?.type === "receptionist" ?
                   (isArabic ? "إحصائيات عملك اليوم" : "Your work statistics today") :
+                  user?.type === "doctor" ?
+                  (isArabic ? "إحصائيات عملك الطبي اليوم" : "Your medical work statistics today") :
                   (isArabic ? "أداء العيادة هذا الشهر" : "Clinic performance this month")
                 }
               </CardDescription>
