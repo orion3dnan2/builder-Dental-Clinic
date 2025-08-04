@@ -265,7 +265,7 @@ export default function Dashboard() {
             </h1>
             <p className="text-muted-foreground mt-1">
               {user?.type === "receptionist" ?
-                (isArabic ? "لوحة تحكم الاستقبال" : "Reception Dashboard") :
+                (isArabic ? "لوحة الاستقبال الطبي" : "Reception Dashboard") :
                 t.todayOverview
               } •{" "}
               {new Date().toLocaleDateString(isArabic ? "ar-SA" : "en-US", {
@@ -505,7 +505,7 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-3">
                   {[
-                    { id: "1", name: "عبد��لله محمد", time: "09:15", waitingTime: "15 دقيقة", priority: "normal" },
+                    { id: "1", name: "عبدالله محمد", time: "09:15", waitingTime: "15 دقيقة", priority: "normal" },
                     { id: "2", name: "منى أحمد", time: "09:30", waitingTime: "30 دقيقة", priority: "urgent" },
                     { id: "3", name: "سعد الخالدي", time: "10:00", waitingTime: "10 دقائق", priority: "normal" },
                   ].map((patient) => (
@@ -882,7 +882,7 @@ export default function Dashboard() {
                   <Link to="/invoices" className="block">
                     <Button className="w-full justify-start" variant="outline">
                       <Receipt className="h-4 w-4 mr-2" />
-                      {isArabic ? "الفواتير" : "Invoices"}
+                      {isArabic ? "ال��واتير" : "Invoices"}
                     </Button>
                   </Link>
                   <Link to="/reports" className="block">
