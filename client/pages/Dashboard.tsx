@@ -137,12 +137,17 @@ export default function Dashboard() {
       viewAll: "عرض الكل",
       recentActivity: "النشاطات الأخيرة",
       clinicPerformance: "أداء العيادة",
+      doctorPerformance: "أداء الطبيب",
       financialOverview: "الإحصائيات المالية",
       todayRevenue: "إيرادات اليوم",
       pendingInvoices: "فواتير معلقة",
       netProfit: "صافي الربح",
       viewDetails: "عرض التفاصيل",
       appointmentsToday: "مواعيد اليوم",
+      appointmentsCompleted: "مواعيد مكتملة اليوم",
+      patientsExamined: "مرضى تم فحصهم",
+      averageTime: "متوسط وقت الفحص",
+      patientSatisfaction: "رضا المرضى",
       patientsThisMonth: "مرضى هذا الشهر",
       revenue: "الإيرادات",
       sar: "ريال",
@@ -153,6 +158,11 @@ export default function Dashboard() {
       contact: "التواصل",
       from: "من",
       growth: "نمو",
+      todaySchedule: "جدول اليوم",
+      patientHistory: "سجل المريض",
+      medicalNotes: "الملاحظات الطبية",
+      prescription: "الوصفة الطبية",
+      nextPatient: "المريض التالي",
     },
     en: {
       welcome: "Welcome",
@@ -618,7 +628,7 @@ export default function Dashboard() {
             </Card>
           )}
 
-          {/* Call Management - لموظف الاستقبال فقط */}
+          {/* Call Management - لموظ�� الاستقبال فقط */}
           {user?.type === "receptionist" && (
             <Card>
               <CardHeader>
@@ -807,7 +817,7 @@ export default function Dashboard() {
               </CardTitle>
               <CardDescription>
                 {user?.type === "receptionist" ?
-                  (isArabic ? "إحصائيات عملك اليوم" : "Your work statistics today") :
+                  (isArabic ? "إحصائيات ع��لك اليوم" : "Your work statistics today") :
                   (isArabic ? "أداء العيادة هذا الشهر" : "Clinic performance this month")
                 }
               </CardDescription>
