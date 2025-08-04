@@ -250,7 +250,7 @@ export default function NewAppointment() {
 
   const renderStepIndicator = () => (
     <div className="flex items-center justify-center space-x-2 mb-8">
-      {[1, 2, 3, 4].map((step) => (
+      {[1, 2, 3, 4, 5].map((step) => (
         <div key={step} className="flex items-center">
           <div
             className={cn(
@@ -266,7 +266,7 @@ export default function NewAppointment() {
               step
             )}
           </div>
-          {step < 4 && (
+          {step < 5 && (
             <div
               className={cn(
                 "w-8 h-px mx-2",
@@ -622,7 +622,7 @@ export default function NewAppointment() {
           {t.appointmentNotes}
         </CardTitle>
         <CardDescription>
-          {isArabic ? "أضف أي ملاحظات أو تعليمات خاصة بالموعد" : "Add any special notes or instructions for the appointment"}
+          {isArabic ? "أضف أي ملاحظات أو تعل��مات خاصة بالموعد" : "Add any special notes or instructions for the appointment"}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -648,7 +648,7 @@ export default function NewAppointment() {
             <div className="flex justify-between">
               <span className="text-muted-foreground">{t.patientInfo}:</span>
               <span className="font-medium">
-                {selectedPatient?.name || newPatientData.name || (isArabic ? "مريض جديد" : "New Patient")}
+                {selectedPatient?.name || newPatientData.name || (isArabic ? "مريض ��ديد" : "New Patient")}
               </span>
             </div>
             <div className="flex justify-between">
