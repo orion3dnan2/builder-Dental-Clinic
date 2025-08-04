@@ -66,7 +66,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const content = {
     ar: {
-      dashboard: 'لوحة التحكم',
+      dashboard: user?.type === 'accountant' ? 'لوحة المحاسب' :
+                 user?.type === 'doctor' ? 'لوحة الطبيب' :
+                 user?.type === 'receptionist' ? 'لوحة الاستقبال' : 'لوحة التحكم',
       patients: 'المرضى',
       appointments: 'المواعيد',
       invoices: 'الفواتير',
@@ -83,7 +85,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       switchLang: 'English'
     },
     en: {
-      dashboard: 'Dashboard',
+      dashboard: user?.type === 'accountant' ? 'Accounting Dashboard' :
+                 user?.type === 'doctor' ? 'Doctor Dashboard' :
+                 user?.type === 'receptionist' ? 'Reception Dashboard' : 'Dashboard',
       patients: 'Patients',
       appointments: 'Appointments',
       invoices: 'Invoices',
