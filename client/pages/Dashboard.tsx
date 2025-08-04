@@ -149,7 +149,7 @@ export default function Dashboard() {
       averageTime: "متوسط وقت الفحص",
       patientSatisfaction: "رضا المرضى",
       patientsThisMonth: "مرضى هذا الشهر",
-      revenue: "الإيرادات",
+      revenue: "ا��إيرادات",
       sar: "ريال",
       time: "الوقت",
       patient: "المريض",
@@ -654,7 +654,7 @@ export default function Dashboard() {
                 <div className="space-y-3">
                   {[
                     { name: "أحمد سالم", reason: "تذكير بموعد غداً", phone: "+966501234567", priority: "normal" },
-                    { name: "فاطمة علي", reason: "تأكيد موعد الأسبوع القادم", phone: "+966507654321", priority: "normal" },
+                    { name: "فاطمة علي", reason: "تأكيد موعد الأسبوع القا��م", phone: "+966507654321", priority: "normal" },
                     { name: "محمد الأحمد", reason: "إلغاء وإعادة جدولة", phone: "+966509876543", priority: "urgent" },
                   ].map((call, index) => (
                     <div
@@ -681,7 +681,7 @@ export default function Dashboard() {
                 </div>
                 <div className="mt-4 pt-3 border-t">
                   <Button variant="outline" className="w-full" size="sm">
-                    {isArabic ? "عرض جمي�� المكالمات" : "View All Calls"}
+                    {isArabic ? "عرض جميع المكالمات" : "View All Calls"}
                   </Button>
                 </div>
               </CardContent>
@@ -865,6 +865,45 @@ export default function Dashboard() {
                       <span className="font-medium">3</span>
                     </div>
                     <Progress value={60} className="h-2" />
+                  </div>
+                </>
+              ) : user?.type === "doctor" ? (
+                <>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {t.appointmentsCompleted}
+                      </span>
+                      <span className="font-medium">8</span>
+                    </div>
+                    <Progress value={88} className="h-2" />
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {t.patientsExamined}
+                      </span>
+                      <span className="font-medium">12</span>
+                    </div>
+                    <Progress value={75} className="h-2" />
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {t.averageTime}
+                      </span>
+                      <span className="font-medium">{isArabic ? "25 دقيقة" : "25 min"}</span>
+                    </div>
+                    <Progress value={80} className="h-2" />
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {t.patientSatisfaction}
+                      </span>
+                      <span className="font-medium">95%</span>
+                    </div>
+                    <Progress value={95} className="h-2" />
                   </div>
                 </>
               ) : (
