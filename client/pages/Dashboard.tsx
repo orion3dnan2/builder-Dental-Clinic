@@ -69,7 +69,7 @@ export default function Dashboard() {
     },
     {
       id: '3',
-      patientName: 'محمد عبد��لله',
+      patientName: 'محمد عبدالله',
       time: '11:00',
       type: 'حشو ضرس',
       status: 'pending',
@@ -198,7 +198,7 @@ export default function Dashboard() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold text-foreground">
-              {t.welcome} {user?.name ? `${isArabic ? 'د.' : 'Dr.'} ${user.name.split(' ')[isArabic ? 1 : 0]}` : ''}
+              {t.welcome} {user ? (isArabic ? user.nameAr || user.name : user.nameEn || user.name) : ''}
             </h1>
             <p className="text-muted-foreground mt-1">
               {t.todayOverview} • {new Date().toLocaleDateString(isArabic ? 'ar-SA' : 'en-US', {
@@ -348,7 +348,7 @@ export default function Dashboard() {
             <CardHeader>
               <CardTitle>{t.quickActions}</CardTitle>
               <CardDescription>
-                {isArabic ? 'إجراءات سريعة للعمليات الشائعة' : 'Quick access to common tasks'}
+                {isArabic ? 'إجراءات سريعة لل��مل��ات الش����عة' : 'Quick access to common tasks'}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
