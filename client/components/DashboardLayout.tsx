@@ -206,6 +206,33 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     }
   }, [user?.type, isArabic]);
 
+  // Simulate live notifications every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newNotifications = [
+        {
+          id: Date.now().toString(),
+          type: "reminder" as const,
+          title: isArabic ? "تذكير جديد" : "New Reminder",
+          message: isArabic ? "حان وقت مراجعة المواعيد" : "Time to review appointments",
+          time: isArabic ? "الآن" : "now",
+          isRead: false,
+          actionUrl: "/appointments",
+        },
+      ];
+
+      // Add new notification only if we have fewer than 10
+      setNotifications(prev => {
+        if (prev.length < 10) {
+          return [newNotifications[0], ...prev];
+        }
+        return prev;
+      });
+    }, 30000); // Every 30 seconds
+
+    return () => clearInterval(interval);
+  }, [isArabic]);
+
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (userData) {
