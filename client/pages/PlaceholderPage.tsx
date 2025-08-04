@@ -24,7 +24,7 @@ export default function PlaceholderPage({
   description,
   features = [],
 }: PlaceholderPageProps) {
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic } = useLanguage();
 
   const content = {
     ar: {
