@@ -17,7 +17,10 @@ import {
   Stethoscope,
   FileText,
   Phone,
-  Mail
+  Mail,
+  Settings,
+  Receipt,
+  BarChart3
 } from 'lucide-react';
 
 interface DashboardStats {
@@ -352,7 +355,7 @@ export default function Dashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {/* موظف الاستقبال - حجز المواعيد وإضافة المرضى */}
+              {/* موظف الاستقبال - ��جز المواعيد وإضافة المرضى */}
               {(user?.type === 'receptionist' || user?.type === 'admin') && (
                 <>
                   <Link to="/appointments/new" className="block">
@@ -388,7 +391,7 @@ export default function Dashboard() {
                 </>
               )}
 
-              {/* المحاسب - ا��محاسبة والتقارير المالية */}
+              {/* المحاسب - المحاسبة والتقارير المالية */}
               {(user?.type === 'accountant' || user?.type === 'admin') && (
                 <>
                   <Link to="/accounting" className="block">
