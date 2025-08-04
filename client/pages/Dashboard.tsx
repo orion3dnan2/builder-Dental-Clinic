@@ -141,7 +141,7 @@ export default function Dashboard() {
       confirmed: "مُؤكدة",
       callsToMake: "مكالمات مطلوبة",
       checkedInToday: "الحاضرون ��ليوم",
-      remindersSent: "الت��كي����ات المُرسلة",
+      remindersSent: "الت��كي����ت المُرسلة",
       quickActions: "الإجراءات السريعة",
       newAppointment: "حجز موعد جديد",
       newPatient: "تسجيل مريض جديد",
@@ -1007,7 +1007,7 @@ export default function Dashboard() {
                   <Link to="/invoices" className="block">
                     <Button className="w-full justify-start" variant="outline">
                       <Receipt className="h-4 w-4 mr-2" />
-                      {isArabic ? "الفو����ير" : "Invoices"}
+                      {isArabic ? "الفو��تير" : "Invoices"}
                     </Button>
                   </Link>
                   <Link to="/reports" className="block">
@@ -1273,8 +1273,8 @@ export default function Dashboard() {
                         },
                         {
                           action: isArabic ? "تم إرسال فاتور��" : "Invoice sent",
-                          patient: "فاطمة سالم",
-                          time: "1 ساعة",
+                          patient: isArabic ? "فاطمة سالم" : "Fatima Salem",
+                          time: isArabic ? "1 ساعة" : "1 hour ago",
                           icon: FileText,
                           color: "text-warning",
                         },
