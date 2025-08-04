@@ -132,7 +132,7 @@ export default function NewAppointment() {
   const content = {
     ar: {
       newAppointment: "حجز موعد جديد",
-      appointmentBooking: "حج�� موعد",
+      appointmentBooking: "حجز موعد",
       patientInfo: "بيانات المريض",
       doctorSelection: "اختيار الطبيب",
       dateTimeSelection: "التاريخ والوقت",
@@ -285,19 +285,23 @@ export default function NewAppointment() {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="flex gap-2">
+        <div className="flex gap-2 p-1 bg-muted rounded-lg">
           <Button
-            variant={!isNewPatient ? "default" : "outline"}
+            variant={!isNewPatient ? "default" : "ghost"}
             onClick={() => setIsNewPatient(false)}
             className="flex-1"
+            size="sm"
           >
+            <User className="h-4 w-4 mr-2" />
             {t.existingPatient}
           </Button>
           <Button
-            variant={isNewPatient ? "default" : "outline"}
+            variant={isNewPatient ? "default" : "ghost"}
             onClick={() => setIsNewPatient(true)}
             className="flex-1"
+            size="sm"
           >
+            <User className="h-4 w-4 mr-2" />
             {t.newPatient}
           </Button>
         </div>
