@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import DashboardLayout from '@/components/DashboardLayout';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import DashboardLayout from "@/components/DashboardLayout";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import {
   Users,
   Calendar,
@@ -20,8 +26,8 @@ import {
   Mail,
   Settings,
   Receipt,
-  BarChart3
-} from 'lucide-react';
+  BarChart3,
+} from "lucide-react";
 
 interface DashboardStats {
   todayAppointments: number;
@@ -37,7 +43,7 @@ interface Appointment {
   patientName: string;
   time: string;
   type: string;
-  status: 'confirmed' | 'pending' | 'completed' | 'cancelled';
+  status: "confirmed" | "pending" | "completed" | "cancelled";
   phone: string;
 }
 
@@ -50,54 +56,54 @@ export default function Dashboard() {
     monthlyRevenue: 45600,
     completedAppointments: 8,
     pendingAppointments: 4,
-    cancelledAppointments: 0
+    cancelledAppointments: 0,
   });
 
   const [todayAppointments, setTodayAppointments] = useState<Appointment[]>([
     {
-      id: '1',
-      patientName: 'أحمد محمد العلي',
-      time: '09:00',
-      type: 'فحص دوري',
-      status: 'confirmed',
-      phone: '+966501234567'
+      id: "1",
+      patientName: "أحمد محمد العلي",
+      time: "09:00",
+      type: "فحص دوري",
+      status: "confirmed",
+      phone: "+966501234567",
     },
     {
-      id: '2',
-      patientName: 'فاطمة أحمد',
-      time: '10:30',
-      type: 'تنظيف أسنان',
-      status: 'completed',
-      phone: '+966507654321'
+      id: "2",
+      patientName: "فاطمة أحمد",
+      time: "10:30",
+      type: "تنظيف أسنان",
+      status: "completed",
+      phone: "+966507654321",
     },
     {
-      id: '3',
-      patientName: 'محمد عبدالله',
-      time: '11:00',
-      type: 'حشو ضرس',
-      status: 'pending',
-      phone: '+966509876543'
+      id: "3",
+      patientName: "محمد عبدالله",
+      time: "11:00",
+      type: "حشو ضرس",
+      status: "pending",
+      phone: "+966509876543",
     },
     {
-      id: '4',
-      patientName: 'نورا سالم',
-      time: '14:00',
-      type: 'تقويم أسنان',
-      status: 'confirmed',
-      phone: '+966502345678'
+      id: "4",
+      patientName: "نورا سالم",
+      time: "14:00",
+      type: "تقويم أسنان",
+      status: "confirmed",
+      phone: "+966502345678",
     },
     {
-      id: '5',
-      patientName: 'خالد أحمد',
-      time: '15:30',
-      type: 'زراعة أسنان',
-      status: 'pending',
-      phone: '+966508765432'
-    }
+      id: "5",
+      patientName: "خالد أحمد",
+      time: "15:30",
+      type: "زراعة أسنان",
+      status: "pending",
+      phone: "+966508765432",
+    },
   ]);
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
+    const userData = localStorage.getItem("user");
     if (userData) {
       setUser(JSON.parse(userData));
     }
@@ -105,99 +111,99 @@ export default function Dashboard() {
 
   const content = {
     ar: {
-      welcome: 'مرحباً',
-      todayOverview: 'نظرة عامة على اليوم',
-      todayAppointments: 'مواعيد اليوم',
-      totalPatients: 'إجمالي المرضى',
-      monthlyRevenue: 'الإيرادات الشهرية',
-      appointmentStatus: 'حالة المواعيد',
-      completed: 'مكتملة',
-      pending: 'في الانتظار',
-      cancelled: 'ملغية',
-      confirmed: 'مؤكدة',
-      quickActions: 'إجراءات سريعة',
-      newAppointment: 'موعد جديد',
-      newPatient: 'مريض جديد',
-      viewReports: 'عرض التقارير',
-      manageSettings: 'إدارة الإعدادات',
-      viewPatients: 'عرض المرضى',
-      invoices: 'الفواتير',
-      financialReports: 'تقارير مالية',
-      viewAppointments: 'عرض المواعيد',
-      upcomingAppointments: 'المواعيد القادمة',
-      viewAll: 'عرض الكل',
-      recentActivity: 'النشاطات الأخيرة',
-      clinicPerformance: 'أداء العيادة',
-      financialOverview: 'الإحصائيات المالية',
-      todayRevenue: 'إيرادات اليوم',
-      pendingInvoices: 'فواتير معلقة',
-      netProfit: 'صافي الربح',
-      viewDetails: 'عرض التفاصيل',
-      appointmentsToday: 'مواعيد اليوم',
-      patientsThisMonth: 'مرضى هذا الشهر',
-      revenue: 'الإيرادات',
-      sar: 'ريال',
-      time: 'الوقت',
-      patient: 'المريض',
-      type: 'نوع العلاج',
-      status: 'الحالة',
-      contact: 'التواصل',
-      from: 'من',
-      growth: 'نمو'
+      welcome: "مرحباً",
+      todayOverview: "نظرة عامة على اليوم",
+      todayAppointments: "مواعيد اليوم",
+      totalPatients: "إجمالي المرضى",
+      monthlyRevenue: "الإيرادات الشهرية",
+      appointmentStatus: "حالة المواعيد",
+      completed: "مكتملة",
+      pending: "في الانتظار",
+      cancelled: "ملغية",
+      confirmed: "مؤكدة",
+      quickActions: "إجراءات سريعة",
+      newAppointment: "موعد جديد",
+      newPatient: "مريض جديد",
+      viewReports: "عرض التقارير",
+      manageSettings: "إدارة الإعدادات",
+      viewPatients: "عرض المرضى",
+      invoices: "الفواتير",
+      financialReports: "تقارير مالية",
+      viewAppointments: "عرض المواعيد",
+      upcomingAppointments: "المواعيد القادمة",
+      viewAll: "عرض الكل",
+      recentActivity: "النشاطات الأخيرة",
+      clinicPerformance: "أداء العيادة",
+      financialOverview: "الإحصائيات المالية",
+      todayRevenue: "إيرادات اليوم",
+      pendingInvoices: "فواتير معلقة",
+      netProfit: "صافي الربح",
+      viewDetails: "عرض التفاصيل",
+      appointmentsToday: "مواعيد اليوم",
+      patientsThisMonth: "مرضى هذا الشهر",
+      revenue: "الإيرادات",
+      sar: "ريال",
+      time: "الوقت",
+      patient: "المريض",
+      type: "نوع العلاج",
+      status: "الحالة",
+      contact: "التواصل",
+      from: "من",
+      growth: "نمو",
     },
     en: {
-      welcome: 'Welcome',
-      todayOverview: 'Today\'s Overview',
-      todayAppointments: 'Today\'s Appointments',
-      totalPatients: 'Total Patients',
-      monthlyRevenue: 'Monthly Revenue',
-      appointmentStatus: 'Appointment Status',
-      completed: 'Completed',
-      pending: 'Pending',
-      cancelled: 'Cancelled',
-      confirmed: 'Confirmed',
-      quickActions: 'Quick Actions',
-      newAppointment: 'New Appointment',
-      newPatient: 'New Patient',
-      viewReports: 'View Reports',
-      manageSettings: 'Manage Settings',
-      viewPatients: 'View Patients',
-      invoices: 'Invoices',
-      financialReports: 'Financial Reports',
-      viewAppointments: 'View Appointments',
-      upcomingAppointments: 'Upcoming Appointments',
-      viewAll: 'View All',
-      recentActivity: 'Recent Activity',
-      clinicPerformance: 'Clinic Performance',
-      financialOverview: 'Financial Overview',
+      welcome: "Welcome",
+      todayOverview: "Today's Overview",
+      todayAppointments: "Today's Appointments",
+      totalPatients: "Total Patients",
+      monthlyRevenue: "Monthly Revenue",
+      appointmentStatus: "Appointment Status",
+      completed: "Completed",
+      pending: "Pending",
+      cancelled: "Cancelled",
+      confirmed: "Confirmed",
+      quickActions: "Quick Actions",
+      newAppointment: "New Appointment",
+      newPatient: "New Patient",
+      viewReports: "View Reports",
+      manageSettings: "Manage Settings",
+      viewPatients: "View Patients",
+      invoices: "Invoices",
+      financialReports: "Financial Reports",
+      viewAppointments: "View Appointments",
+      upcomingAppointments: "Upcoming Appointments",
+      viewAll: "View All",
+      recentActivity: "Recent Activity",
+      clinicPerformance: "Clinic Performance",
+      financialOverview: "Financial Overview",
       todayRevenue: "Today's Revenue",
-      pendingInvoices: 'Pending Invoices',
-      netProfit: 'Net Profit',
-      viewDetails: 'View Details',
-      appointmentsToday: 'Appointments Today',
-      patientsThisMonth: 'Patients This Month',
-      revenue: 'Revenue',
-      sar: 'SAR',
-      time: 'Time',
-      patient: 'Patient',
-      type: 'Treatment Type',
-      status: 'Status',
-      contact: 'Contact',
-      from: 'from',
-      growth: 'growth'
-    }
+      pendingInvoices: "Pending Invoices",
+      netProfit: "Net Profit",
+      viewDetails: "View Details",
+      appointmentsToday: "Appointments Today",
+      patientsThisMonth: "Patients This Month",
+      revenue: "Revenue",
+      sar: "SAR",
+      time: "Time",
+      patient: "Patient",
+      type: "Treatment Type",
+      status: "Status",
+      contact: "Contact",
+      from: "from",
+      growth: "growth",
+    },
   };
 
-  const t = content[isArabic ? 'ar' : 'en'];
+  const t = content[isArabic ? "ar" : "en"];
 
   const getStatusColor = (status: string) => {
     const colors = {
-      completed: 'bg-success text-success-foreground',
-      confirmed: 'bg-primary text-primary-foreground',
-      pending: 'bg-warning text-warning-foreground',
-      cancelled: 'bg-destructive text-destructive-foreground'
+      completed: "bg-success text-success-foreground",
+      confirmed: "bg-primary text-primary-foreground",
+      pending: "bg-warning text-warning-foreground",
+      cancelled: "bg-destructive text-destructive-foreground",
     };
-    return colors[status as keyof typeof colors] || 'bg-muted';
+    return colors[status as keyof typeof colors] || "bg-muted";
   };
 
   const getStatusLabel = (status: string) => {
@@ -205,33 +211,44 @@ export default function Dashboard() {
       completed: t.completed,
       confirmed: t.confirmed,
       pending: t.pending,
-      cancelled: t.cancelled
+      cancelled: t.cancelled,
     };
     return labels[status as keyof typeof labels] || status;
   };
 
-  const completionRate = Math.round((stats.completedAppointments / stats.todayAppointments) * 100);
+  const completionRate = Math.round(
+    (stats.completedAppointments / stats.todayAppointments) * 100,
+  );
 
   return (
     <DashboardLayout>
-      <div className={`space-y-6 ${isArabic ? 'rtl' : 'ltr'}`} lang={isArabic ? 'ar' : 'en'}>
+      <div
+        className={`space-y-6 ${isArabic ? "rtl" : "ltr"}`}
+        lang={isArabic ? "ar" : "en"}
+      >
         {/* Welcome Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold text-foreground">
-              {t.welcome} {user ? (isArabic ? user.nameAr || user.name : user.nameEn || user.name) : ''}
+              {t.welcome}{" "}
+              {user
+                ? isArabic
+                  ? user.nameAr || user.name
+                  : user.nameEn || user.name
+                : ""}
             </h1>
             <p className="text-muted-foreground mt-1">
-              {t.todayOverview} • {new Date().toLocaleDateString(isArabic ? 'ar-SA' : 'en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
+              {t.todayOverview} •{" "}
+              {new Date().toLocaleDateString(isArabic ? "ar-SA" : "en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
               })}
             </p>
           </div>
           {/* زر موعد جديد - فقط لموظف الاستقبال والمدير */}
-          {(user?.type === 'receptionist' || user?.type === 'admin') && (
+          {(user?.type === "receptionist" || user?.type === "admin") && (
             <div className="flex gap-2">
               <Button>
                 <Calendar className="h-4 w-4 mr-2" />
@@ -251,10 +268,14 @@ export default function Dashboard() {
               <Calendar className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stats.todayAppointments}</div>
+              <div className="text-2xl font-bold">
+                {stats.todayAppointments}
+              </div>
               <div className="flex items-center gap-2 mt-2">
                 <Progress value={completionRate} className="flex-1" />
-                <span className="text-xs text-muted-foreground">{completionRate}%</span>
+                <span className="text-xs text-muted-foreground">
+                  {completionRate}%
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -269,7 +290,8 @@ export default function Dashboard() {
             <CardContent>
               <div className="text-2xl font-bold">{stats.totalPatients}</div>
               <p className="text-xs text-muted-foreground">
-                <span className="text-success">+12%</span> {t.from} {isArabic ? 'الشهر الماضي' : 'last month'}
+                <span className="text-success">+12%</span> {t.from}{" "}
+                {isArabic ? "الشهر الماضي" : "last month"}
               </p>
             </CardContent>
           </Card>
@@ -286,7 +308,8 @@ export default function Dashboard() {
                 {stats.monthlyRevenue.toLocaleString()} {t.sar}
               </div>
               <p className="text-xs text-muted-foreground">
-                <span className="text-success">+8%</span> {t.from} {isArabic ? 'الشهر الماضي' : 'last month'}
+                <span className="text-success">+8%</span> {t.from}{" "}
+                {isArabic ? "الشهر الماضي" : "last month"}
               </p>
             </CardContent>
           </Card>
@@ -302,11 +325,15 @@ export default function Dashboard() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span>{t.completed}</span>
-                  <span className="font-medium">{stats.completedAppointments}</span>
+                  <span className="font-medium">
+                    {stats.completedAppointments}
+                  </span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>{t.pending}</span>
-                  <span className="font-medium">{stats.pendingAppointments}</span>
+                  <span className="font-medium">
+                    {stats.pendingAppointments}
+                  </span>
                 </div>
               </div>
             </CardContent>
@@ -314,9 +341,13 @@ export default function Dashboard() {
         </div>
 
         {/* Main Content Grid */}
-        <div className={`grid gap-6 ${(user?.type === 'receptionist' || user?.type === 'doctor' || user?.type === 'admin') ? 'md:grid-cols-2 lg:grid-cols-3' : 'md:grid-cols-1 lg:grid-cols-2'}`}>
+        <div
+          className={`grid gap-6 ${user?.type === "receptionist" || user?.type === "doctor" || user?.type === "admin" ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-1 lg:grid-cols-2"}`}
+        >
           {/* Today's Appointments - لموظف الاستقبال والطبيب والمدير فقط */}
-          {(user?.type === 'receptionist' || user?.type === 'doctor' || user?.type === 'admin') && (
+          {(user?.type === "receptionist" ||
+            user?.type === "doctor" ||
+            user?.type === "admin") && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
                 <div>
@@ -331,61 +362,67 @@ export default function Dashboard() {
                   </Button>
                 </Link>
               </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {todayAppointments.slice(0, 5).map((appointment) => (
-                  <div
-                    key={appointment.id}
-                    className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-accent/50 transition-medical"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="bg-primary/10 p-2 rounded-full">
-                        <Clock className="h-4 w-4 text-primary" />
+              <CardContent>
+                <div className="space-y-4">
+                  {todayAppointments.slice(0, 5).map((appointment) => (
+                    <div
+                      key={appointment.id}
+                      className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-accent/50 transition-medical"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="bg-primary/10 p-2 rounded-full">
+                          <Clock className="h-4 w-4 text-primary" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h4 className="font-medium truncate">
+                              {appointment.patientName}
+                            </h4>
+                            <Badge
+                              className={`text-xs ${getStatusColor(appointment.status)}`}
+                            >
+                              {getStatusLabel(appointment.status)}
+                            </Badge>
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            {appointment.time} • {appointment.type}
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h4 className="font-medium truncate">{appointment.patientName}</h4>
-                          <Badge className={`text-xs ${getStatusColor(appointment.status)}`}>
-                            {getStatusLabel(appointment.status)}
-                          </Badge>
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {appointment.time} • {appointment.type}
-                        </div>
+                      <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="sm">
+                          <Phone className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <Mail className="h-4 w-4" />
+                        </Button>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Button variant="ghost" size="sm">
-                        <Phone className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        <Mail className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
+                  ))}
+                </div>
+              </CardContent>
             </Card>
           )}
 
           {/* إحصائيات مالية سريعة للمحاسب */}
-          {user?.type === 'accountant' && (
+          {user?.type === "accountant" && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
                 <div>
                   <CardTitle className="flex items-center gap-2">
                     <DollarSign className="h-5 w-5 text-success" />
-                    {isArabic ? 'الإحصائيات المالية' : 'Financial Overview'}
+                    {isArabic ? "الإحصائيات المالية" : "Financial Overview"}
                   </CardTitle>
                   <CardDescription>
-                    {isArabic ? 'نظرة عامة على الوضع المالي اليوم' : "Today's financial status"}
+                    {isArabic
+                      ? "نظرة عامة على الوضع المالي اليوم"
+                      : "Today's financial status"}
                   </CardDescription>
                 </div>
                 <Link to="/accounting">
                   <Button variant="outline" size="sm">
                     <BarChart3 className="h-4 w-4 mr-2" />
-                    {isArabic ? 'عرض التفاصيل' : 'View Details'}
+                    {isArabic ? "عرض التفاصيل" : "View Details"}
                   </Button>
                 </Link>
               </CardHeader>
@@ -397,8 +434,12 @@ export default function Dashboard() {
                         <TrendingUp className="h-4 w-4 text-success" />
                       </div>
                       <div>
-                        <h4 className="font-medium text-success">{isArabic ? 'إيرادات اليوم' : "Today's Revenue"}</h4>
-                        <p className="text-2xl font-bold text-success">4,850 {isArabic ? 'ريال' : 'SAR'}</p>
+                        <h4 className="font-medium text-success">
+                          {isArabic ? "إيرادات اليوم" : "Today's Revenue"}
+                        </h4>
+                        <p className="text-2xl font-bold text-success">
+                          4,850 {isArabic ? "ريال" : "SAR"}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -408,7 +449,9 @@ export default function Dashboard() {
                         <Receipt className="h-4 w-4 text-warning" />
                       </div>
                       <div>
-                        <h4 className="font-medium text-warning">{isArabic ? 'فواتير معلقة' : 'Pending Invoices'}</h4>
+                        <h4 className="font-medium text-warning">
+                          {isArabic ? "فواتير معلقة" : "Pending Invoices"}
+                        </h4>
                         <p className="text-2xl font-bold text-warning">8</p>
                       </div>
                     </div>
@@ -419,8 +462,12 @@ export default function Dashboard() {
                         <BarChart3 className="h-4 w-4 text-primary" />
                       </div>
                       <div>
-                        <h4 className="font-medium text-primary">{isArabic ? 'صافي الربح' : 'Net Profit'}</h4>
-                        <p className="text-2xl font-bold text-primary">80,600 {isArabic ? 'ريال' : 'SAR'}</p>
+                        <h4 className="font-medium text-primary">
+                          {isArabic ? "صافي الربح" : "Net Profit"}
+                        </h4>
+                        <p className="text-2xl font-bold text-primary">
+                          80,600 {isArabic ? "ريال" : "SAR"}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -430,25 +477,40 @@ export default function Dashboard() {
           )}
 
           {/* Quick Actions */}
-          <Card className={`${(user?.type === 'accountant') ? 'md:col-span-1 lg:col-span-2' : ''}`}>
+          <Card
+            className={`${user?.type === "accountant" ? "md:col-span-1 lg:col-span-2" : ""}`}
+          >
             <CardHeader>
               <CardTitle>{t.quickActions}</CardTitle>
               <CardDescription>
-                {isArabic ?
-                  `إجراءات سريعة لـ${user?.type === 'admin' ? 'مدير النظام' :
-                    user?.type === 'doctor' ? 'الطبيب' :
-                    user?.type === 'receptionist' ? 'موظف الاستقبال' :
-                    user?.type === 'accountant' ? 'المحاسب' : 'المستخدم'}` :
-                  `Quick access for ${user?.type === 'admin' ? 'System Admin' :
-                    user?.type === 'doctor' ? 'Doctor' :
-                    user?.type === 'receptionist' ? 'Receptionist' :
-                    user?.type === 'accountant' ? 'Accountant' : 'User'} tasks`
-                }
+                {isArabic
+                  ? `إجراءات سريعة لـ${
+                      user?.type === "admin"
+                        ? "مدير النظام"
+                        : user?.type === "doctor"
+                          ? "الطبيب"
+                          : user?.type === "receptionist"
+                            ? "موظف الاستقبال"
+                            : user?.type === "accountant"
+                              ? "المحاسب"
+                              : "المستخدم"
+                    }`
+                  : `Quick access for ${
+                      user?.type === "admin"
+                        ? "System Admin"
+                        : user?.type === "doctor"
+                          ? "Doctor"
+                          : user?.type === "receptionist"
+                            ? "Receptionist"
+                            : user?.type === "accountant"
+                              ? "Accountant"
+                              : "User"
+                    } tasks`}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               {/* موظف الاستقبال - حجز المواعيد وإضافة المرضى */}
-              {(user?.type === 'receptionist' || user?.type === 'admin') && (
+              {(user?.type === "receptionist" || user?.type === "admin") && (
                 <>
                   <Link to="/appointments/new" className="block">
                     <Button className="w-full justify-start" variant="outline">
@@ -466,12 +528,12 @@ export default function Dashboard() {
               )}
 
               {/* الطبيب - عرض المرضى والتقارير */}
-              {(user?.type === 'doctor' || user?.type === 'admin') && (
+              {(user?.type === "doctor" || user?.type === "admin") && (
                 <>
                   <Link to="/patients" className="block">
                     <Button className="w-full justify-start" variant="outline">
                       <Users className="h-4 w-4 mr-2" />
-                      {isArabic ? 'عرض المرضى' : 'View Patients'}
+                      {isArabic ? "عرض المرضى" : "View Patients"}
                     </Button>
                   </Link>
                   <Link to="/reports" className="block">
@@ -484,31 +546,31 @@ export default function Dashboard() {
               )}
 
               {/* المحاسب - المحاسبة والتقارير المالية */}
-              {(user?.type === 'accountant' || user?.type === 'admin') && (
+              {(user?.type === "accountant" || user?.type === "admin") && (
                 <>
                   <Link to="/accounting" className="block">
                     <Button className="w-full justify-start" variant="outline">
                       <DollarSign className="h-4 w-4 mr-2" />
-                      {isArabic ? 'المحاسبة' : 'Accounting'}
+                      {isArabic ? "المحاسبة" : "Accounting"}
                     </Button>
                   </Link>
                   <Link to="/invoices" className="block">
                     <Button className="w-full justify-start" variant="outline">
                       <Receipt className="h-4 w-4 mr-2" />
-                      {isArabic ? 'الفواتير' : 'Invoices'}
+                      {isArabic ? "الفواتير" : "Invoices"}
                     </Button>
                   </Link>
                   <Link to="/reports" className="block">
                     <Button className="w-full justify-start" variant="outline">
                       <BarChart3 className="h-4 w-4 mr-2" />
-                      {isArabic ? 'تقارير مالية' : 'Financial Reports'}
+                      {isArabic ? "تقارير مالية" : "Financial Reports"}
                     </Button>
                   </Link>
                 </>
               )}
 
               {/* مدير النظام - إدارة الإعدادات */}
-              {user?.type === 'admin' && (
+              {user?.type === "admin" && (
                 <Link to="/settings" className="block">
                   <Button className="w-full justify-start" variant="outline">
                     <Settings className="h-4 w-4 mr-2" />
@@ -521,7 +583,7 @@ export default function Dashboard() {
               <Link to="/appointments" className="block">
                 <Button className="w-full justify-start" variant="outline">
                   <Clock className="h-4 w-4 mr-2" />
-                  {isArabic ? 'عرض المواعيد' : 'View Appointments'}
+                  {isArabic ? "عرض المواعيد" : "View Appointments"}
                 </Button>
               </Link>
             </CardContent>
@@ -537,28 +599,38 @@ export default function Dashboard() {
                 {t.clinicPerformance}
               </CardTitle>
               <CardDescription>
-                {isArabic ? 'أداء العيادة هذا الشهر' : 'Clinic performance this month'}
+                {isArabic
+                  ? "أداء العيادة هذا الشهر"
+                  : "Clinic performance this month"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">{t.appointmentsToday}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {t.appointmentsToday}
+                  </span>
                   <span className="font-medium">{stats.todayAppointments}</span>
                 </div>
                 <Progress value={85} className="h-2" />
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">{t.patientsThisMonth}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {t.patientsThisMonth}
+                  </span>
                   <span className="font-medium">156</span>
                 </div>
                 <Progress value={72} className="h-2" />
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">{t.revenue}</span>
-                  <span className="font-medium">{stats.monthlyRevenue.toLocaleString()} {t.sar}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {t.revenue}
+                  </span>
+                  <span className="font-medium">
+                    {stats.monthlyRevenue.toLocaleString()} {t.sar}
+                  </span>
                 </div>
                 <Progress value={93} className="h-2" />
               </div>
@@ -572,41 +644,52 @@ export default function Dashboard() {
                 {t.recentActivity}
               </CardTitle>
               <CardDescription>
-                {isArabic ? 'آخر الأنشطة في النظام' : 'Latest system activities'}
+                {isArabic
+                  ? "آخر الأنشطة في النظام"
+                  : "Latest system activities"}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {[
                   {
-                    action: isArabic ? 'تم تسجيل مريض جديد' : 'New patient registered',
-                    patient: 'سارة أحمد',
-                    time: '10 دقائق',
+                    action: isArabic
+                      ? "تم تسجيل مريض جديد"
+                      : "New patient registered",
+                    patient: "سارة أحمد",
+                    time: "10 دقائق",
                     icon: UserCheck,
-                    color: 'text-success'
+                    color: "text-success",
                   },
                   {
-                    action: isArabic ? 'تم إكمال موعد' : 'Appointment completed',
-                    patient: 'محمد علي',
-                    time: '30 دقيقة',
+                    action: isArabic
+                      ? "تم إكمال موعد"
+                      : "Appointment completed",
+                    patient: "محمد علي",
+                    time: "30 دقيقة",
                     icon: Clock,
-                    color: 'text-primary'
+                    color: "text-primary",
                   },
                   {
-                    action: isArabic ? 'تم إرسال فاتورة' : 'Invoice sent',
-                    patient: 'فاطمة سالم',
-                    time: '1 ساعة',
+                    action: isArabic ? "تم إرسال فاتورة" : "Invoice sent",
+                    patient: "فاطمة سالم",
+                    time: "1 ساعة",
                     icon: FileText,
-                    color: 'text-warning'
-                  }
+                    color: "text-warning",
+                  },
                 ].map((activity, index) => (
-                  <div key={index} className="flex items-start gap-3 p-2 rounded-lg hover:bg-accent/50 transition-medical">
+                  <div
+                    key={index}
+                    className="flex items-start gap-3 p-2 rounded-lg hover:bg-accent/50 transition-medical"
+                  >
                     <div className={`p-1.5 rounded-full bg-background border`}>
                       <activity.icon className={`h-3 w-3 ${activity.color}`} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium">{activity.action}</p>
-                      <p className="text-xs text-muted-foreground">{activity.patient} • {activity.time}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {activity.patient} • {activity.time}
+                      </p>
                     </div>
                   </div>
                 ))}

@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap");
 
 @layer base {
   /**
@@ -121,14 +121,25 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', 'Noto Sans Arabic', system-ui, -apple-system, sans-serif;
-    font-feature-settings: 'cv11', 'ss01';
-    font-variation-settings: 'opsz' 32;
+    font-family:
+      "Inter",
+      "Noto Sans Arabic",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" 32;
   }
 
   /* Arabic font optimization */
-  [lang="ar"], .rtl {
-    font-family: 'Noto Sans Arabic', 'Inter', system-ui, -apple-system, sans-serif;
+  [lang="ar"],
+  .rtl {
+    font-family:
+      "Noto Sans Arabic",
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
     direction: rtl;
   }
 
