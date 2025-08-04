@@ -480,12 +480,102 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
             <div className="flex items-center gap-x-4 lg:gap-x-6 ml-auto">
               {/* Notifications */}
-              <Button variant="ghost" size="sm" className="relative">
-                <Bell className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 h-4 w-4 bg-destructive rounded-full text-xs text-destructive-foreground flex items-center justify-center">
-                  3
-                </span>
-              </Button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="ghost" size="sm" className="relative">
+                    <Bell className="h-5 w-5" />
+                    {unreadCount > 0 && (
+                      <span className="absolute -top-1 -right-1 h-4 w-4 bg-destructive rounded-full text-xs text-destructive-foreground flex items-center justify-center">
+                        {unreadCount}
+                      </span>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-96 p-0" align="end">
+                  <div className="flex items-center justify-between p-4 border-b">
+                    <h3 className="font-semibold">
+                      {isArabic ? "الإشعارات" : "Notifications"}
+                    </h3>
+                    {unreadCount > 0 && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={markAllAsRead}
+                        className="text-xs"
+                      >
+                        {isArabic ? "قراءة الكل" : "Mark all read"}
+                      </Button>
+                    )}
+                  </div>
+                  <div className="max-h-96 overflow-y-auto">
+                    {notifications.length > 0 ? (
+                      notifications.map((notification) => {
+                        const IconComponent = getNotificationIcon(notification.type);
+                        return (
+                          <div
+                            key={notification.id}
+                            className={`p-4 border-b last:border-b-0 hover:bg-accent cursor-pointer transition-colors ${
+                              !notification.isRead ? 'bg-muted/30' : ''
+                            }`}
+                            onClick={() => {
+                              markAsRead(notification.id);
+                              if (notification.actionUrl) {
+                                navigate(notification.actionUrl);
+                              }
+                            }}
+                          >
+                            <div className="flex items-start gap-3">
+                              <div className={`p-2 rounded-full bg-muted ${getNotificationColor(notification.type)}`}>
+                                <IconComponent className="h-4 w-4" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between">
+                                  <h4 className={`text-sm font-medium ${!notification.isRead ? 'text-foreground' : 'text-muted-foreground'}`}>
+                                    {notification.title}
+                                  </h4>
+                                  {!notification.isRead && (
+                                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                                  )}
+                                </div>
+                                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                                  {notification.message}
+                                </p>
+                                <div className="flex items-center justify-between mt-2">
+                                  <span className="text-xs text-muted-foreground">
+                                    {notification.time}
+                                  </span>
+                                  {notification.patientName && (
+                                    <Badge variant="outline" className="text-xs">
+                                      {notification.patientName}
+                                    </Badge>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="p-8 text-center text-muted-foreground">
+                        <Bell className="h-12 w-12 mx-auto mb-3 opacity-50" />
+                        <p className="text-sm">
+                          {isArabic ? "لا توجد إشعارات جديدة" : "No new notifications"}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-3 border-t bg-muted/30">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-full text-xs"
+                      onClick={() => navigate("/notifications")}
+                    >
+                      {isArabic ? "عرض جميع الإشعارات" : "View all notifications"}
+                    </Button>
+                  </div>
+                </PopoverContent>
+              </Popover>
 
               {/* User Menu */}
               <DropdownMenu>
