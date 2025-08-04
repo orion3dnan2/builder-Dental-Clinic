@@ -488,73 +488,127 @@ export default function NewAppointment() {
   );
 
   const renderDateTimeStep = () => (
-    <div className="grid gap-6 md:grid-cols-2">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <CalendarIcon className="h-5 w-5" />
-            {t.selectDate}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <Label htmlFor="appointmentDate">{t.selectDate}</Label>
-            <Input
-              id="appointmentDate"
-              type="date"
-              min={new Date().toISOString().split('T')[0]}
-              value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''}
-              onChange={(e) => setSelectedDate(new Date(e.target.value))}
-              className="w-full"
-            />
-          </div>
-        </CardContent>
-      </Card>
+    <div className="space-y-6">
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <CalendarIcon className="h-5 w-5" />
+              {t.selectDate}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <Label htmlFor="appointmentDate">{t.selectDate}</Label>
+              <Input
+                id="appointmentDate"
+                type="date"
+                min={new Date().toISOString().split('T')[0]}
+                value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''}
+                onChange={(e) => setSelectedDate(new Date(e.target.value))}
+                className="w-full"
+              />
+            </div>
+          </CardContent>
+        </Card>
 
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Clock className="h-5 w-5" />
+              {t.selectTime}
+            </CardTitle>
+            <CardDescription>
+              {selectedDoctor ? selectedDoctor.name : t.selectDoctor}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {selectedDoctor && selectedDate ? (
+              <div className="space-y-4">
+                <div className="p-3 bg-muted/50 rounded-lg">
+                  <p className="text-sm font-medium">{selectedDoctor.name}</p>
+                  <p className="text-xs text-muted-foreground">{selectedDoctor.specialization}</p>
+                </div>
+                <div className="grid gap-3 grid-cols-2 sm:grid-cols-3">
+                  {selectedDoctor.availability.map((time) => (
+                    <Button
+                      key={time}
+                      variant={selectedTime === time ? "default" : "outline"}
+                      className={cn(
+                        "h-14 text-sm font-medium transition-all duration-200",
+                        selectedTime === time
+                          ? "bg-primary text-primary-foreground shadow-lg"
+                          : "hover:bg-primary/10 hover:border-primary/50"
+                      )}
+                      onClick={() => setSelectedTime(time)}
+                    >
+                      <Clock className="h-4 w-4 mb-1" />
+                      {time}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="text-center text-muted-foreground py-12">
+                <Clock className="h-12 w-12 mx-auto mb-3 opacity-50" />
+                <p className="text-sm">
+                  {isArabic ? "يرجى اختيار طبيب وتاريخ أولاً" : "Please select doctor and date first"}
+                </p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Treatment Selection */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Clock className="h-5 w-5" />
-            {t.selectTime}
+            <Stethoscope className="h-5 w-5" />
+            {t.selectTreatment}
           </CardTitle>
           <CardDescription>
-            {selectedDoctor ? selectedDoctor.name : t.selectDoctor}
+            {isArabic ? "اختر نوع العلاج المطلوب" : "Select the required treatment type"}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {selectedDoctor && selectedDate ? (
-            <div className="space-y-4">
-              <div className="p-3 bg-muted/50 rounded-lg">
-                <p className="text-sm font-medium">{selectedDoctor.name}</p>
-                <p className="text-xs text-muted-foreground">{selectedDoctor.specialization}</p>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {treatmentTypes.map((treatment) => (
+              <div
+                key={treatment.id}
+                className={cn(
+                  "p-5 border rounded-xl cursor-pointer transition-all duration-200",
+                  selectedTreatment?.id === treatment.id
+                    ? "border-primary bg-primary/5 shadow-lg"
+                    : "border-border hover:border-primary/50 hover:shadow-md"
+                )}
+                onClick={() => setSelectedTreatment(treatment)}
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <Badge variant="outline" className="text-xs font-medium">
+                    {treatment.category}
+                  </Badge>
+                  {selectedTreatment?.id === treatment.id && (
+                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                      <CheckCircle className="h-3 w-3 text-white" />
+                    </div>
+                  )}
+                </div>
+                <h4 className="font-semibold text-lg mb-3 leading-tight">{treatment.name}</h4>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-1 text-muted-foreground">
+                      <Clock className="h-3 w-3" />
+                      <span>{treatment.duration} {t.minutes}</span>
+                    </div>
+                    <div className="font-semibold text-primary">
+                      {treatment.price.toLocaleString()} {t.sar}
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="grid gap-3 grid-cols-2 sm:grid-cols-3">
-                {selectedDoctor.availability.map((time) => (
-                  <Button
-                    key={time}
-                    variant={selectedTime === time ? "default" : "outline"}
-                    className={cn(
-                      "h-14 text-sm font-medium transition-all duration-200",
-                      selectedTime === time
-                        ? "bg-primary text-primary-foreground shadow-lg"
-                        : "hover:bg-primary/10 hover:border-primary/50"
-                    )}
-                    onClick={() => setSelectedTime(time)}
-                  >
-                    <Clock className="h-4 w-4 mb-1" />
-                    {time}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="text-center text-muted-foreground py-12">
-              <Clock className="h-12 w-12 mx-auto mb-3 opacity-50" />
-              <p className="text-sm">
-                {isArabic ? "يرجى اختيار طبيب وتاريخ أولاً" : "Please select doctor and date first"}
-              </p>
-            </div>
-          )}
+            ))}
+          </div>
         </CardContent>
       </Card>
     </div>
