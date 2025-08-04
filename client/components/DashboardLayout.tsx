@@ -52,6 +52,17 @@ interface User {
   isAuthenticated: boolean;
 }
 
+interface Notification {
+  id: string;
+  type: "appointment" | "reminder" | "activity" | "urgent";
+  title: string;
+  message: string;
+  time: string;
+  isRead: boolean;
+  actionUrl?: string;
+  patientName?: string;
+}
+
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
@@ -87,7 +98,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             : user?.type === "receptionist"
               ? "لوحة الاستقبال"
               : "لوحة التحكم",
-      patients: "المرضى",
+      patients: "��لمرضى",
       appointments: "المواعيد",
       invoices: "الفواتير",
       reports: "التقارير",
@@ -124,7 +135,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       receptionist: "Receptionist",
       accountant: "Accountant",
       clinicName: "Advanced Dental Clinic",
-      switchLang: "العربية",
+      switchLang: "العر��ية",
     },
   };
 
