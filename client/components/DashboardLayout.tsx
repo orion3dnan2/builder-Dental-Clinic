@@ -135,6 +135,48 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     }
   }, [navigate]);
 
+  const unreadCount = notifications.filter(n => !n.isRead).length;
+
+  const markAsRead = (notificationId: string) => {
+    setNotifications(prev =>
+      prev.map(n => n.id === notificationId ? { ...n, isRead: true } : n)
+    );
+  };
+
+  const markAllAsRead = () => {
+    setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+  };
+
+  const getNotificationIcon = (type: Notification['type']) => {
+    switch (type) {
+      case 'appointment':
+        return CalendarIcon;
+      case 'reminder':
+        return Clock;
+      case 'activity':
+        return UserCheck;
+      case 'urgent':
+        return AlertTriangle;
+      default:
+        return Bell;
+    }
+  };
+
+  const getNotificationColor = (type: Notification['type']) => {
+    switch (type) {
+      case 'appointment':
+        return 'text-primary';
+      case 'reminder':
+        return 'text-warning';
+      case 'activity':
+        return 'text-success';
+      case 'urgent':
+        return 'text-destructive';
+      default:
+        return 'text-muted-foreground';
+    }
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
