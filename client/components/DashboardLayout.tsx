@@ -599,20 +599,39 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-96 p-0" align="end">
-                  <div className="flex items-center justify-between p-4 border-b">
-                    <h3 className="font-semibold">
-                      {isArabic ? "الإشعارات" : "Notifications"}
-                    </h3>
-                    {unreadCount > 0 && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={markAllAsRead}
-                        className="text-xs"
-                      >
-                        {isArabic ? "قراءة الكل" : "Mark all read"}
-                      </Button>
-                    )}
+                  <div className="p-4 border-b space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-semibold">
+                        {isArabic ? "الإشعارات" : "Notifications"}
+                        {unreadCount > 0 && (
+                          <Badge variant="destructive" className="ml-2 text-xs">
+                            {unreadCount}
+                          </Badge>
+                        )}
+                      </h3>
+                      {unreadCount > 0 && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={markAllAsRead}
+                          className="text-xs hover:bg-primary/10"
+                        >
+                          <CheckCircle className="h-3 w-3 mr-1" />
+                          {isArabic ? "قراءة الكل" : "Mark all read"}
+                        </Button>
+                      )}
+                    </div>
+                    <div className="flex gap-1">
+                      <Badge variant="outline" className="text-xs cursor-pointer hover:bg-accent">
+                        {isArabic ? "الكل" : "All"}
+                      </Badge>
+                      <Badge variant="outline" className="text-xs cursor-pointer hover:bg-accent">
+                        {isArabic ? "تذكيرات" : "Reminders"}
+                      </Badge>
+                      <Badge variant="outline" className="text-xs cursor-pointer hover:bg-accent">
+                        {isArabic ? "عاجل" : "Urgent"}
+                      </Badge>
+                    </div>
                   </div>
                   <div className="max-h-96 overflow-y-auto">
                     {notifications.length > 0 ? (
