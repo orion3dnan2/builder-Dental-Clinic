@@ -358,22 +358,43 @@ export default function NewAppointment() {
             </div>
           </div>
         ) : (
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="patientName">{t.patientName}</Label>
-              <Input id="patientName" placeholder={t.patientName} />
+          <div className="space-y-6">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="patientName" className="text-sm font-medium">
+                  <User className="h-4 w-4 inline mr-1" />
+                  {t.patientName} *
+                </Label>
+                <Input id="patientName" placeholder={isArabic ? "أدخل اسم المريض الكامل" : "Enter full patient name"} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="text-sm font-medium">
+                  <Phone className="h-4 w-4 inline mr-1" />
+                  {t.phone} *
+                </Label>
+                <Input id="phone" placeholder="+966xxxxxxxxx" />
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone">{t.phone}</Label>
-              <Input id="phone" placeholder="+966xxxxxxxxx" />
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-sm font-medium">
+                  <Mail className="h-4 w-4 inline mr-1" />
+                  {t.email}
+                </Label>
+                <Input id="email" type="email" placeholder="example@email.com" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="nationalId" className="text-sm font-medium">
+                  <AlertCircle className="h-4 w-4 inline mr-1" />
+                  {t.nationalId} *
+                </Label>
+                <Input id="nationalId" placeholder="1234567890" />
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">{t.email}</Label>
-              <Input id="email" type="email" placeholder="example@email.com" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="nationalId">{t.nationalId}</Label>
-              <Input id="nationalId" placeholder="1234567890" />
+            <div className="p-3 bg-muted/50 rounded-lg border-l-4 border-l-primary">
+              <p className="text-sm text-muted-foreground">
+                {isArabic ? "الحقول المطلوبة مميزة بعلامة *" : "Required fields are marked with *"}
+              </p>
             </div>
           </div>
         )}
