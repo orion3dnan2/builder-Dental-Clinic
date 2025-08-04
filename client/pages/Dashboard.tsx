@@ -141,7 +141,7 @@ export default function Dashboard() {
       confirmed: "مُؤكدة",
       callsToMake: "مكالمات مطلوبة",
       checkedInToday: "الحاضرون ��ليوم",
-      remindersSent: "التذ��يرات المُرسلة",
+      remindersSent: "الت��كيرات المُرسلة",
       quickActions: "الإجراءات السريعة",
       newAppointment: "حجز موعد جديد",
       newPatient: "تسجيل مريض جديد",
@@ -304,7 +304,7 @@ export default function Dashboard() {
                 </Badge>
                 <Badge variant="outline" className="text-xs">
                   {isArabic
-                    ? "الطبيب الم��ناوب: د. أحمد محمد"
+                    ? "الطبيب ال��ُناوب: د. أحمد محمد"
                     : "Current Doctor: Dr. Ahmed Mohammed"}
                 </Badge>
               </div>
@@ -1216,8 +1216,8 @@ export default function Dashboard() {
                       },
                       {
                         action: isArabic ? "تم إرسال تذكير" : "Reminder sent",
-                        patient: "فاطمة سالم",
-                        time: "45 دقيقة",
+                        patient: isArabic ? "فاطمة سالم" : "Fatima Salem",
+                        time: isArabic ? "45 دقيقة" : "45 minutes ago",
                         icon: Mail,
                         color: "text-warning",
                       },
@@ -1267,7 +1267,7 @@ export default function Dashboard() {
                             ? "تم إكمال موعد"
                             : "Appointment completed",
                           patient: "محمد علي",
-                          time: "30 دقيقة",
+                          time: "30 دقي��ة",
                           icon: Clock,
                           color: "text-primary",
                         },
