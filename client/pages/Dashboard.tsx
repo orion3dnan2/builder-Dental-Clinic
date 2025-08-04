@@ -545,7 +545,7 @@ export default function Dashboard() {
                       id: "1",
                       name: isArabic ? "عبدالله محمد" : "Abdullah Mohammed",
                       time: "09:15",
-                      waitingTime: isArabic ? "15 دقيقة" : "15 minutes",
+                      waitingTime: isArabic ? "15 د��يقة" : "15 minutes",
                       priority: "normal",
                     },
                     {
@@ -629,7 +629,7 @@ export default function Dashboard() {
                       id: "1",
                       name: isArabic ? "أحمد محمد العلي" : "Ahmed Mohammed Al-Ali",
                       appointmentTime: "09:30",
-                      waitingTime: "15 دقيقة",
+                      waitingTime: isArabic ? "15 دقيقة" : "15 minutes",
                       condition: "فحص دور��",
                       priority: "normal",
                     },
@@ -773,7 +773,7 @@ export default function Dashboard() {
                 <Link to="/accounting">
                   <Button variant="outline" size="sm">
                     <BarChart3 className="h-4 w-4 mr-2" />
-                    {isArabic ? "عرض التفاصيل" : "View Details"}
+                    {isArabic ? "عرض ��لتفاصيل" : "View Details"}
                   </Button>
                 </Link>
               </CardHeader>
