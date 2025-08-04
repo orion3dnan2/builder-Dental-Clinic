@@ -87,8 +87,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {
         id: "2",
         type: "activity" as const,
-        title: isArabic ? "مريض جديد" : "New Patient",
-        message: isArabic ? "تم تسجيل مريض جديد: فاطمة أحمد" : "New patient registered: Fatima Ahmed",
+        title: isArabic ? "تسجيل مريض جديد" : "New Patient",
+        message: isArabic ? "تم تسجيل المريضة فاطمة أحمد بنجاح" : "New patient registered: Fatima Ahmed",
         time: isArabic ? "منذ 15 دقيقة" : "15 minutes ago",
         isRead: false,
         actionUrl: "/patients",
@@ -310,7 +310,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       doctor: "طبيب",
       receptionist: "موظف الاستقبال",
       accountant: "محاسب",
-      clinicName: "عيادة الأسنان المت��ورة",
+      clinicName: "عيادة الأسنان المتطورة",
       switchLang: "English",
     },
     en: {
