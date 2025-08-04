@@ -42,15 +42,57 @@ export default function Login() {
     licenseNumber: ''
   });
 
+  // Test users for different roles
+  const testUsers = {
+    admin: {
+      username: 'admin',
+      password: '123456',
+      name: isArabic ? 'د. محمد العلي' : 'Dr. Mohammed Al-Ali',
+      nameEn: 'Dr. Mohammed Al-Ali',
+      nameAr: 'د. محمد العلي'
+    },
+    doctor: {
+      username: 'doctor',
+      password: '123456',
+      name: isArabic ? 'د. فاطمة أحمد' : 'Dr. Fatima Ahmed',
+      nameEn: 'Dr. Fatima Ahmed',
+      nameAr: 'د. فاطمة أحمد'
+    },
+    receptionist: {
+      username: 'reception',
+      password: '123456',
+      name: isArabic ? 'سارة محمد' : 'Sara Mohammed',
+      nameEn: 'Sara Mohammed',
+      nameAr: 'سارة محمد'
+    },
+    accountant: {
+      username: 'accountant',
+      password: '123456',
+      name: isArabic ? 'خالد السالم' : 'Khalid Al-Salem',
+      nameEn: 'Khalid Al-Salem',
+      nameAr: 'خالد السالم'
+    }
+  };
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate login logic
-    localStorage.setItem('user', JSON.stringify({
-      name: isArabic ? 'د. أحمد محمد' : 'Dr. Ahmed Mohammed',
-      type: loginForm.userType,
-      isAuthenticated: true
-    }));
-    navigate('/dashboard');
+
+    // Check if credentials match any test user
+    const testUser = testUsers[loginForm.userType as keyof typeof testUsers];
+
+    if (loginForm.username === testUser.username && loginForm.password === testUser.password) {
+      localStorage.setItem('user', JSON.stringify({
+        name: testUser.name,
+        nameEn: testUser.nameEn,
+        nameAr: testUser.nameAr,
+        username: testUser.username,
+        type: loginForm.userType,
+        isAuthenticated: true
+      }));
+      navigate('/dashboard');
+    } else {
+      alert(isArabic ? 'اسم المستخدم أو كلمة المرور غير صحيحة' : 'Invalid username or password');
+    }
   };
 
   const handleRegister = (e: React.FormEvent) => {
@@ -82,7 +124,7 @@ export default function Login() {
       phone: 'رقم الهاتف',
       clinicName: 'اسم العيادة',
       licenseNumber: 'رقم الترخيص',
-      userType: 'نوع المستخدم',
+      userType: 'نوع ��لمستخدم',
       admin: 'مدير النظام',
       doctor: 'طبيب',
       receptionist: 'موظف الاستقبال',
@@ -228,6 +270,12 @@ export default function Login() {
                           onChange={(e) => setLoginForm(prev => ({ ...prev, username: e.target.value }))}
                           required
                         />
+                        {/* Auto-fill username when user type changes */}
+                        {loginForm.username === '' && (
+                          <div className="text-xs text-muted-foreground mt-1">
+                            {isArabic ? 'مثال: ' : 'Example: '}{testUsers[loginForm.userType as keyof typeof testUsers]?.username}
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -238,11 +286,15 @@ export default function Login() {
                         <Input
                           id="password"
                           type="password"
+                          placeholder="123456"
                           className={`${isArabic ? 'pr-10' : 'pl-10'} focus-medical`}
                           value={loginForm.password}
                           onChange={(e) => setLoginForm(prev => ({ ...prev, password: e.target.value }))}
                           required
                         />
+                        <div className="text-xs text-muted-foreground mt-1">
+                          {isArabic ? 'كلمة المرور التجريبية: 123456' : 'Test password: 123456'}
+                        </div>
                       </div>
                     </div>
 
@@ -261,7 +313,14 @@ export default function Login() {
                             className={`cursor-pointer transition-medical ${
                               loginForm.userType === type.value ? type.color + ' text-white' : 'hover:bg-accent'
                             }`}
-                            onClick={() => setLoginForm(prev => ({ ...prev, userType: type.value as any }))}
+                            onClick={() => {
+                              setLoginForm(prev => ({
+                                ...prev,
+                                userType: type.value as any,
+                                username: testUsers[type.value as keyof typeof testUsers]?.username || '',
+                                password: '123456'
+                              }));
+                            }}
                           >
                             {type.label}
                           </Badge>
