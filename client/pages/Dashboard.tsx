@@ -131,7 +131,7 @@ export default function Dashboard() {
       manageSettings: "إدارة الإعدادات",
       viewPatients: "عرض المرضى",
       invoices: "الفواتير",
-      financialReports: "��قارير مالية",
+      financialReports: "تقارير مالية",
       viewAppointments: "عرض المواعيد",
       upcomingAppointments: "المواعيد القادمة",
       viewAll: "عرض الكل",
@@ -300,8 +300,8 @@ export default function Dashboard() {
               </div>
             )}
           </div>
-          {/* زر موعد جديد - فقط لموظف الاستقبال والمدير */}
-          {(user?.type === "receptionist" || user?.type === "admin") && (
+          {/* أزرار الإجراءات السريعة */}
+          {user?.type === "receptionist" || user?.type === "admin" ? (
             <div className="flex gap-2">
               <Link to="/appointments/new">
                 <Button>
@@ -310,7 +310,22 @@ export default function Dashboard() {
                 </Button>
               </Link>
             </div>
-          )}
+          ) : user?.type === "doctor" ? (
+            <div className="flex gap-2">
+              <Button size="sm" variant="outline">
+                <UserCheck className="h-4 w-4 mr-2" />
+                {isArabic ? "المريض التالي" : "Next Patient"}
+              </Button>
+              <Button size="sm" variant="outline">
+                <FileText className="h-4 w-4 mr-2" />
+                {isArabic ? "كتابة وصفة" : "Prescription"}
+              </Button>
+              <Button size="sm">
+                <Clock className="h-4 w-4 mr-2" />
+                {isArabic ? "استراحة" : "Break"}
+              </Button>
+            </div>
+          ) : null}
         </div>
 
         {/* Stats Overview */}
@@ -522,7 +537,7 @@ export default function Dashboard() {
             </Card>
           )}
 
-          {/* Doctor's Schedule - للطبي�� فقط */}
+          {/* Doctor's Schedule - للطبيب فقط */}
           {user?.type === "doctor" && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
@@ -799,7 +814,7 @@ export default function Dashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {/* موظف الاستقبال - إجراءات الاستقبال الأساسية */}
+              {/* موظف الاستقبال - إجراءات الاستقبا�� الأساسية */}
               {(user?.type === "receptionist" || user?.type === "admin") && (
                 <>
                   <Link to="/appointments/new" className="block">
