@@ -111,7 +111,7 @@ export default function Dashboard() {
 
   const content = {
     ar: {
-      welcome: "أهلاً وسهلاً",
+      welcome: "أهل��ً وسهلاً",
       todayOverview: "ملخص اليوم",
       todayAppointments: "حجوزات اليوم",
       totalPatients: "عدد المرضى الكلي",
@@ -144,7 +144,7 @@ export default function Dashboard() {
       netProfit: "صافي الربح",
       viewDetails: "عرض التفاصيل",
       appointmentsToday: "مواعيد اليوم",
-      appointmentsCompleted: "مواعيد م��تملة اليوم",
+      appointmentsCompleted: "الحجوزات المُنجزة اليوم",
       patientsExamined: "مرضى تم فحصهم",
       averageTime: "متوسط وقت الفحص",
       patientSatisfaction: "رضا المرضى",
@@ -814,7 +814,7 @@ export default function Dashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {/* موظف الاستقبال - إجراءات الاستقبا�� الأساسية */}
+              {/* موظف الاستقبال - إجراءات الاستقبا�� ��لأساسية */}
               {(user?.type === "receptionist" || user?.type === "admin") && (
                 <>
                   <Link to="/appointments/new" className="block">
