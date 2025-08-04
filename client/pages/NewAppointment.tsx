@@ -168,7 +168,7 @@ export default function NewAppointment() {
       appointmentNotes: "ملاحظات الموعد",
       confirmation_text: "يرجى مراجعة تفاصيل الموعد قبل التأكيد",
       appointment_confirmed: "تم تأكيد الموعد بنجاح",
-      specialization: "التخصص",
+      specialization: "التخص��",
       available_times: "الأوقات المتاحة",
       step: "خطوة",
       of: "من",
@@ -358,7 +358,7 @@ export default function NewAppointment() {
               ) : (
                 <div className="text-center py-8 text-muted-foreground">
                   <User className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                  <p>{isArabic ? "لا توجد ��تائج للبحث" : "No patients found"}</p>
+                  <p>{isArabic ? "لا توجد نتائج للبحث" : "No patients found"}</p>
                 </div>
               )}
             </div>
@@ -645,7 +645,7 @@ export default function NewAppointment() {
             {isArabic ? "ملخص الموعد" : "Appointment Summary"}
           </h3>
           <p className="text-muted-foreground">
-            {isArabic ? "��رجى مراجعة التفاصيل قبل التأكيد" : "Please review details before confirming"}
+            {isArabic ? "يرجى مراجعة التفاصيل قبل التأكيد" : "Please review details before confirming"}
           </p>
         </div>
 
@@ -661,11 +661,19 @@ export default function NewAppointment() {
                 <Label className="text-sm font-semibold">{t.patientInfo}</Label>
               </div>
               <div className="space-y-2">
-                <p className="font-medium text-lg">{selectedPatient?.name || (isArabic ? "مريض جديد" : "New Patient")}</p>
+                <p className="font-medium text-lg">
+                  {selectedPatient?.name || newPatientData.name || (isArabic ? "مريض جديد" : "New Patient")}
+                </p>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Phone className="h-3 w-3" />
-                  <span>{selectedPatient?.phone || "---"}</span>
+                  <span>{selectedPatient?.phone || newPatientData.phone || "---"}</span>
                 </div>
+                {(selectedPatient?.email || newPatientData.email) && (
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Mail className="h-3 w-3" />
+                    <span>{selectedPatient?.email || newPatientData.email}</span>
+                  </div>
+                )}
               </div>
             </div>
 
