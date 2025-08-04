@@ -318,28 +318,43 @@ export default function NewAppointment() {
               />
             </div>
             <div className="space-y-2 max-h-64 overflow-y-auto">
-              {filteredPatients.map((patient) => (
-                <div
-                  key={patient.id}
-                  className={cn(
-                    "p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors",
-                    selectedPatient?.id === patient.id && "border-primary bg-accent"
-                  )}
-                  onClick={() => setSelectedPatient(patient)}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-medium">{patient.name}</h4>
-                      <p className="text-sm text-muted-foreground">
-                        {patient.phone} • {patient.nationalId}
-                      </p>
-                    </div>
-                    {selectedPatient?.id === patient.id && (
-                      <CheckCircle className="h-5 w-5 text-primary" />
+              {filteredPatients.length > 0 ? (
+                filteredPatients.map((patient) => (
+                  <div
+                    key={patient.id}
+                    className={cn(
+                      "p-4 border rounded-lg cursor-pointer hover:bg-accent transition-medical",
+                      selectedPatient?.id === patient.id && "border-primary bg-accent"
                     )}
+                    onClick={() => setSelectedPatient(patient)}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                          <User className="h-5 w-5 text-primary" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">{patient.name}</h4>
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <Phone className="h-3 w-3" />
+                            <span>{patient.phone}</span>
+                            <span>•</span>
+                            <span>{patient.nationalId}</span>
+                          </div>
+                        </div>
+                      </div>
+                      {selectedPatient?.id === patient.id && (
+                        <CheckCircle className="h-5 w-5 text-primary" />
+                      )}
+                    </div>
                   </div>
+                ))
+              ) : (
+                <div className="text-center py-8 text-muted-foreground">
+                  <User className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                  <p>{isArabic ? "لا توجد نتائج للبحث" : "No patients found"}</p>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         ) : (
