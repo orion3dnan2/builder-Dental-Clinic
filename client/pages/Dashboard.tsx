@@ -530,7 +530,7 @@ export default function Dashboard() {
                 <div className="flex gap-2">
                   <Button size="sm" variant="outline">
                     <Phone className="h-4 w-4 mr-2" />
-                    {isArabic ? "إشعار التالي" : "Call Next"}
+                    {isArabic ? "��شعار التالي" : "Call Next"}
                   </Button>
                   <Button size="sm">
                     <UserCheck className="h-4 w-4 mr-2" />
@@ -1200,8 +1200,8 @@ export default function Dashboard() {
                         action: isArabic
                           ? "تم تسجيل مريض جديد"
                           : "New patient registered",
-                        patient: "سارة أحمد",
-                        time: "10 دقائق",
+                        patient: isArabic ? "سارة أحمد" : "Sarah Ahmed",
+                        time: isArabic ? "10 دقائق" : "10 minutes ago",
                         icon: UserCheck,
                         color: "text-success",
                       },
