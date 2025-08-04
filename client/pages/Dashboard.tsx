@@ -80,7 +80,7 @@ export default function Dashboard() {
     },
     {
       id: '4',
-      patientName: 'نورا س��لم',
+      patientName: 'نورا سالم',
       time: '14:00',
       type: 'تقويم أسنان',
       status: 'confirmed',
@@ -356,6 +356,66 @@ export default function Dashboard() {
                 ))}
               </div>
             </CardContent>
+            </Card>
+          )}
+
+          {/* إحصائيات مالية سريعة للمحاسب */}
+          {user?.type === 'accountant' && (
+            <Card className="md:col-span-2">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <DollarSign className="h-5 w-5 text-success" />
+                    {isArabic ? 'الإحصائيات المالية' : 'Financial Overview'}
+                  </CardTitle>
+                  <CardDescription>
+                    {isArabic ? 'نظرة عامة على الوضع المالي اليوم' : "Today's financial status"}
+                  </CardDescription>
+                </div>
+                <Link to="/accounting">
+                  <Button variant="outline" size="sm">
+                    <BarChart3 className="h-4 w-4 mr-2" />
+                    {isArabic ? 'عرض التفاصيل' : 'View Details'}
+                  </Button>
+                </Link>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-4 md:grid-cols-3">
+                  <div className="flex items-center justify-between p-4 rounded-lg bg-success/10">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-success/20 p-2 rounded-full">
+                        <TrendingUp className="h-4 w-4 text-success" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-success">{isArabic ? 'إيرادات اليوم' : "Today's Revenue"}</h4>
+                        <p className="text-2xl font-bold text-success">4,850 {isArabic ? 'ريال' : 'SAR'}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between p-4 rounded-lg bg-warning/10">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-warning/20 p-2 rounded-full">
+                        <Receipt className="h-4 w-4 text-warning" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-warning">{isArabic ? 'فواتير معلقة' : 'Pending Invoices'}</h4>
+                        <p className="text-2xl font-bold text-warning">8</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between p-4 rounded-lg bg-primary/10">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-primary/20 p-2 rounded-full">
+                        <BarChart3 className="h-4 w-4 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-primary">{isArabic ? 'صافي الربح' : 'Net Profit'}</h4>
+                        <p className="text-2xl font-bold text-primary">80,600 {isArabic ? 'ريال' : 'SAR'}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
             </Card>
           )}
 
