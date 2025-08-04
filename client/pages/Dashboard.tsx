@@ -131,7 +131,7 @@ export default function Dashboard() {
       manageSettings: "إدارة الإعدادات",
       viewPatients: "عرض المرضى",
       invoices: "الفواتير",
-      financialReports: "تقارير مالية",
+      financialReports: "��قارير مالية",
       viewAppointments: "عرض المواعيد",
       upcomingAppointments: "المواعيد القادمة",
       viewAll: "عرض الكل",
@@ -282,6 +282,20 @@ export default function Dashboard() {
                 </Badge>
                 <Badge variant="outline" className="text-xs">
                   {isArabic ? "الطبيب الحالي: د. أحمد محمد" : "Current Doctor: Dr. Ahmed Mohammed"}
+                </Badge>
+              </div>
+            )}
+            {user?.type === "doctor" && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Badge variant="outline" className="text-xs flex items-center gap-1">
+                  <Stethoscope className="h-3 w-3" />
+                  {isArabic ? "طب الأسنان العام" : "General Dentistry"}
+                </Badge>
+                <Badge variant="outline" className="text-xs">
+                  {isArabic ? "العيادة 1 - الدور الأول" : "Clinic 1 - First Floor"}
+                </Badge>
+                <Badge variant="secondary" className="text-xs">
+                  {isArabic ? "متاح للطوارئ" : "Available for Emergencies"}
                 </Badge>
               </div>
             )}
@@ -508,7 +522,7 @@ export default function Dashboard() {
             </Card>
           )}
 
-          {/* Doctor's Schedule - للطبيب فقط */}
+          {/* Doctor's Schedule - للطبي�� فقط */}
           {user?.type === "doctor" && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
