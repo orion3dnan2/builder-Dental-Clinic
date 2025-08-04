@@ -30,7 +30,6 @@ import {
   X,
   UserCheck,
   Clock,
-  Activity,
   Globe
 } from 'lucide-react';
 
