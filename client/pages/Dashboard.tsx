@@ -118,7 +118,7 @@ export default function Dashboard() {
       waitingPatients: "مرضى في الانتظار",
       appointmentStatus: "حالة المواعيد",
       completed: "مكتملة",
-      pending: "في الانتظار",
+      pending: "في ��لانتظار",
       cancelled: "ملغية",
       confirmed: "مؤكدة",
       callsToMake: "اتصالات مطلوبة",
@@ -424,7 +424,7 @@ export default function Dashboard() {
                     {isArabic ? "قائمة الانتظار" : "Waiting List"}
                   </CardTitle>
                   <CardDescription>
-                    {stats.waitingPatients} {isArabic ? "مريض في الانتظا��" : "patients waiting"}
+                    {stats.waitingPatients} {isArabic ? "مريض في الانتظار" : "patients waiting"}
                   </CardDescription>
                 </div>
                 <div className="flex gap-2">
@@ -686,7 +686,7 @@ export default function Dashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {/* موظف الاستقبال - حجز المواعيد وإضافة المرضى */}
+              {/* موظف الاستقبال - إجراءات الاستقبال الأساسية */}
               {(user?.type === "receptionist" || user?.type === "admin") && (
                 <>
                   <Link to="/appointments/new" className="block">
@@ -701,6 +701,18 @@ export default function Dashboard() {
                       {t.newPatient}
                     </Button>
                   </Link>
+                  <Button className="w-full justify-start" variant="outline">
+                    <Phone className="h-4 w-4 mr-2" />
+                    {isArabic ? "إجراء مكالمة" : "Make Call"}
+                  </Button>
+                  <Button className="w-full justify-start" variant="outline">
+                    <Clock className="h-4 w-4 mr-2" />
+                    {isArabic ? "تسجيل حضور مريض" : "Check-in Patient"}
+                  </Button>
+                  <Button className="w-full justify-start" variant="outline">
+                    <Mail className="h-4 w-4 mr-2" />
+                    {isArabic ? "إرسال تذكير" : "Send Reminder"}
+                  </Button>
                 </>
               )}
 
