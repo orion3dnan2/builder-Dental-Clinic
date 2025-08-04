@@ -73,58 +73,138 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [user, setUser] = useState<User | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isArabic, setIsArabic] = useState(true);
-  const [notifications, setNotifications] = useState<Notification[]>([
-    {
-      id: "1",
-      type: "reminder",
-      title: isArabic ? "تذكير موعد" : "Appointment Reminder",
-      message: isArabic ? "موعد أحمد محمد غداً الساعة 10:00 ص" : "Ahmed Mohammed appointment tomorrow at 10:00 AM",
-      time: isArabic ? "منذ 5 دقائق" : "5 minutes ago",
-      isRead: false,
-      actionUrl: "/appointments",
-      patientName: "أحمد محمد",
-    },
-    {
-      id: "2",
-      type: "activity",
-      title: isArabic ? "مريض جديد" : "New Patient",
-      message: isArabic ? "تم تسجيل مريض جديد: فاطمة أحمد" : "New patient registered: Fatima Ahmed",
-      time: isArabic ? "منذ 15 دقيقة" : "15 minutes ago",
-      isRead: false,
-      actionUrl: "/patients",
-      patientName: "فاطمة أحمد",
-    },
-    {
-      id: "3",
-      type: "urgent",
-      title: isArabic ? "موعد عاجل" : "Urgent Appointment",
-      message: isArabic ? "مريض في الانتظار لأكثر من 30 دقيقة" : "Patient waiting for more than 30 minutes",
-      time: isArabic ? "منذ 30 دقيقة" : "30 minutes ago",
-      isRead: false,
-      actionUrl: "/dashboard",
-      patientName: "محمد سالم",
-    },
-    {
-      id: "4",
-      type: "appointment",
-      title: isArabic ? "موعد مكتمل" : "Appointment Completed",
-      message: isArabic ? "تم إكمال موعد سارة علي" : "Sara Ali appointment completed",
-      time: isArabic ? "منذ ساعة" : "1 hour ago",
-      isRead: true,
-      actionUrl: "/patients",
-      patientName: "سارة علي",
-    },
-    {
-      id: "5",
-      type: "reminder",
-      title: isArabic ? "مكالمة مطلوبة" : "Call Required",
-      message: isArabic ? "تذكير: اتصال بخالد أحمد لتأكيد الموعد" : "Reminder: Call Khalid Ahmed to confirm appointment",
-      time: isArabic ? "منذ ساعتين" : "2 hours ago",
-      isRead: true,
-      actionUrl: "/appointments",
-      patientName: "خالد أحمد",
-    },
-  ]);
+  const getNotificationsForUser = (userType: string) => {
+    const baseNotifications = [
+      {
+        id: "1",
+        type: "reminder" as const,
+        title: isArabic ? "تذكير موعد" : "Appointment Reminder",
+        message: isArabic ? "موعد أحمد محمد غداً الساعة 10:00 ص" : "Ahmed Mohammed appointment tomorrow at 10:00 AM",
+        time: isArabic ? "منذ 5 دقائق" : "5 minutes ago",
+        isRead: false,
+        actionUrl: "/appointments",
+        patientName: "أحمد محمد",
+      },
+      {
+        id: "2",
+        type: "activity" as const,
+        title: isArabic ? "مريض جديد" : "New Patient",
+        message: isArabic ? "تم تسجيل مريض جديد: فاطمة أحمد" : "New patient registered: Fatima Ahmed",
+        time: isArabic ? "منذ 15 دقيقة" : "15 minutes ago",
+        isRead: false,
+        actionUrl: "/patients",
+        patientName: "فاطمة أحمد",
+      },
+      {
+        id: "3",
+        type: "urgent" as const,
+        title: isArabic ? "موعد عاجل" : "Urgent Appointment",
+        message: isArabic ? "مريض في الانتظار لأكثر من 30 دقيقة" : "Patient waiting for more than 30 minutes",
+        time: isArabic ? "منذ 30 دقيقة" : "30 minutes ago",
+        isRead: false,
+        actionUrl: "/dashboard",
+        patientName: "محمد سالم",
+      },
+    ];
+
+    if (userType === "receptionist") {
+      return [
+        ...baseNotifications,
+        {
+          id: "4",
+          type: "reminder" as const,
+          title: isArabic ? "مكالمة مطلوبة" : "Call Required",
+          message: isArabic ? "تذكير: اتصال بخالد أحمد لتأكيد الموعد" : "Reminder: Call Khalid Ahmed to confirm appointment",
+          time: isArabic ? "منذ ساعة" : "1 hour ago",
+          isRead: false,
+          actionUrl: "/appointments",
+          patientName: "خالد أحمد",
+        },
+        {
+          id: "5",
+          type: "activity" as const,
+          title: isArabic ? "موعد ملغي" : "Appointment Cancelled",
+          message: isArabic ? "تم إلغاء موعد نورا سالم" : "Nora Salem appointment cancelled",
+          time: isArabic ? "منذ ساعتين" : "2 hours ago",
+          isRead: true,
+          actionUrl: "/appointments",
+          patientName: "نورا سالم",
+        },
+      ];
+    }
+
+    if (userType === "doctor") {
+      return [
+        ...baseNotifications.slice(0, 2),
+        {
+          id: "6",
+          type: "appointment" as const,
+          title: isArabic ? "المريض التالي" : "Next Patient",
+          message: isArabic ? "المريض التالي: سعد الخالدي في الساعة 2:30 م" : "Next patient: Saad Al-Khalidi at 2:30 PM",
+          time: isArabic ? "منذ 10 دقائق" : "10 minutes ago",
+          isRead: false,
+          actionUrl: "/patients",
+          patientName: "سعد الخالدي",
+        },
+        {
+          id: "7",
+          type: "urgent" as const,
+          title: isArabic ? "حالة طارئة" : "Emergency Case",
+          message: isArabic ? "مريض يحتاج فحص عاجل" : "Patient needs urgent examination",
+          time: isArabic ? "منذ 45 دقيقة" : "45 minutes ago",
+          isRead: false,
+          actionUrl: "/dashboard",
+          patientName: "عبدالله أحمد",
+        },
+      ];
+    }
+
+    if (userType === "accountant") {
+      return [
+        {
+          id: "8",
+          type: "activity" as const,
+          title: isArabic ? "فاتورة جديدة" : "New Invoice",
+          message: isArabic ? "فاتورة جديدة بقيمة 450 ريال" : "New invoice worth 450 SAR",
+          time: isArabic ? "منذ 20 دقيقة" : "20 minutes ago",
+          isRead: false,
+          actionUrl: "/accounting",
+          patientName: "محمد العلي",
+        },
+        {
+          id: "9",
+          type: "reminder" as const,
+          title: isArabic ? "دفعة متأخرة" : "Overdue Payment",
+          message: isArabic ? "دفعة متأخرة من أحمد سالم" : "Overdue payment from Ahmed Salem",
+          time: isArabic ? "منذ ساعة" : "1 hour ago",
+          isRead: false,
+          actionUrl: "/accounting",
+          patientName: "أحمد سالم",
+        },
+        {
+          id: "10",
+          type: "activity" as const,
+          title: isArabic ? "تقرير شهري" : "Monthly Report",
+          message: isArabic ? "تقرير الإيرادات الشهرية جاهز" : "Monthly revenue report ready",
+          time: isArabic ? "منذ 3 ساعات" : "3 hours ago",
+          isRead: true,
+          actionUrl: "/reports",
+        },
+      ];
+    }
+
+    return baseNotifications;
+  };
+
+  const [notifications, setNotifications] = useState<Notification[]>(
+    getNotificationsForUser(user?.type || "admin")
+  );
+
+  useEffect(() => {
+    if (user?.type) {
+      setNotifications(getNotificationsForUser(user.type));
+    }
+  }, [user?.type, isArabic]);
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
