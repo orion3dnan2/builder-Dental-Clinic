@@ -327,29 +327,29 @@ export default function Dashboard() {
               {isArabic ? "EN" : "AR"}
             </Button>
             {user?.type === "receptionist" || user?.type === "admin" ? (
-            <div className="flex gap-2">
-              <Link to="/appointments/new">
-                <Button>
-                  <Calendar className="h-4 w-4 mr-2" />
-                  {t.newAppointment}
+              <div className="flex gap-2">
+                <Link to="/appointments/new">
+                  <Button>
+                    <Calendar className="h-4 w-4 mr-2" />
+                    {t.newAppointment}
+                  </Button>
+                </Link>
+              </div>
+            ) : user?.type === "doctor" ? (
+              <div className="flex gap-2">
+                <Button size="sm" variant="outline">
+                  <UserCheck className="h-4 w-4 mr-2" />
+                  {isArabic ? "المريض القادم" : "Next Patient"}
                 </Button>
-              </Link>
-            </div>
-          ) : user?.type === "doctor" ? (
-            <div className="flex gap-2">
-              <Button size="sm" variant="outline">
-                <UserCheck className="h-4 w-4 mr-2" />
-                {isArabic ? "المريض القادم" : "Next Patient"}
-              </Button>
-              <Button size="sm" variant="outline">
-                <FileText className="h-4 w-4 mr-2" />
-                {isArabic ? "تحرير روشتة" : "Prescription"}
-              </Button>
-              <Button size="sm">
-                <Clock className="h-4 w-4 mr-2" />
-                {isArabic ? "فترة راحة" : "Break"}
-              </Button>
-            </div>
+                <Button size="sm" variant="outline">
+                  <FileText className="h-4 w-4 mr-2" />
+                  {isArabic ? "تحرير روشتة" : "Prescription"}
+                </Button>
+                <Button size="sm">
+                  <Clock className="h-4 w-4 mr-2" />
+                  {isArabic ? "فترة راحة" : "Break"}
+                </Button>
+              </div>
             ) : null}
           </div>
         </div>

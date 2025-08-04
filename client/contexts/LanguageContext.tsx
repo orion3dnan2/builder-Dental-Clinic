@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 interface LanguageContextType {
   isArabic: boolean;
@@ -6,7 +12,9 @@ interface LanguageContextType {
   toggleLanguage: () => void;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined,
+);
 
 interface LanguageProviderProps {
   children: ReactNode;
@@ -15,14 +23,14 @@ interface LanguageProviderProps {
 export function LanguageProvider({ children }: LanguageProviderProps) {
   // Initialize from localStorage or default to Arabic
   const [isArabic, setIsArabicState] = useState(() => {
-    const saved = localStorage.getItem('preferredLanguage');
-    return saved === 'en' ? false : true; // Default to Arabic if not set
+    const saved = localStorage.getItem("preferredLanguage");
+    return saved === "en" ? false : true; // Default to Arabic if not set
   });
 
   // Save to localStorage whenever language changes
   const setIsArabic = (newIsArabic: boolean) => {
     setIsArabicState(newIsArabic);
-    localStorage.setItem('preferredLanguage', newIsArabic ? 'ar' : 'en');
+    localStorage.setItem("preferredLanguage", newIsArabic ? "ar" : "en");
   };
 
   const toggleLanguage = () => {
@@ -31,8 +39,8 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 
   // Set document direction and lang attribute
   useEffect(() => {
-    document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
-    document.documentElement.lang = isArabic ? 'ar' : 'en';
+    document.documentElement.dir = isArabic ? "rtl" : "ltr";
+    document.documentElement.lang = isArabic ? "ar" : "en";
   }, [isArabic]);
 
   return (
@@ -45,7 +53,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
 }
