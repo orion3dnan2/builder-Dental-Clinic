@@ -126,7 +126,7 @@ export default function Dashboard() {
       remindersSent: "تذكيرات مرسلة",
       quickActions: "إجراءات سريعة",
       newAppointment: "موعد جديد",
-      newPatient: "مريض ج��يد",
+      newPatient: "مريض جديد",
       viewReports: "عرض التقارير",
       manageSettings: "إدارة الإعدادات",
       viewPatients: "عرض المرضى",
@@ -244,7 +244,10 @@ export default function Dashboard() {
                 : ""}
             </h1>
             <p className="text-muted-foreground mt-1">
-              {t.todayOverview} •{" "}
+              {user?.type === "receptionist" ?
+                (isArabic ? "لوحة تحكم الاستقبال" : "Reception Dashboard") :
+                t.todayOverview
+              } •{" "}
               {new Date().toLocaleDateString(isArabic ? "ar-SA" : "en-US", {
                 weekday: "long",
                 year: "numeric",
@@ -252,6 +255,16 @@ export default function Dashboard() {
                 day: "numeric",
               })}
             </p>
+            {user?.type === "receptionist" && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Badge variant="outline" className="text-xs">
+                  {isArabic ? "شيفت الصباح: 8:00 ص - 2:00 م" : "Morning Shift: 8:00 AM - 2:00 PM"}
+                </Badge>
+                <Badge variant="outline" className="text-xs">
+                  {isArabic ? "الطبيب الحالي: د. أحمد محمد" : "Current Doctor: Dr. Ahmed Mohammed"}
+                </Badge>
+              </div>
+            )}
           </div>
           {/* زر موعد جديد - فقط لموظف الاستقبال والمدير */}
           {(user?.type === "receptionist" || user?.type === "admin") && (
