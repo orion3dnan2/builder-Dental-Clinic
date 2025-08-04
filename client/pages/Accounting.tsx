@@ -120,7 +120,7 @@ interface QuickAction {
 }
 
 export default function Accounting() {
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic } = useLanguage();
   const [user, setUser] = useState<any>(null);
   const [activeTab, setActiveTab] = useState("overview");
   const [dateRange, setDateRange] = useState("month");
@@ -1114,7 +1114,7 @@ export default function Accounting() {
                 {
                   title: t.profitLossAnalysis,
                   description: isArabic
-                    ? "تحليل مفصل للأرباح والخسائر"
+                    ? "تحل��ل مفصل للأرباح والخسائر"
                     : "Detailed profit and loss analysis",
                   icon: BarChart3,
                   color: "bg-blue-500",
@@ -1146,7 +1146,7 @@ export default function Accounting() {
                 {
                   title: t.budgetPlanning,
                   description: isArabic
-                    ? "تخطيط وإدارة الميزانية"
+                    ? "تخطيط وإدارة ا��ميزانية"
                     : "Budget planning and management",
                   icon: Target,
                   color: "bg-orange-500",
