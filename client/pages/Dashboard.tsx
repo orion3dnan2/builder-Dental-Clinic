@@ -149,7 +149,7 @@ export default function Dashboard() {
       averageTime: "متوسط وقت الفحص",
       patientSatisfaction: "رضا المرضى",
       patientsThisMonth: "مرضى هذا الشهر",
-      revenue: "ا��إيرادات",
+      revenue: "الإيرادات",
       sar: "ريال",
       time: "الوقت",
       patient: "المريض",
@@ -349,7 +349,7 @@ export default function Dashboard() {
                 {stats.waitingPatients}
               </div>
               <p className="text-xs text-muted-foreground">
-                {isArabic ? "مرضى في انتظار الفحص" : "patients waiting for examination"}
+                {isArabic ? "مرضى في انتظار الف��ص" : "patients waiting for examination"}
               </p>
             </CardContent>
           </Card>
@@ -654,7 +654,7 @@ export default function Dashboard() {
                 <div className="space-y-3">
                   {[
                     { name: "أحمد سالم", reason: "تذكير بموعد غداً", phone: "+966501234567", priority: "normal" },
-                    { name: "فاطمة علي", reason: "تأكيد موعد الأسبوع القا��م", phone: "+966507654321", priority: "normal" },
+                    { name: "فاطمة علي", reason: "تأكيد موعد الأسبوع القادم", phone: "+966507654321", priority: "normal" },
                     { name: "محمد الأحمد", reason: "إلغاء وإعادة جدولة", phone: "+966509876543", priority: "urgent" },
                   ].map((call, index) => (
                     <div
@@ -704,7 +704,7 @@ export default function Dashboard() {
                           : user?.type === "receptionist"
                             ? "موظف الاستقبال"
                             : user?.type === "accountant"
-                              ? "المحاسب"
+                              ? "الم��اسب"
                               : "المستخدم"
                     }`
                   : `Quick access for ${
@@ -757,13 +757,21 @@ export default function Dashboard() {
                   <Link to="/patients" className="block">
                     <Button className="w-full justify-start" variant="outline">
                       <Users className="h-4 w-4 mr-2" />
-                      {isArabic ? "عرض المرضى" : "View Patients"}
+                      {isArabic ? "سجلات المرضى" : "Patient Records"}
                     </Button>
                   </Link>
+                  <Button className="w-full justify-start" variant="outline">
+                    <Stethoscope className="h-4 w-4 mr-2" />
+                    {isArabic ? "المريض التالي" : "Next Patient"}
+                  </Button>
+                  <Button className="w-full justify-start" variant="outline">
+                    <FileText className="h-4 w-4 mr-2" />
+                    {isArabic ? "كتابة وصفة" : "Write Prescription"}
+                  </Button>
                   <Link to="/reports" className="block">
                     <Button className="w-full justify-start" variant="outline">
-                      <FileText className="h-4 w-4 mr-2" />
-                      {t.viewReports}
+                      <BarChart3 className="h-4 w-4 mr-2" />
+                      {isArabic ? "تقارير طبية" : "Medical Reports"}
                     </Button>
                   </Link>
                 </>
@@ -829,7 +837,7 @@ export default function Dashboard() {
               </CardTitle>
               <CardDescription>
                 {user?.type === "receptionist" ?
-                  (isArabic ? "إحصائيات عملك اليوم" : "Your work statistics today") :
+                  (isArabic ? "إحصائيات عملك الي��م" : "Your work statistics today") :
                   user?.type === "doctor" ?
                   (isArabic ? "إحصائيات عملك الطبي اليوم" : "Your medical work statistics today") :
                   (isArabic ? "أداء العيادة هذا الشهر" : "Clinic performance this month")
