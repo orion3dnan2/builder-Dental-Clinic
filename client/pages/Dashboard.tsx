@@ -59,48 +59,56 @@ export default function Dashboard() {
     cancelledAppointments: 0,
   });
 
-  const [todayAppointments, setTodayAppointments] = useState<Appointment[]>([
+  const appointmentsData = [
     {
       id: "1",
-      patientName: "أحمد محمد العلي",
+      patientName: { ar: "أحمد محمد العلي", en: "Ahmed Mohammed Al-Ali" },
       time: "09:00",
-      type: "فحص دوري",
+      type: { ar: "فحص دوري", en: "Routine Checkup" },
       status: "confirmed",
       phone: "+966501234567",
     },
     {
       id: "2",
-      patientName: "فاطمة أحمد",
+      patientName: { ar: "فاطمة أحمد", en: "Fatima Ahmed" },
       time: "10:30",
-      type: "تنظيف أسنان",
+      type: { ar: "تنظيف أسنان", en: "Teeth Cleaning" },
       status: "completed",
       phone: "+966507654321",
     },
     {
       id: "3",
-      patientName: "محمد عبدالله",
+      patientName: { ar: "محمد عبدالله", en: "Mohammed Abdullah" },
       time: "11:00",
-      type: "حشو ضرس",
+      type: { ar: "حشو ضرس", en: "Tooth Filling" },
       status: "pending",
       phone: "+966509876543",
     },
     {
       id: "4",
-      patientName: "نورا سالم",
+      patientName: { ar: "نورا سالم", en: "Nora Salem" },
       time: "14:00",
-      type: "تقويم أسنان",
+      type: { ar: "تقويم أسنان", en: "Dental Braces" },
       status: "confirmed",
       phone: "+966502345678",
     },
     {
       id: "5",
-      patientName: "خالد أحمد",
+      patientName: { ar: "خالد أحمد", en: "Khalid Ahmed" },
       time: "15:30",
-      type: "زراعة أسنان",
+      type: { ar: "زراعة أسنان", en: "Dental Implant" },
       status: "pending",
       phone: "+966508765432",
     },
-  ]);
+  ];
+
+  const [todayAppointments, setTodayAppointments] = useState<Appointment[]>(
+    appointmentsData.map(apt => ({
+      ...apt,
+      patientName: isArabic ? apt.patientName.ar : apt.patientName.en,
+      type: isArabic ? apt.type.ar : apt.type.en,
+    }))
+  );
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -130,7 +138,7 @@ export default function Dashboard() {
       viewReports: "استعراض التقارير",
       manageSettings: "إعدادات النظام",
       viewPatients: "سجل المرضى",
-      invoices: "الفواتير المالية",
+      invoices: "الفواتير المال��ة",
       financialReports: "التقارير المالية",
       viewAppointments: "جدول المواعيد",
       upcomingAppointments: "المواعيد القادمة",
