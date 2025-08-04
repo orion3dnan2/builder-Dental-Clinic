@@ -349,7 +349,7 @@ export default function Dashboard() {
                 {stats.waitingPatients}
               </div>
               <p className="text-xs text-muted-foreground">
-                {isArabic ? "مرضى في انتظار الف��ص" : "patients waiting for examination"}
+                {isArabic ? "مرضى في انتظار الفحص" : "patients waiting for examination"}
               </p>
             </CardContent>
           </Card>
@@ -508,8 +508,72 @@ export default function Dashboard() {
             </Card>
           )}
 
-          {/* Today's Appointments - للطبيب والمدير فقط */}
-          {(user?.type === "doctor" || user?.type === "admin") && (
+          {/* Doctor's Schedule - للطبيب فقط */}
+          {user?.type === "doctor" && (
+            <Card className="md:col-span-2">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <Stethoscope className="h-5 w-5 text-primary" />
+                    {isArabic ? "مرضى في الانتظار" : "Patients Waiting"}
+                  </CardTitle>
+                  <CardDescription>
+                    {stats.waitingPatients} {isArabic ? "مريض في انتظار الفحص" : "patients waiting for examination"}
+                  </CardDescription>
+                </div>
+                <div className="flex gap-2">
+                  <Button size="sm" variant="outline">
+                    <Clock className="h-4 w-4 mr-2" />
+                    {isArabic ? "إيقاف استقبال" : "Stop Intake"}
+                  </Button>
+                  <Button size="sm">
+                    <UserCheck className="h-4 w-4 mr-2" />
+                    {isArabic ? "استدعاء التالي" : "Call Next"}
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {[
+                    { id: "1", name: "أحمد محمد العلي", appointmentTime: "09:30", waitingTime: "15 دقيقة", condition: "فحص دوري", priority: "normal" },
+                    { id: "2", name: "فاطمة سالم", appointmentTime: "10:00", waitingTime: "5 دقائق", condition: "متابعة علاج", priority: "normal" },
+                    { id: "3", name: "محمد الأحمد", appointmentTime: "10:30", waitingTime: "استعداد", condition: "ألم شديد", priority: "urgent" },
+                  ].map((patient) => (
+                    <div
+                      key={patient.id}
+                      className={`flex items-center justify-between p-4 rounded-lg border transition-medical ${
+                        patient.priority === "urgent" ? "border-destructive/50 bg-destructive/5" : "border-border hover:bg-accent/50"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-3 h-3 rounded-full ${patient.priority === "urgent" ? "bg-destructive animate-pulse" : "bg-primary"}`}></div>
+                        <div>
+                          <h4 className="font-medium">{patient.name}</h4>
+                          <p className="text-sm text-muted-foreground">
+                            {isArabic ? "موعد" : "Appointment"} {patient.appointmentTime} • {patient.condition}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {isArabic ? "ينتظر منذ" : "Waiting for"} {patient.waitingTime}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                          <FileText className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                          <Phone className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Today's Appointments - للمدير فقط */}
+          {user?.type === "admin" && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
                 <div>
@@ -573,7 +637,7 @@ export default function Dashboard() {
                 <div>
                   <CardTitle className="flex items-center gap-2">
                     <DollarSign className="h-5 w-5 text-success" />
-                    {isArabic ? "الإحصائيات المالية" : "Financial Overview"}
+                    {isArabic ? "الإحصائيا�� المالية" : "Financial Overview"}
                   </CardTitle>
                   <CardDescription>
                     {isArabic
@@ -704,7 +768,7 @@ export default function Dashboard() {
                           : user?.type === "receptionist"
                             ? "موظف الاستقبال"
                             : user?.type === "accountant"
-                              ? "الم��اسب"
+                              ? "المحاسب"
                               : "المستخدم"
                     }`
                   : `Quick access for ${
@@ -777,7 +841,7 @@ export default function Dashboard() {
                 </>
               )}
 
-              {/* المحاسب - المحاسبة والتقارير المالية */}
+              {/* المحاسب - المحاسبة والتقارير الما��ية */}
               {(user?.type === "accountant" || user?.type === "admin") && (
                 <>
                   <Link to="/accounting" className="block">
@@ -837,7 +901,7 @@ export default function Dashboard() {
               </CardTitle>
               <CardDescription>
                 {user?.type === "receptionist" ?
-                  (isArabic ? "إحصائيات عملك الي��م" : "Your work statistics today") :
+                  (isArabic ? "إحصائيات عملك اليوم" : "Your work statistics today") :
                   user?.type === "doctor" ?
                   (isArabic ? "إحصائيات عملك الطبي اليوم" : "Your medical work statistics today") :
                   (isArabic ? "أداء العيادة هذا الشهر" : "Clinic performance this month")
