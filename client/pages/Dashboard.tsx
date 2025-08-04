@@ -132,7 +132,7 @@ export default function Dashboard() {
       viewPatients: "سجل المرضى",
       invoices: "الفواتير المالية",
       financialReports: "التقارير المالية",
-      viewAppointments: "جدول ال��واعيد",
+      viewAppointments: "جدول المواعيد",
       upcomingAppointments: "المواعيد القادمة",
       viewAll: "عرض الجميع",
       recentActivity: "آخر الأنشطة",
@@ -292,7 +292,7 @@ export default function Dashboard() {
                   {isArabic ? "أخصائي طب الأسنان العام" : "General Dentistry"}
                 </Badge>
                 <Badge variant="outline" className="text-xs">
-                  {isArabic ? "ا��عيادة رقم 1 - الطابق الأول" : "Clinic 1 - First Floor"}
+                  {isArabic ? "العيادة رقم 1 - الطابق الأول" : "Clinic 1 - First Floor"}
                 </Badge>
                 <Badge variant="secondary" className="text-xs">
                   {isArabic ? "متوفر للحالات الطارئة" : "Available for Emergencies"}
@@ -498,7 +498,7 @@ export default function Dashboard() {
                   </Button>
                   <Button size="sm">
                     <UserCheck className="h-4 w-4 mr-2" />
-                    {isArabic ? "تس��يل حضور" : "Check In"}
+                    {isArabic ? "تسجيل حضور" : "Check In"}
                   </Button>
                 </div>
               </CardHeader>
@@ -518,7 +518,7 @@ export default function Dashboard() {
                         <div>
                           <h4 className="font-medium">{patient.name}</h4>
                           <p className="text-sm text-muted-foreground">
-                            {isArabic ? "مو��د" : "Appointment"} {patient.time} • {isArabic ? "ينتظر" : "waiting"} {patient.waitingTime}
+                            {isArabic ? "موعد" : "Appointment"} {patient.time} • {isArabic ? "ينتظر" : "waiting"} {patient.waitingTime}
                           </p>
                         </div>
                       </div>
@@ -553,11 +553,11 @@ export default function Dashboard() {
                 <div className="flex gap-2">
                   <Button size="sm" variant="outline">
                     <Clock className="h-4 w-4 mr-2" />
-                    {isArabic ? "إيقاف استقبال" : "Stop Intake"}
+                    {isArabic ? "إيقاف الاستقبال" : "Stop Intake"}
                   </Button>
                   <Button size="sm">
                     <UserCheck className="h-4 w-4 mr-2" />
-                    {isArabic ? "استدعاء التالي" : "Call Next"}
+                    {isArabic ? "استدعاء المريض التالي" : "Call Next"}
                   </Button>
                 </div>
               </CardHeader>
@@ -566,7 +566,7 @@ export default function Dashboard() {
                   {[
                     { id: "1", name: "أحمد محمد العلي", appointmentTime: "09:30", waitingTime: "15 دقيقة", condition: "فحص دور��", priority: "normal" },
                     { id: "2", name: "فاطمة سالم", appointmentTime: "10:00", waitingTime: "5 دقائق", condition: "متابعة علاج", priority: "normal" },
-                    { id: "3", name: "محمد الأحمد", appointmentTime: "10:30", waitingTime: "استعدا��", condition: "ألم شديد", priority: "urgent" },
+                    { id: "3", name: "محمد الأحمد", appointmentTime: "10:30", waitingTime: "��ستعداد", condition: "ألم شديد", priority: "urgent" },
                   ].map((patient) => (
                     <div
                       key={patient.id}
@@ -774,7 +774,7 @@ export default function Dashboard() {
                 </div>
                 <div className="mt-4 pt-3 border-t">
                   <Button variant="outline" className="w-full" size="sm">
-                    {isArabic ? "��رض جميع المكالمات" : "View All Calls"}
+                    {isArabic ? "عرض جميع المكالمات" : "View All Calls"}
                   </Button>
                 </div>
               </CardContent>
