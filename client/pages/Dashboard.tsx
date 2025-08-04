@@ -120,6 +120,10 @@ export default function Dashboard() {
       newPatient: 'مريض جديد',
       viewReports: 'عرض التقارير',
       manageSettings: 'إدارة الإعدادات',
+      viewPatients: 'عرض المرضى',
+      invoices: 'الفواتير',
+      financialReports: 'تقارير مالية',
+      viewAppointments: 'عرض المواعيد',
       upcomingAppointments: 'المواعيد القادمة',
       viewAll: 'عرض الكل',
       recentActivity: 'النشاطات الأخيرة',
@@ -152,6 +156,10 @@ export default function Dashboard() {
       newPatient: 'New Patient',
       viewReports: 'View Reports',
       manageSettings: 'Manage Settings',
+      viewPatients: 'View Patients',
+      invoices: 'Invoices',
+      financialReports: 'Financial Reports',
+      viewAppointments: 'View Appointments',
       upcomingAppointments: 'Upcoming Appointments',
       viewAll: 'View All',
       recentActivity: 'Recent Activity',
@@ -355,7 +363,7 @@ export default function Dashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {/* موظف الاستقبال - ��جز المواعيد وإضافة المرضى */}
+              {/* موظف الاستقبال - حجز المواعيد وإضافة المرضى */}
               {(user?.type === 'receptionist' || user?.type === 'admin') && (
                 <>
                   <Link to="/appointments/new" className="block">
