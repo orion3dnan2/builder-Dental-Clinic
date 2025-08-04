@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { Stethoscope, Tooth, User, Lock, Mail, Phone, Building2, Shield } from 'lucide-react';
+import { Stethoscope, Activity, User, Lock, Mail, Phone, Building2, Shield } from 'lucide-react';
 
 interface LoginForm {
   email: string;
@@ -71,7 +71,7 @@ export default function Login() {
   const content = {
     ar: {
       title: 'نظام إدارة عيادة الأسنان',
-      subtitle: 'منصة متكاملة لإدارة العيادات الطبية',
+      subtitle: 'منصة متكاملة لإدارة ��لعيادات الطبية',
       login: 'تسجيل الدخول',
       register: 'إنشاء حساب جديد',
       email: 'البريد الإلكتروني',
@@ -141,7 +141,7 @@ export default function Login() {
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-6">
               <div className="bg-primary rounded-full p-3">
-                <Tooth className="h-8 w-8 text-primary-foreground" />
+                <Activity className="h-8 w-8 text-primary-foreground" />
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-foreground">{t.title}</h1>
@@ -182,7 +182,7 @@ export default function Login() {
         <div className="w-full max-w-md mx-auto space-y-6">
           <div className="flex justify-between items-center">
             <div className="lg:hidden flex items-center gap-2">
-              <Tooth className="h-6 w-6 text-primary" />
+              <Activity className="h-6 w-6 text-primary" />
               <span className="font-bold text-lg">{isArabic ? 'عيادة الأسنان' : 'Dental Clinic'}</span>
             </div>
             <Button
