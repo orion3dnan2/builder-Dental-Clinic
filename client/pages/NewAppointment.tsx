@@ -614,70 +614,61 @@ export default function NewAppointment() {
     </div>
   );
 
-  const renderTreatmentStep = () => (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>{t.selectTreatment}</CardTitle>
-          <CardDescription>
-            {isArabic ? "اختر نوع العلاج المطلوب" : "Select the required treatment type"}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {treatmentTypes.map((treatment) => (
-              <div
-                key={treatment.id}
-                className={cn(
-                  "p-5 border rounded-xl cursor-pointer transition-all duration-200",
-                  selectedTreatment?.id === treatment.id
-                    ? "border-primary bg-primary/5 shadow-lg"
-                    : "border-border hover:border-primary/50 hover:shadow-md"
-                )}
-                onClick={() => setSelectedTreatment(treatment)}
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <Badge variant="outline" className="text-xs font-medium">
-                    {treatment.category}
-                  </Badge>
-                  {selectedTreatment?.id === treatment.id && (
-                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                      <CheckCircle className="h-3 w-3 text-white" />
-                    </div>
-                  )}
-                </div>
-                <h4 className="font-semibold text-lg mb-3 leading-tight">{treatment.name}</h4>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-1 text-muted-foreground">
-                      <Clock className="h-3 w-3" />
-                      <span>{treatment.duration} {t.minutes}</span>
-                    </div>
-                    <div className="font-semibold text-primary">
-                      {treatment.price.toLocaleString()} {t.sar}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>{t.appointmentNotes}</CardTitle>
-        </CardHeader>
-        <CardContent>
+  const renderNotesStep = () => (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <AlertCircle className="h-5 w-5" />
+          {t.appointmentNotes}
+        </CardTitle>
+        <CardDescription>
+          {isArabic ? "أضف أي ملاحظات أو تعليمات خاصة بالموعد" : "Add any special notes or instructions for the appointment"}
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="space-y-3">
+          <Label htmlFor="appointmentNotes">{t.appointmentNotes}</Label>
           <Textarea
+            id="appointmentNotes"
             placeholder={isArabic ? "أضف أي ملاحظات خاصة بالموعد..." : "Add any special notes for the appointment..."}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
-            rows={4}
+            rows={6}
+            className="resize-none"
           />
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+
+        {/* Summary Preview */}
+        <div className="p-4 bg-muted/50 rounded-lg border-l-4 border-l-primary">
+          <h4 className="font-medium mb-3 flex items-center gap-2">
+            <CalendarIcon className="h-4 w-4" />
+            {isArabic ? "ملخص الموعد" : "Appointment Summary"}
+          </h4>
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">{t.patientInfo}:</span>
+              <span className="font-medium">
+                {selectedPatient?.name || newPatientData.name || (isArabic ? "مريض جديد" : "New Patient")}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">{t.doctorSelection}:</span>
+              <span className="font-medium">{selectedDoctor?.name}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">{t.dateTimeSelection}:</span>
+              <span className="font-medium">
+                {selectedDate?.toLocaleDateString(isArabic ? "ar-SA" : "en-US")} {selectedTime}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">{t.treatmentType}:</span>
+              <span className="font-medium">{selectedTreatment?.name}</span>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 
   const renderConfirmationStep = () => (
