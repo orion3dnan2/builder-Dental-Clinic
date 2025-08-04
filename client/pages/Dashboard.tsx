@@ -164,7 +164,7 @@ export default function Dashboard() {
       appointmentsToday: "مواعيد اليوم",
       appointmentsCompleted: "الحجوزات المُنجزة اليوم",
       patientsExamined: "المرضى المُفحوصون",
-      averageTime: "متوسط مدة ا��كشف",
+      averageTime: "متوسط مدة ا���كشف",
       patientSatisfaction: "مستوى رضا ال��رضى",
       patientsThisMonth: "مرضى الشهر الجاري",
       revenue: "الإيرادات المالية",
@@ -304,7 +304,7 @@ export default function Dashboard() {
                 </Badge>
                 <Badge variant="outline" className="text-xs">
                   {isArabic
-                    ? "الطبي�� المُناوب: د. أحمد محمد"
+                    ? "الطبيب المُناوب: د. أحمد محمد"
                     : "Current Doctor: Dr. Ahmed Mohammed"}
                 </Badge>
               </div>
@@ -627,7 +627,7 @@ export default function Dashboard() {
                   {[
                     {
                       id: "1",
-                      name: isArabic ? "أحمد محمد ا��علي" : "Ahmed Mohammed Al-Ali",
+                      name: isArabic ? "أحمد محمد العلي" : "Ahmed Mohammed Al-Ali",
                       appointmentTime: "09:30",
                       waitingTime: isArabic ? "15 دقيقة" : "15 minutes",
                       condition: isArabic ? "فحص دوري" : "Routine Checkup",
@@ -851,8 +851,8 @@ export default function Dashboard() {
                       priority: "normal",
                     },
                     {
-                      name: "فاطمة علي",
-                      reason: "تأكيد موعد الأسبوع ال��ادم",
+                      name: isArabic ? "فاطمة علي" : "Fatima Ali",
+                      reason: isArabic ? "تأكيد موعد الأسبوع القادم" : "Confirm next week appointment",
                       phone: "+966507654321",
                       priority: "normal",
                     },
@@ -1272,7 +1272,7 @@ export default function Dashboard() {
                           color: "text-primary",
                         },
                         {
-                          action: isArabic ? "تم إرسال فاتورة" : "Invoice sent",
+                          action: isArabic ? "تم إرسال فاتور��" : "Invoice sent",
                           patient: "فاطمة سالم",
                           time: "1 ساعة",
                           icon: FileText,
