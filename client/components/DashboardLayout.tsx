@@ -580,7 +580,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="hidden sm:flex items-center gap-2">
                 <Activity className="h-5 w-5 text-success" />
                 <span className="text-sm text-muted-foreground">
-                  {isArabic ? "ن��ط الآن" : "Online Now"}
+                  {isArabic ? "نشط الآن" : "Online Now"}
                 </span>
               </div>
             </div>
@@ -709,24 +709,37 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                         );
                       })
                     ) : (
-                      <div className="p-8 text-center text-muted-foreground">
-                        <Bell className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                        <p className="text-sm">
-                          {isArabic ? "لا توجد إشعارات جديدة" : "No new notifications"}
+                      <div className="p-12 text-center text-muted-foreground">
+                        <div className="w-16 h-16 mx-auto mb-4 bg-muted/50 rounded-full flex items-center justify-center">
+                          <Bell className="h-8 w-8 opacity-50" />
+                        </div>
+                        <h4 className="font-medium mb-2">
+                          {isArabic ? "لا توجد إشعارات" : "No notifications"}
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          {isArabic ? "ستظهر الإشعارات الجديدة هنا" : "New notifications will appear here"}
                         </p>
                       </div>
                     )}
                   </div>
-                  <div className="p-3 border-t bg-muted/30">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="w-full text-xs"
-                      onClick={() => navigate("/notifications")}
-                    >
-                      {isArabic ? "عرض جميع الإشعارات" : "View all notifications"}
-                    </Button>
-                  </div>
+                  {notifications.length > 0 && (
+                    <div className="p-3 border-t bg-gradient-to-r from-muted/20 to-muted/10">
+                      <div className="flex items-center justify-between">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-xs hover:bg-primary/10"
+                          onClick={() => navigate("/notifications")}
+                        >
+                          <Bell className="h-3 w-3 mr-1" />
+                          {isArabic ? "جميع الإشعارات" : "All notifications"}
+                        </Button>
+                        <span className="text-xs text-muted-foreground">
+                          {notifications.length} {isArabic ? "إشعار" : "notifications"}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </PopoverContent>
               </Popover>
 
