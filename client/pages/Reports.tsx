@@ -81,7 +81,7 @@ interface DoctorPerformance {
 }
 
 export default function Reports() {
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic } = useLanguage();
   const [user, setUser] = useState<any>(null);
   const [activeTab, setActiveTab] = useState("overview");
   const [dateRange, setDateRange] = useState("month");
