@@ -635,10 +635,10 @@ export default function Dashboard() {
                     },
                     {
                       id: "2",
-                      name: "فاطمة سالم",
+                      name: isArabic ? "فاطمة سالم" : "Fatima Salem",
                       appointmentTime: "10:00",
-                      waitingTime: "5 دقائق",
-                      condition: "متابعة علاج",
+                      waitingTime: isArabic ? "5 دقائق" : "5 minutes",
+                      condition: isArabic ? "متابعة علاج" : "Follow-up",
                       priority: "normal",
                     },
                     {
@@ -814,7 +814,7 @@ export default function Dashboard() {
                       </div>
                       <div>
                         <h4 className="font-medium text-primary">
-                          {isArabic ? "صافي الربح" : "Net Profit"}
+                          {isArabic ? "صافي ��لربح" : "Net Profit"}
                         </h4>
                         <p className="text-2xl font-bold text-primary">
                           80,600 {isArabic ? "ريال" : "SAR"}
@@ -1255,7 +1255,7 @@ export default function Dashboard() {
                     : [
                         {
                           action: isArabic
-                            ? "تم ت��جيل مريض جديد"
+                            ? "تم تسجيل مريض جديد"
                             : "New patient registered",
                           patient: "سارة أحمد",
                           time: "10 دقائق",
@@ -1272,7 +1272,7 @@ export default function Dashboard() {
                           color: "text-primary",
                         },
                         {
-                          action: isArabic ? "تم إرسال فاتورة" : "Invoice sent",
+                          action: isArabic ? "تم إ��سال فاتورة" : "Invoice sent",
                           patient: "فاطمة سالم",
                           time: "1 ساعة",
                           icon: FileText,
