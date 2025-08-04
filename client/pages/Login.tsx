@@ -42,7 +42,7 @@ interface RegisterForm {
 
 export default function Login() {
   const navigate = useNavigate();
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic, toggleLanguage } = useLanguage();
   const [loginForm, setLoginForm] = useState<LoginForm>({
     username: "",
     password: "",
