@@ -115,11 +115,21 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     return '/dashboard'; // لوحة تحكم عامة للجميع
   };
 
+  // تحديد الأيقونة المناسبة لنوع المستخدم
+  const getDashboardIcon = () => {
+    switch (user?.type) {
+      case 'accountant': return DollarSign;
+      case 'doctor': return Stethoscope;
+      case 'receptionist': return UserCheck;
+      default: return LayoutDashboard;
+    }
+  };
+
   const navigationItems = [
     {
       name: t.dashboard,
       href: getDashboardHref(),
-      icon: LayoutDashboard,
+      icon: getDashboardIcon(),
       roles: ['admin', 'doctor', 'receptionist', 'accountant']
     },
     {
