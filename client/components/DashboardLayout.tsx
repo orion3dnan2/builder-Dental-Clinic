@@ -97,7 +97,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         time: isArabic ? "منذ 15 دقيقة" : "15 minutes ago",
         isRead: false,
         actionUrl: "/patients",
-        patientName: "فاطمة أحمد",
+        patientName: "فا��مة أحمد",
       },
       {
         id: "3",
@@ -571,7 +571,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                       variant="ghost"
                       size="sm"
                       className="flex-1 text-xs"
-                      onClick={() => setIsArabic(!isArabic)}
+                      onClick={toggleLanguage}
                     >
                       <Globe className="h-3 w-3 mr-1" />
                       {t.switchLang}
