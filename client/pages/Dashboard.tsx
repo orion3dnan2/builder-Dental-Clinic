@@ -144,7 +144,7 @@ export default function Dashboard() {
       netProfit: "صافي الربح",
       viewDetails: "عرض التفاصيل",
       appointmentsToday: "مواعيد اليوم",
-      appointmentsCompleted: "مواعيد مكتملة اليوم",
+      appointmentsCompleted: "مواعيد م��تملة اليوم",
       patientsExamined: "مرضى تم فحصهم",
       averageTime: "متوسط وقت الفحص",
       patientSatisfaction: "رضا المرضى",
@@ -535,7 +535,7 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-3">
                   {[
-                    { id: "1", name: "أحمد محمد العلي", appointmentTime: "09:30", waitingTime: "15 دقيقة", condition: "فحص دوري", priority: "normal" },
+                    { id: "1", name: "أحمد محمد العلي", appointmentTime: "09:30", waitingTime: "15 دقيقة", condition: "فحص دور��", priority: "normal" },
                     { id: "2", name: "فاطمة سالم", appointmentTime: "10:00", waitingTime: "5 دقائق", condition: "متابعة علاج", priority: "normal" },
                     { id: "3", name: "محمد الأحمد", appointmentTime: "10:30", waitingTime: "استعداد", condition: "ألم شديد", priority: "urgent" },
                   ].map((patient) => (
@@ -718,7 +718,7 @@ export default function Dashboard() {
                 <div className="space-y-3">
                   {[
                     { name: "أحمد سالم", reason: "تذكير بموعد غداً", phone: "+966501234567", priority: "normal" },
-                    { name: "فاطمة علي", reason: "تأكيد موعد الأسبوع القادم", phone: "+966507654321", priority: "normal" },
+                    { name: "فاطمة علي", reason: "تأكيد موعد الأسبوع ال��ادم", phone: "+966507654321", priority: "normal" },
                     { name: "محمد الأحمد", reason: "إلغاء وإعادة جدولة", phone: "+966509876543", priority: "urgent" },
                   ].map((call, index) => (
                     <div
@@ -1050,6 +1050,34 @@ export default function Dashboard() {
                     patient: "فاطمة سالم",
                     time: "45 دقيقة",
                     icon: Mail,
+                    color: "text-warning",
+                  },
+                ] : user?.type === "doctor" ? [
+                  {
+                    action: isArabic
+                      ? "تم إكمال فحص مريض"
+                      : "Patient examination completed",
+                    patient: "محمد علي",
+                    time: "10 دقائق",
+                    icon: Stethoscope,
+                    color: "text-success",
+                  },
+                  {
+                    action: isArabic
+                      ? "تم كتابة وصفة طبية"
+                      : "Prescription written",
+                    patient: "نورا سالم",
+                    time: "20 دقيقة",
+                    icon: FileText,
+                    color: "text-primary",
+                  },
+                  {
+                    action: isArabic
+                      ? "تم تحديث السجل الطبي"
+                      : "Medical record updated",
+                    patient: "سعد الخالدي",
+                    time: "35 دقيقة",
+                    icon: UserCheck,
                     color: "text-warning",
                   },
                 ] : [
