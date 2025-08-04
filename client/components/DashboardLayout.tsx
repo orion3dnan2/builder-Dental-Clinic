@@ -17,6 +17,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   Activity,
   LayoutDashboard,
   Users,
@@ -86,7 +91,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       admin: "مدير النظام",
       doctor: "طبيب",
       receptionist: "موظف الاستقبال",
-      accountant: "محاسب",
+      accountant: "محا��ب",
       clinicName: "عيادة الأسنان المتطورة",
       switchLang: "English",
     },
