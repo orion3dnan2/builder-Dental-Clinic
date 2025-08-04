@@ -122,7 +122,7 @@ export default function Dashboard() {
       cancelled: "ملغية",
       confirmed: "مؤكدة",
       callsToMake: "اتصالات مطلوبة",
-      checkedInToday: "حضور اليوم",
+      checkedInToday: "��ضور اليوم",
       remindersSent: "تذكيرات مرسلة",
       quickActions: "إجراءات سريعة",
       newAppointment: "موعد جديد",
@@ -344,6 +344,71 @@ export default function Dashboard() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Reception-specific Dashboard for current day tasks */}
+        {user?.type === "receptionist" && (
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <Card className="border-l-4 border-l-primary">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  {t.confirmed}
+                </CardTitle>
+                <UserCheck className="h-4 w-4 text-primary" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">9</div>
+                <p className="text-xs text-muted-foreground">
+                  {isArabic ? "مواعيد مؤكدة اليوم" : "confirmed appointments today"}
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-warning">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  {t.callsToMake}
+                </CardTitle>
+                <Phone className="h-4 w-4 text-warning" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">5</div>
+                <p className="text-xs text-muted-foreground">
+                  {isArabic ? "تذكير بالمواعيد غداً" : "reminder calls for tomorrow"}
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-success">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  {t.checkedInToday}
+                </CardTitle>
+                <Activity className="h-4 w-4 text-success" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">6</div>
+                <p className="text-xs text-muted-foreground">
+                  {isArabic ? "مرضى حضروا اليوم" : "patients arrived today"}
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-accent">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  {t.remindersSent}
+                </CardTitle>
+                <Mail className="h-4 w-4 text-accent-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">12</div>
+                <p className="text-xs text-muted-foreground">
+                  {isArabic ? "تذكيرات أرسلت اليوم" : "reminders sent today"}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Main Content Grid */}
         <div
