@@ -857,8 +857,8 @@ export default function Dashboard() {
                       priority: "normal",
                     },
                     {
-                      name: "محمد الأحمد",
-                      reason: "إلغاء وإعادة جدولة",
+                      name: isArabic ? "محمد الأحمد" : "Mohammed Al-Ahmad",
+                      reason: isArabic ? "إلغاء وإعادة جدولة" : "Cancel and reschedule",
                       phone: "+966509876543",
                       priority: "urgent",
                     },
@@ -1007,7 +1007,7 @@ export default function Dashboard() {
                   <Link to="/invoices" className="block">
                     <Button className="w-full justify-start" variant="outline">
                       <Receipt className="h-4 w-4 mr-2" />
-                      {isArabic ? "الفواتير" : "Invoices"}
+                      {isArabic ? "الفو��تير" : "Invoices"}
                     </Button>
                   </Link>
                   <Link to="/reports" className="block">
