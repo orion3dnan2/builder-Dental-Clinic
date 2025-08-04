@@ -122,8 +122,8 @@ export default function Dashboard() {
       cancelled: "ملغية",
       confirmed: "مؤكدة",
       callsToMake: "اتصالات مطلوبة",
-      checkedInToday: "��ضور اليوم",
-      remindersSent: "تذكيرات مرسلة",
+      checkedInToday: "حضور اليوم",
+      remindersSent: "تذكيرات مرس��ة",
       quickActions: "إجراءات سريعة",
       newAppointment: "موعد جديد",
       newPatient: "مريض جديد",
@@ -388,7 +388,7 @@ export default function Dashboard() {
               <CardContent>
                 <div className="text-2xl font-bold">6</div>
                 <p className="text-xs text-muted-foreground">
-                  {isArabic ? "مرضى حضروا اليوم" : "patients arrived today"}
+                  {isArabic ? "��رضى حضروا اليوم" : "patients arrived today"}
                 </p>
               </CardContent>
             </Card>
@@ -414,10 +414,67 @@ export default function Dashboard() {
         <div
           className={`grid gap-6 ${user?.type === "receptionist" || user?.type === "doctor" || user?.type === "admin" ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-1 lg:grid-cols-2"}`}
         >
-          {/* Today's Appointments - لموظف الاستقبال والطبيب والمدير فقط */}
-          {(user?.type === "receptionist" ||
-            user?.type === "doctor" ||
-            user?.type === "admin") && (
+          {/* Waiting List - لموظف الاستقبال فقط */}
+          {user?.type === "receptionist" && (
+            <Card className="md:col-span-2">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-warning" />
+                    {isArabic ? "قائمة الانتظار" : "Waiting List"}
+                  </CardTitle>
+                  <CardDescription>
+                    {stats.waitingPatients} {isArabic ? "مريض في الانتظار" : "patients waiting"}
+                  </CardDescription>
+                </div>
+                <div className="flex gap-2">
+                  <Button size="sm" variant="outline">
+                    <Phone className="h-4 w-4 mr-2" />
+                    {isArabic ? "إشعار التالي" : "Call Next"}
+                  </Button>
+                  <Button size="sm">
+                    <UserCheck className="h-4 w-4 mr-2" />
+                    {isArabic ? "تسجيل حضور" : "Check In"}
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {[
+                    { id: "1", name: "عبدالله محمد", time: "09:15", waitingTime: "15 دقيقة", priority: "normal" },
+                    { id: "2", name: "منى أحمد", time: "09:30", waitingTime: "30 دقيقة", priority: "urgent" },
+                    { id: "3", name: "سعد الخالدي", time: "10:00", waitingTime: "10 دقائق", priority: "normal" },
+                  ].map((patient) => (
+                    <div
+                      key={patient.id}
+                      className="flex items-center justify-between p-4 rounded-lg border border-border hover:bg-accent/50 transition-medical"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-3 h-3 rounded-full ${patient.priority === "urgent" ? "bg-destructive" : "bg-success"}`}></div>
+                        <div>
+                          <h4 className="font-medium">{patient.name}</h4>
+                          <p className="text-sm text-muted-foreground">
+                            {isArabic ? "موعد" : "Appointment"} {patient.time} • {isArabic ? "ينتظر" : "waiting"} {patient.waitingTime}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="sm">
+                          <Phone className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <UserCheck className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Today's Appointments - للطبيب والمدير فقط */}
+          {(user?.type === "doctor" || user?.type === "admin") && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
                 <div>
