@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Patients from "./pages/Patients";
 import Accounting from "./pages/Accounting";
+import Reports from "./pages/Reports";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 
@@ -38,7 +39,7 @@ const App = () => (
                   'حجز موعد جديد للمريض',
                   'تأكيد وإلغاء المواعيد',
                   'إرسال تذكيرات SMS ووتساب',
-                  'إدارة أوقات عمل الأطباء',
+                  'إدارة أ��قات عمل الأطباء',
                   'تتبع حالة الموعد',
                   'طباعة قوائم المواعيد',
                   'إحصائيات المواعيد'
@@ -65,25 +66,7 @@ const App = () => (
               />
             } 
           />
-          <Route 
-            path="/reports" 
-            element={
-              <PlaceholderPage
-                title="التقارير والإحصائيات"
-                description="تقارير شاملة عن أداء العيادة"
-                features={[
-                  'تقارير مالية (يومية، شهرية، سنوية)',
-                  'إحصائيات المرضى والمواعيد',
-                  'تقارير الأطباء والأداء',
-                  'تحليل الإيرادات والمصروفات',
-                  'تقارير العلاجات الأكثر طلباً',
-                  'إحصائيات رضا المرضى',
-                  'تصدير التقارير (PDF, Excel)',
-                  'لوحات تحكم تفاعلية'
-                ]}
-              />
-            } 
-          />
+          <Route path="/reports" element={<Reports />} />
           <Route 
             path="/settings" 
             element={
