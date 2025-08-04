@@ -269,10 +269,12 @@ export default function Dashboard() {
           {/* زر موعد جديد - فقط لموظف الاستقبال والمدير */}
           {(user?.type === "receptionist" || user?.type === "admin") && (
             <div className="flex gap-2">
-              <Button>
-                <Calendar className="h-4 w-4 mr-2" />
-                {t.newAppointment}
-              </Button>
+              <Link to="/appointments/new">
+                <Button>
+                  <Calendar className="h-4 w-4 mr-2" />
+                  {t.newAppointment}
+                </Button>
+              </Link>
             </div>
           )}
         </div>
