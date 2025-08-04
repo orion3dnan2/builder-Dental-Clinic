@@ -740,15 +740,30 @@ export default function NewAppointment() {
   const canProceedToNext = () => {
     switch (currentStep) {
       case 1:
-        return selectedPatient || isNewPatient;
+        return selectedPatient !== null;
       case 2:
-        return selectedDoctor;
+        return selectedDoctor !== null;
       case 3:
         return selectedDate && selectedTime && selectedTreatment;
       case 4:
-        return true;
+        return selectedPatient && selectedDoctor && selectedDate && selectedTime && selectedTreatment;
       default:
         return false;
+    }
+  };
+
+  const getStepTitle = () => {
+    switch (currentStep) {
+      case 1:
+        return t.patientInfo;
+      case 2:
+        return t.doctorSelection;
+      case 3:
+        return t.dateTimeSelection + " & " + t.treatmentType;
+      case 4:
+        return t.confirmation;
+      default:
+        return "";
     }
   };
 
