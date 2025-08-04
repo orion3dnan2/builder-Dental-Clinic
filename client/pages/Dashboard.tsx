@@ -299,17 +299,16 @@ export default function Dashboard() {
           <Card className="border-l-4 border-l-warning">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                {t.monthlyRevenue}
+                {t.waitingPatients}
               </CardTitle>
-              <DollarSign className="h-4 w-4 text-warning" />
+              <AlertCircle className="h-4 w-4 text-warning" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {stats.monthlyRevenue.toLocaleString()} {t.sar}
+                {stats.waitingPatients}
               </div>
               <p className="text-xs text-muted-foreground">
-                <span className="text-success">+8%</span> {t.from}{" "}
-                {isArabic ? "الشهر الماضي" : "last month"}
+                {isArabic ? "مرضى في انتظار الفحص" : "patients waiting for examination"}
               </p>
             </CardContent>
           </Card>
@@ -600,7 +599,7 @@ export default function Dashboard() {
               </CardTitle>
               <CardDescription>
                 {isArabic
-                  ? "أداء العيادة هذا الشهر"
+                  ? "أداء العيادة هذا الشه��"
                   : "Clinic performance this month"}
               </CardDescription>
             </CardHeader>
