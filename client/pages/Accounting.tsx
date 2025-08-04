@@ -147,7 +147,7 @@ export default function Accounting() {
       type: 'النوع',
       category: 'الفئة',
       description: 'الوصف',
-      amount: 'ال��بلغ',
+      amount: 'المبلغ',
       status: 'الحالة',
       patient: 'المريض',
       invoice: 'الفاتورة',
@@ -449,7 +449,7 @@ export default function Accounting() {
                     {t.filter}
                   </Button>
                   <Button variant="outline">
-                    <Print className="h-4 w-4 mr-2" />
+                    <Printer className="h-4 w-4 mr-2" />
                     {t.print}
                   </Button>
                 </div>
