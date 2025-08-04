@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Patients from "./pages/Patients";
 import Accounting from "./pages/Accounting";
 import Reports from "./pages/Reports";
+import NewAppointment from "./pages/NewAppointment";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 
@@ -80,7 +81,7 @@ const App = () => (
                   "إدارة أ��قات عمل الأطباء",
                   "تتبع حالة الموعد",
                   "طباعة قوا��م المواعيد",
-                  "إحصائيات المواعيد",
+                  "إحصا��يات المواعيد",
                 ]}
               />
             }
