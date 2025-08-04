@@ -622,7 +622,7 @@ export default function NewAppointment() {
           {t.appointmentNotes}
         </CardTitle>
         <CardDescription>
-          {isArabic ? "أضف أي ملاحظات أو تعل��مات خاصة بالموعد" : "Add any special notes or instructions for the appointment"}
+          {isArabic ? "أضف أي ملاحظات أو تعليمات خاصة بالموعد" : "Add any special notes or instructions for the appointment"}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -648,7 +648,7 @@ export default function NewAppointment() {
             <div className="flex justify-between">
               <span className="text-muted-foreground">{t.patientInfo}:</span>
               <span className="font-medium">
-                {selectedPatient?.name || newPatientData.name || (isArabic ? "مريض ��ديد" : "New Patient")}
+                {selectedPatient?.name || newPatientData.name || (isArabic ? "مريض جديد" : "New Patient")}
               </span>
             </div>
             <div className="flex justify-between">
@@ -869,12 +869,12 @@ export default function NewAppointment() {
             </h1>
             <div className="mt-2 space-y-1">
               <p className="text-muted-foreground">
-                {t.step} {currentStep} {t.of} 4 • {getStepTitle()}
+                {t.step} {currentStep} {t.of} 5 • {getStepTitle()}
               </p>
               <div className="w-full sm:w-64 bg-muted rounded-full h-2">
                 <div
                   className="bg-primary h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${(currentStep / 4) * 100}%` }}
+                  style={{ width: `${(currentStep / 5) * 100}%` }}
                 />
               </div>
             </div>
