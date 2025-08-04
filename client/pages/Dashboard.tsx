@@ -69,7 +69,7 @@ export default function Dashboard() {
     },
     {
       id: '3',
-      patientName: 'محمد عبدالله',
+      patientName: 'محمد عبد��لله',
       time: '11:00',
       type: 'حشو ضرس',
       status: 'pending',
@@ -85,7 +85,7 @@ export default function Dashboard() {
     },
     {
       id: '5',
-      patientName: 'خالد أح��د',
+      patientName: 'خالد أحمد',
       time: '15:30',
       type: 'زراعة أسنان',
       status: 'pending',
@@ -370,6 +370,14 @@ export default function Dashboard() {
                   {t.viewReports}
                 </Button>
               </Link>
+              {user?.type === 'accountant' && (
+                <Link to="/accounting" className="block">
+                  <Button className="w-full justify-start" variant="outline">
+                    <DollarSign className="h-4 w-4 mr-2" />
+                    {isArabic ? 'المحاسبة' : 'Accounting'}
+                  </Button>
+                </Link>
+              )}
               <Link to="/settings" className="block">
                 <Button className="w-full justify-start" variant="outline">
                   <Stethoscope className="h-4 w-4 mr-2" />
