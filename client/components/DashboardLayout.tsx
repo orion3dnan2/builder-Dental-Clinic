@@ -108,7 +108,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       name: t.dashboard,
       href: '/dashboard',
       icon: LayoutDashboard,
-      roles: ['admin', 'doctor', 'receptionist']
+      roles: ['admin', 'doctor', 'receptionist', 'accountant']
     },
     {
       name: t.patients,
