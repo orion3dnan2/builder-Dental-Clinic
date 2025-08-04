@@ -220,12 +220,15 @@ export default function Dashboard() {
               })}
             </p>
           </div>
-          <div className="flex gap-2">
-            <Button>
-              <Calendar className="h-4 w-4 mr-2" />
-              {t.newAppointment}
-            </Button>
-          </div>
+          {/* زر موعد جديد - فقط لموظف الاستقبال والمدير */}
+          {(user?.type === 'receptionist' || user?.type === 'admin') && (
+            <div className="flex gap-2">
+              <Button>
+                <Calendar className="h-4 w-4 mr-2" />
+                {t.newAppointment}
+              </Button>
+            </div>
+          )}
         </div>
 
         {/* Stats Overview */}
@@ -302,21 +305,22 @@ export default function Dashboard() {
 
         {/* Main Content Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {/* Today's Appointments */}
-          <Card className="md:col-span-2">
-            <CardHeader className="flex flex-row items-center justify-between">
-              <div>
-                <CardTitle>{t.upcomingAppointments}</CardTitle>
-                <CardDescription>
-                  {stats.todayAppointments} {t.appointmentsToday}
-                </CardDescription>
-              </div>
-              <Link to="/appointments">
-                <Button variant="outline" size="sm">
-                  {t.viewAll}
-                </Button>
-              </Link>
-            </CardHeader>
+          {/* Today's Appointments - لموظف الاستقبال والطبيب والمدير فقط */}
+          {(user?.type === 'receptionist' || user?.type === 'doctor' || user?.type === 'admin') && (
+            <Card className="md:col-span-2">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle>{t.upcomingAppointments}</CardTitle>
+                  <CardDescription>
+                    {stats.todayAppointments} {t.appointmentsToday}
+                  </CardDescription>
+                </div>
+                <Link to="/appointments">
+                  <Button variant="outline" size="sm">
+                    {t.viewAll}
+                  </Button>
+                </Link>
+              </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {todayAppointments.slice(0, 5).map((appointment) => (
@@ -352,7 +356,8 @@ export default function Dashboard() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+            </Card>
+          )}
 
           {/* Quick Actions */}
           <Card>
@@ -462,7 +467,7 @@ export default function Dashboard() {
                 {t.clinicPerformance}
               </CardTitle>
               <CardDescription>
-                {isArabic ? 'أداء العيا��ة هذا الشهر' : 'Clinic performance this month'}
+                {isArabic ? 'أداء العيادة هذا الشهر' : 'Clinic performance this month'}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
