@@ -132,7 +132,7 @@ export default function Dashboard() {
       welcome: "أهلاً وسهلاً",
       todayOverview: "ملخص اليوم",
       todayAppointments: "حجوزات اليوم",
-      totalPatients: "��دد المرضى الكلي",
+      totalPatients: "عدد ال��رضى الكلي",
       waitingPatients: "المرضى المنتظرون",
       appointmentStatus: "حالة الحجوزات",
       completed: "مُنجزة",
@@ -543,23 +543,23 @@ export default function Dashboard() {
                   {[
                     {
                       id: "1",
-                      name: "عبدالله محمد",
+                      name: isArabic ? "عبدالله محمد" : "Abdullah Mohammed",
                       time: "09:15",
-                      waitingTime: "15 دقيقة",
+                      waitingTime: isArabic ? "15 دقيقة" : "15 minutes",
                       priority: "normal",
                     },
                     {
                       id: "2",
-                      name: "منى أحمد",
+                      name: isArabic ? "منى أحمد" : "Mona Ahmed",
                       time: "09:30",
-                      waitingTime: "30 دقيقة",
+                      waitingTime: isArabic ? "30 دقيقة" : "30 minutes",
                       priority: "urgent",
                     },
                     {
                       id: "3",
-                      name: "سعد الخالدي",
+                      name: isArabic ? "سعد الخالدي" : "Saad Al-Khalidi",
                       time: "10:00",
-                      waitingTime: "10 دقائق",
+                      waitingTime: isArabic ? "10 دقائق" : "10 minutes",
                       priority: "normal",
                     },
                   ].map((patient) => (
@@ -766,7 +766,7 @@ export default function Dashboard() {
                   </CardTitle>
                   <CardDescription>
                     {isArabic
-                      ? "نظرة عامة على الوضع المالي اليوم"
+                      ? "نظرة عامة على ��لوضع المالي اليوم"
                       : "Today's financial status"}
                   </CardDescription>
                 </div>
@@ -852,7 +852,7 @@ export default function Dashboard() {
                     },
                     {
                       name: "فاطمة علي",
-                      reason: "تأكيد موعد الأس��وع ال��ادم",
+                      reason: "تأكيد موعد الأسبوع ال��ادم",
                       phone: "+966507654321",
                       priority: "normal",
                     },
@@ -960,7 +960,7 @@ export default function Dashboard() {
                   </Button>
                   <Button className="w-full justify-start" variant="outline">
                     <Clock className="h-4 w-4 mr-2" />
-                    {isArabic ? "تسجيل حضور مريض" : "Check-in Patient"}
+                    {isArabic ? "تسجيل حضور مري��" : "Check-in Patient"}
                   </Button>
                   <Button className="w-full justify-start" variant="outline">
                     <Mail className="h-4 w-4 mr-2" />
