@@ -30,7 +30,8 @@ import {
   X,
   UserCheck,
   Clock,
-  Globe
+  Globe,
+  Stethoscope
 } from 'lucide-react';
 
 interface User {
