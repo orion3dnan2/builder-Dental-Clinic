@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Card,
   CardContent,
