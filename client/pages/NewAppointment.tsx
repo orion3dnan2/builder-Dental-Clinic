@@ -589,7 +589,7 @@ export default function NewAppointment() {
         </CardHeader>
         <CardContent>
           <Textarea
-            placeholder={isArabic ? "أضف أي ملاحظات خاصة بال��وعد..." : "Add any special notes for the appointment..."}
+            placeholder={isArabic ? "أضف أي ملاحظات خاصة بالموعد..." : "Add any special notes for the appointment..."}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows={4}
@@ -608,29 +608,65 @@ export default function NewAppointment() {
         </CardTitle>
         <CardDescription>{t.confirmation_text}</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="space-y-3">
-            <div>
-              <Label className="text-sm font-medium">{t.patientInfo}</Label>
-              <div className="mt-1 p-3 bg-muted rounded-lg">
-                <p className="font-medium">{selectedPatient?.name || "مريض جديد"}</p>
-                <p className="text-sm text-muted-foreground">{selectedPatient?.phone}</p>
+      <CardContent className="space-y-8">
+        {/* Summary Header */}
+        <div className="text-center p-6 bg-gradient-to-r from-primary/10 to-primary/5 rounded-xl border border-primary/20">
+          <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CalendarIcon className="h-8 w-8 text-primary" />
+          </div>
+          <h3 className="text-xl font-semibold mb-2">
+            {isArabic ? "ملخص الموعد" : "Appointment Summary"}
+          </h3>
+          <p className="text-muted-foreground">
+            {isArabic ? "يرجى مراجعة التفاصيل قبل التأكيد" : "Please review details before confirming"}
+          </p>
+        </div>
+
+        {/* Appointment Details Grid */}
+        <div className="grid gap-6 md:grid-cols-2">
+          {/* Patient Information */}
+          <div className="space-y-4">
+            <div className="p-4 border rounded-xl">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                  <User className="h-4 w-4 text-primary" />
+                </div>
+                <Label className="text-sm font-semibold">{t.patientInfo}</Label>
+              </div>
+              <div className="space-y-2">
+                <p className="font-medium text-lg">{selectedPatient?.name || (isArabic ? "مريض جديد" : "New Patient")}</p>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Phone className="h-3 w-3" />
+                  <span>{selectedPatient?.phone || "---"}</span>
+                </div>
               </div>
             </div>
-            <div>
-              <Label className="text-sm font-medium">{t.doctorSelection}</Label>
-              <div className="mt-1 p-3 bg-muted rounded-lg">
-                <p className="font-medium">{selectedDoctor?.name}</p>
+
+            <div className="p-4 border rounded-xl">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                  <Stethoscope className="h-4 w-4 text-primary" />
+                </div>
+                <Label className="text-sm font-semibold">{t.doctorSelection}</Label>
+              </div>
+              <div className="space-y-2">
+                <p className="font-medium text-lg">{selectedDoctor?.name}</p>
                 <p className="text-sm text-muted-foreground">{selectedDoctor?.specialization}</p>
               </div>
             </div>
           </div>
-          <div className="space-y-3">
-            <div>
-              <Label className="text-sm font-medium">{t.dateTimeSelection}</Label>
-              <div className="mt-1 p-3 bg-muted rounded-lg">
-                <p className="font-medium">
+
+          {/* Date, Time & Treatment */}
+          <div className="space-y-4">
+            <div className="p-4 border rounded-xl">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                  <CalendarIcon className="h-4 w-4 text-primary" />
+                </div>
+                <Label className="text-sm font-semibold">{t.dateTimeSelection}</Label>
+              </div>
+              <div className="space-y-2">
+                <p className="font-medium text-lg">
                   {selectedDate?.toLocaleDateString(isArabic ? "ar-SA" : "en-US", {
                     weekday: "long",
                     year: "numeric",
@@ -638,25 +674,47 @@ export default function NewAppointment() {
                     day: "numeric",
                   })}
                 </p>
-                <p className="text-sm text-muted-foreground">{selectedTime}</p>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Clock className="h-3 w-3" />
+                  <span>{selectedTime}</span>
+                </div>
               </div>
             </div>
-            <div>
-              <Label className="text-sm font-medium">{t.treatmentType}</Label>
-              <div className="mt-1 p-3 bg-muted rounded-lg">
-                <p className="font-medium">{selectedTreatment?.name}</p>
-                <p className="text-sm text-muted-foreground">
-                  {selectedTreatment?.duration} {t.minutes} • {selectedTreatment?.price} {t.sar}
-                </p>
+
+            <div className="p-4 border rounded-xl">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                  <Stethoscope className="h-4 w-4 text-primary" />
+                </div>
+                <Label className="text-sm font-semibold">{t.treatmentType}</Label>
+              </div>
+              <div className="space-y-2">
+                <p className="font-medium text-lg">{selectedTreatment?.name}</p>
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-1 text-muted-foreground">
+                    <Clock className="h-3 w-3" />
+                    <span>{selectedTreatment?.duration} {t.minutes}</span>
+                  </div>
+                  <div className="font-semibold text-primary">
+                    {selectedTreatment?.price?.toLocaleString()} {t.sar}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Notes Section */}
         {notes && (
-          <div>
-            <Label className="text-sm font-medium">{t.notes}</Label>
-            <div className="mt-1 p-3 bg-muted rounded-lg">
-              <p className="text-sm">{notes}</p>
+          <div className="p-4 border rounded-xl">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <AlertCircle className="h-4 w-4 text-primary" />
+              </div>
+              <Label className="text-sm font-semibold">{t.notes}</Label>
+            </div>
+            <div className="p-3 bg-muted/50 rounded-lg">
+              <p className="text-sm leading-relaxed">{notes}</p>
             </div>
           </div>
         )}
