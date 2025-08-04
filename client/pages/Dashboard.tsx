@@ -147,7 +147,7 @@ export default function Dashboard() {
       appointmentsCompleted: "الحجوزات المُنجزة اليوم",
       patientsExamined: "المرضى المُفحوصون",
       averageTime: "متوسط مدة الكشف",
-      patientSatisfaction: "مستوى رضا المرضى",
+      patientSatisfaction: "مستوى رضا ال��رضى",
       patientsThisMonth: "مرضى الشهر الجاري",
       revenue: "الإيرادات المالية",
       sar: "ريال سعودي",
@@ -295,7 +295,7 @@ export default function Dashboard() {
                   {isArabic ? "العيادة رقم 1 - الطابق الأول" : "Clinic 1 - First Floor"}
                 </Badge>
                 <Badge variant="secondary" className="text-xs">
-                  {isArabic ? "متوفر ��لحالات الطارئة" : "Available for Emergencies"}
+                  {isArabic ? "متوفر للحالات الطارئة" : "Available for Emergencies"}
                 </Badge>
               </div>
             )}
@@ -478,7 +478,7 @@ export default function Dashboard() {
         <div
           className={`grid gap-6 ${user?.type === "receptionist" || user?.type === "doctor" || user?.type === "admin" ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-1 lg:grid-cols-2"}`}
         >
-          {/* Waiting List - ��موظف الاستقبال فقط */}
+          {/* Waiting List - لموظف الاستقبال فقط */}
           {user?.type === "receptionist" && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
@@ -746,7 +746,7 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-3">
                   {[
-                    { name: "أحمد سالم", reason: "تذكير بموعد غداً", phone: "+966501234567", priority: "normal" },
+                    { name: "أحمد سالم", reason: "تذكي�� بموعد غداً", phone: "+966501234567", priority: "normal" },
                     { name: "فاطمة علي", reason: "تأكيد موعد الأسبوع ال��ادم", phone: "+966507654321", priority: "normal" },
                     { name: "محمد الأحمد", reason: "إلغاء وإعادة جدولة", phone: "+966509876543", priority: "urgent" },
                   ].map((call, index) => (
@@ -1084,7 +1084,7 @@ export default function Dashboard() {
                 ] : user?.type === "doctor" ? [
                   {
                     action: isArabic
-                      ? "تم إكمال فحص مريض"
+                      ? "تم إنجاز الكشف الطبي"
                       : "Patient examination completed",
                     patient: "محمد علي",
                     time: "10 دقائق",
@@ -1093,7 +1093,7 @@ export default function Dashboard() {
                   },
                   {
                     action: isArabic
-                      ? "تم كتابة وصفة طبية"
+                      ? "تم تحرير الروشتة الطبية"
                       : "Prescription written",
                     patient: "نورا سالم",
                     time: "20 دقيقة",
@@ -1102,7 +1102,7 @@ export default function Dashboard() {
                   },
                   {
                     action: isArabic
-                      ? "تم تحديث السجل الطبي"
+                      ? "تم تحديث الملف الطبي"
                       : "Medical record updated",
                     patient: "سعد الخالدي",
                     time: "35 دقيقة",
