@@ -136,7 +136,7 @@ export default function Dashboard() {
       upcomingAppointments: "المواعيد القادمة",
       viewAll: "عرض الكل",
       recentActivity: "النشاطات الأخيرة",
-      clinicPerformance: "أداء العيادة",
+      clinicPerformance: "أد��ء العيادة",
       doctorPerformance: "أداء الطبيب",
       financialOverview: "الإحصائيات المالية",
       todayRevenue: "إيرادات اليوم",
@@ -191,12 +191,17 @@ export default function Dashboard() {
       viewAll: "View All",
       recentActivity: "Recent Activity",
       clinicPerformance: "Clinic Performance",
+      doctorPerformance: "Doctor Performance",
       financialOverview: "Financial Overview",
       todayRevenue: "Today's Revenue",
       pendingInvoices: "Pending Invoices",
       netProfit: "Net Profit",
       viewDetails: "View Details",
       appointmentsToday: "Appointments Today",
+      appointmentsCompleted: "Appointments Completed Today",
+      patientsExamined: "Patients Examined",
+      averageTime: "Average Examination Time",
+      patientSatisfaction: "Patient Satisfaction",
       patientsThisMonth: "Patients This Month",
       revenue: "Revenue",
       sar: "SAR",
@@ -207,6 +212,11 @@ export default function Dashboard() {
       contact: "Contact",
       from: "from",
       growth: "growth",
+      todaySchedule: "Today's Schedule",
+      patientHistory: "Patient History",
+      medicalNotes: "Medical Notes",
+      prescription: "Prescription",
+      nextPatient: "Next Patient",
     },
   };
 
@@ -468,7 +478,7 @@ export default function Dashboard() {
                   {[
                     { id: "1", name: "عبدالله محمد", time: "09:15", waitingTime: "15 دقيقة", priority: "normal" },
                     { id: "2", name: "منى أحمد", time: "09:30", waitingTime: "30 دقيقة", priority: "urgent" },
-                    { id: "3", name: "سعد الخالدي", time: "10:00", waitingTime: "10 دقائق", priority: "normal" },
+                    { id: "3", name: "سع�� الخالدي", time: "10:00", waitingTime: "10 دقائق", priority: "normal" },
                   ].map((patient) => (
                     <div
                       key={patient.id}
@@ -574,7 +584,7 @@ export default function Dashboard() {
                 <Link to="/accounting">
                   <Button variant="outline" size="sm">
                     <BarChart3 className="h-4 w-4 mr-2" />
-                    {isArabic ? "عرض التفاصيل" : "View Details"}
+                    {isArabic ? "ع��ض التفاصيل" : "View Details"}
                   </Button>
                 </Link>
               </CardHeader>
@@ -628,7 +638,7 @@ export default function Dashboard() {
             </Card>
           )}
 
-          {/* Call Management - لموظ�� الاستقبال فقط */}
+          {/* Call Management - لموظف الاستقبال فقط */}
           {user?.type === "receptionist" && (
             <Card>
               <CardHeader>
@@ -817,7 +827,7 @@ export default function Dashboard() {
               </CardTitle>
               <CardDescription>
                 {user?.type === "receptionist" ?
-                  (isArabic ? "إحصائيات ع��لك اليوم" : "Your work statistics today") :
+                  (isArabic ? "إحصائيات عملك اليوم" : "Your work statistics today") :
                   (isArabic ? "أداء العيادة هذا الشهر" : "Clinic performance this month")
                 }
               </CardDescription>
