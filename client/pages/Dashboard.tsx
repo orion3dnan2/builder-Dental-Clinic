@@ -32,7 +32,7 @@ import {
 interface DashboardStats {
   todayAppointments: number;
   totalPatients: number;
-  monthlyRevenue: number;
+  waitingPatients: number;
   completedAppointments: number;
   pendingAppointments: number;
   cancelledAppointments: number;
