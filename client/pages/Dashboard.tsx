@@ -121,6 +121,9 @@ export default function Dashboard() {
       pending: "في الانتظار",
       cancelled: "ملغية",
       confirmed: "مؤكدة",
+      callsToMake: "اتصالات مطلوبة",
+      checkedInToday: "حضور اليوم",
+      remindersSent: "تذكيرات مرسلة",
       quickActions: "إجراءات سريعة",
       newAppointment: "موعد جديد",
       newPatient: "مريض جديد",
@@ -162,6 +165,9 @@ export default function Dashboard() {
       pending: "Pending",
       cancelled: "Cancelled",
       confirmed: "Confirmed",
+      callsToMake: "Calls to Make",
+      checkedInToday: "Checked In Today",
+      remindersSent: "Reminders Sent",
       quickActions: "Quick Actions",
       newAppointment: "New Appointment",
       newPatient: "New Patient",
@@ -599,7 +605,7 @@ export default function Dashboard() {
               </CardTitle>
               <CardDescription>
                 {isArabic
-                  ? "أداء العيادة هذا الشه��"
+                  ? "أداء العيادة هذا الشهر"
                   : "Clinic performance this month"}
               </CardDescription>
             </CardHeader>
