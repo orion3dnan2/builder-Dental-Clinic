@@ -111,33 +111,33 @@ export default function Dashboard() {
 
   const content = {
     ar: {
-      welcome: "مرحباً",
-      todayOverview: "نظرة عامة على اليوم",
-      todayAppointments: "مواعيد اليوم",
-      totalPatients: "إجمالي المرضى",
-      waitingPatients: "مرضى في الانتظار",
-      appointmentStatus: "حالة المواعيد",
-      completed: "مكتملة",
-      pending: "في الانتظار",
-      cancelled: "ملغية",
-      confirmed: "مؤكدة",
-      callsToMake: "اتصالات مطلوبة",
-      checkedInToday: "حضور اليوم",
-      remindersSent: "تذكيرات مرسلة",
-      quickActions: "إجراءات سريعة",
-      newAppointment: "موعد جديد",
-      newPatient: "مريض جديد",
-      viewReports: "عرض التقارير",
-      manageSettings: "إدارة الإعدادات",
-      viewPatients: "عرض المرضى",
-      invoices: "الفواتير",
-      financialReports: "تقارير مالية",
-      viewAppointments: "عرض المواعيد",
+      welcome: "أهلاً وسهلاً",
+      todayOverview: "ملخص اليوم",
+      todayAppointments: "حجوزات اليوم",
+      totalPatients: "عدد المرضى الكلي",
+      waitingPatients: "المرضى المنتظرون",
+      appointmentStatus: "حالة الحجوزات",
+      completed: "مُنجزة",
+      pending: "معلقة",
+      cancelled: "مُلغاة",
+      confirmed: "مُؤكدة",
+      callsToMake: "مكالمات مطلوبة",
+      checkedInToday: "الحاضرون اليوم",
+      remindersSent: "التذكيرات المُرسلة",
+      quickActions: "الإجراءات السريعة",
+      newAppointment: "حجز موعد جديد",
+      newPatient: "تسجيل مريض جديد",
+      viewReports: "استعراض التقارير",
+      manageSettings: "إعدادات النظام",
+      viewPatients: "سجل المرضى",
+      invoices: "الفواتير المالية",
+      financialReports: "التقارير المالية",
+      viewAppointments: "جدول المواعيد",
       upcomingAppointments: "المواعيد القادمة",
-      viewAll: "عرض الكل",
-      recentActivity: "النشاطات الأخيرة",
+      viewAll: "عرض الجميع",
+      recentActivity: "آخر الأنشطة",
       clinicPerformance: "أداء العيادة",
-      doctorPerformance: "أداء الطبيب",
+      doctorPerformance: "الأداء الطبي",
       financialOverview: "الإحصائيات المالية",
       todayRevenue: "إيرادات اليوم",
       pendingInvoices: "فواتير معلقة",
@@ -659,7 +659,7 @@ export default function Dashboard() {
             </Card>
           )}
 
-          {/* إحصائيات مالية سريعة للمحاسب */}
+          {/* إحصائي��ت مالية سريعة للمحاسب */}
           {user?.type === "accountant" && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
