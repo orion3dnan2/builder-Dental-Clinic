@@ -117,12 +117,22 @@ export default function Dashboard() {
     }
   }, []);
 
+  useEffect(() => {
+    setTodayAppointments(
+      appointmentsData.map(apt => ({
+        ...apt,
+        patientName: isArabic ? apt.patientName.ar : apt.patientName.en,
+        type: isArabic ? apt.type.ar : apt.type.en,
+      }))
+    );
+  }, [isArabic]);
+
   const content = {
     ar: {
       welcome: "أهلاً وسهلاً",
       todayOverview: "ملخص اليوم",
       todayAppointments: "حجوزات اليوم",
-      totalPatients: "عدد المرضى الكلي",
+      totalPatients: "��دد المرضى الكلي",
       waitingPatients: "المرضى المنتظرون",
       appointmentStatus: "حالة الحجوزات",
       completed: "مُنجزة",
@@ -138,7 +148,7 @@ export default function Dashboard() {
       viewReports: "استعراض التقارير",
       manageSettings: "إعدادات النظام",
       viewPatients: "سجل المرضى",
-      invoices: "الفواتير المال��ة",
+      invoices: "الفواتير المالية",
       financialReports: "التقارير المالية",
       viewAppointments: "جدول المواعيد",
       upcomingAppointments: "المواعيد القادمة",
@@ -842,7 +852,7 @@ export default function Dashboard() {
                     },
                     {
                       name: "فاطمة علي",
-                      reason: "تأكيد موعد الأسبوع ال��ادم",
+                      reason: "تأكيد موعد الأس��وع ال��ادم",
                       phone: "+966507654321",
                       priority: "normal",
                     },
