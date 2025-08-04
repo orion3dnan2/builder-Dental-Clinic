@@ -304,7 +304,7 @@ export default function Dashboard() {
                 </Badge>
                 <Badge variant="outline" className="text-xs">
                   {isArabic
-                    ? "الطبيب المُناوب: د. أحمد محمد"
+                    ? "الطبي�� المُناوب: د. أحمد محمد"
                     : "Current Doctor: Dr. Ahmed Mohammed"}
                 </Badge>
               </div>
@@ -627,7 +627,7 @@ export default function Dashboard() {
                   {[
                     {
                       id: "1",
-                      name: isArabic ? "أحمد محمد العلي" : "Ahmed Mohammed Al-Ali",
+                      name: isArabic ? "أحمد محمد ا��علي" : "Ahmed Mohammed Al-Ali",
                       appointmentTime: "09:30",
                       waitingTime: isArabic ? "15 دقيقة" : "15 minutes",
                       condition: isArabic ? "فحص دوري" : "Routine Checkup",
@@ -845,8 +845,8 @@ export default function Dashboard() {
                 <div className="space-y-3">
                   {[
                     {
-                      name: "أحمد سالم",
-                      reason: "تذكي�� بموعد غداً",
+                      name: isArabic ? "أحمد سالم" : "Ahmed Salem",
+                      reason: isArabic ? "تذكير بموعد غداً" : "Tomorrow appointment reminder",
                       phone: "+966501234567",
                       priority: "normal",
                     },
