@@ -77,8 +77,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {
         id: "1",
         type: "reminder" as const,
-        title: isArabic ? "تذكير موعد" : "Appointment Reminder",
-        message: isArabic ? "موعد أحمد محمد غداً الساعة 10:00 ص" : "Ahmed Mohammed appointment tomorrow at 10:00 AM",
+        title: isArabic ? "تذكير بالموعد الطبي" : "Appointment Reminder",
+        message: isArabic ? "موعد المريض أحمد محمد غداً الساعة 10:00 صباحاً" : "Ahmed Mohammed appointment tomorrow at 10:00 AM",
         time: isArabic ? "منذ 5 دقائق" : "5 minutes ago",
         isRead: false,
         actionUrl: "/appointments",
@@ -310,7 +310,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       doctor: "طبيب",
       receptionist: "موظف الاستقبال",
       accountant: "محاسب",
-      clinicName: "عيادة الأسنان المتطورة",
+      clinicName: "عيادة الأسنان المت��ورة",
       switchLang: "English",
     },
     en: {
