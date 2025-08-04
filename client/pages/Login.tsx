@@ -9,9 +9,9 @@ import { Badge } from '@/components/ui/badge';
 import { Stethoscope, Activity, User, Lock, Mail, Phone, Building2, Shield } from 'lucide-react';
 
 interface LoginForm {
-  email: string;
+  username: string;
   password: string;
-  userType: 'admin' | 'doctor' | 'receptionist';
+  userType: 'admin' | 'doctor' | 'receptionist' | 'accountant';
 }
 
 interface RegisterForm {
@@ -28,7 +28,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [isArabic, setIsArabic] = useState(true);
   const [loginForm, setLoginForm] = useState<LoginForm>({
-    email: '',
+    username: '',
     password: '',
     userType: 'admin'
   });
@@ -71,9 +71,10 @@ export default function Login() {
   const content = {
     ar: {
       title: 'نظام إدارة عيادة الأسنان',
-      subtitle: 'منصة متكاملة لإدارة ��لعيادات الطبية',
+      subtitle: 'منصة متكاملة لإدارة العيادات الطبية',
       login: 'تسجيل الدخول',
       register: 'إنشاء حساب جديد',
+      username: 'اسم المستخدم',
       email: 'البريد الإلكتروني',
       password: 'كلمة المرور',
       confirmPassword: 'تأكيد كلمة المرور',
@@ -85,6 +86,7 @@ export default function Login() {
       admin: 'مدير النظام',
       doctor: 'طبيب',
       receptionist: 'موظف الاستقبال',
+      accountant: 'محاسب',
       loginBtn: 'دخول',
       registerBtn: 'إنشاء حساب',
       switchToEn: 'English',
@@ -104,6 +106,7 @@ export default function Login() {
       subtitle: 'Comprehensive platform for medical clinic management',
       login: 'Sign In',
       register: 'Create New Account',
+      username: 'Username',
       email: 'Email Address',
       password: 'Password',
       confirmPassword: 'Confirm Password',
@@ -115,6 +118,7 @@ export default function Login() {
       admin: 'System Admin',
       doctor: 'Doctor',
       receptionist: 'Receptionist',
+      accountant: 'Accountant',
       loginBtn: 'Sign In',
       registerBtn: 'Create Account',
       switchToEn: 'العربية',
@@ -212,16 +216,16 @@ export default function Login() {
                 <CardContent>
                   <form onSubmit={handleLogin} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="email">{t.email}</Label>
+                      <Label htmlFor="username">{t.username}</Label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                         <Input
-                          id="email"
-                          type="email"
-                          placeholder="admin@clinic.com"
+                          id="username"
+                          type="text"
+                          placeholder={isArabic ? 'أدخل اسم المستخدم' : 'Enter username'}
                           className={`${isArabic ? 'pr-10' : 'pl-10'} focus-medical`}
-                          value={loginForm.email}
-                          onChange={(e) => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
+                          value={loginForm.username}
+                          onChange={(e) => setLoginForm(prev => ({ ...prev, username: e.target.value }))}
                           required
                         />
                       </div>
@@ -248,7 +252,8 @@ export default function Login() {
                         {[
                           { value: 'admin', label: t.admin, color: 'bg-primary' },
                           { value: 'doctor', label: t.doctor, color: 'bg-success' },
-                          { value: 'receptionist', label: t.receptionist, color: 'bg-warning' }
+                          { value: 'receptionist', label: t.receptionist, color: 'bg-warning' },
+                          { value: 'accountant', label: t.accountant, color: 'bg-purple-500' }
                         ].map((type) => (
                           <Badge
                             key={type.value}
