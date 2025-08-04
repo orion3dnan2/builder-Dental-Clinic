@@ -68,7 +68,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const content = {
     ar: {
       dashboard: user?.type === 'accountant' ? 'لوحة المحاسب' :
-                 user?.type === 'doctor' ? 'لوحة الطبيب' :
+                 user?.type === 'doctor' ? 'لوحة الط��يب' :
                  user?.type === 'receptionist' ? 'لوحة الاستقبال' : 'لوحة التحكم',
       patients: 'المرضى',
       appointments: 'المواعيد',
@@ -240,11 +240,22 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                                   isActive
                                     ? 'bg-sidebar-accent text-sidebar-accent-foreground'
                                     : 'text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent'
+                                } ${
+                                  item.name === t.dashboard ? 'border-l-2 border-l-primary' : ''
                                 }`}
                                 onClick={() => setIsSidebarOpen(false)}
                               >
-                                <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                                <item.icon className={`h-6 w-6 shrink-0 ${
+                                  item.name === t.dashboard ? 'text-primary' : ''
+                                }`} aria-hidden="true" />
                                 {item.name}
+                                {item.name === t.dashboard && (
+                                  <span className="ml-auto">
+                                    <span className="text-xs bg-primary text-primary-foreground px-1.5 py-0.5 rounded-full font-normal">
+                                      {isArabic ? 'رئيسي' : 'Main'}
+                                    </span>
+                                  </span>
+                                )}
                               </Link>
                             </TooltipTrigger>
                             <TooltipContent side={isArabic ? 'left' : 'right'}>
