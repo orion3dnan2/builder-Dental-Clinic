@@ -74,6 +74,12 @@ export default function NewAppointment() {
   const [patientSearch, setPatientSearch] = useState("");
   const [notes, setNotes] = useState("");
   const [isNewPatient, setIsNewPatient] = useState(false);
+  const [newPatientData, setNewPatientData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    nationalId: "",
+  });
 
   // Sample data
   const doctors: Doctor[] = [
@@ -281,7 +287,7 @@ export default function NewAppointment() {
           {t.patientInfo}
         </CardTitle>
         <CardDescription>
-          {isArabic ? "اختر مريض موجود أ�� أضف مريض جديد" : "Select existing patient or add new patient"}
+          {isArabic ? "اختر مريض موجود أو أضف مريض جديد" : "Select existing patient or add new patient"}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -832,7 +838,7 @@ export default function NewAppointment() {
               size="lg"
             >
               <Save className="h-4 w-4 mr-2" />
-              {isArabic ? "تأكيد الموعد" : "Confirm Appointment"}
+              {isArabic ? "تأكيد ال��وعد" : "Confirm Appointment"}
             </Button>
           ) : (
             <Button
