@@ -126,7 +126,7 @@ export default function Dashboard() {
       remindersSent: "تذكيرات مرسلة",
       quickActions: "إجراءات سريعة",
       newAppointment: "موعد جديد",
-      newPatient: "مريض جديد",
+      newPatient: "مريض ج��يد",
       viewReports: "عرض التقارير",
       manageSettings: "إدارة الإعدادات",
       viewPatients: "عرض المرضى",
@@ -876,7 +876,33 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {[
+                {(user?.type === "receptionist" ? [
+                  {
+                    action: isArabic
+                      ? "تم تسجيل مريض جديد"
+                      : "New patient registered",
+                    patient: "سارة أحمد",
+                    time: "10 دقائق",
+                    icon: UserCheck,
+                    color: "text-success",
+                  },
+                  {
+                    action: isArabic
+                      ? "تم حجز موعد جديد"
+                      : "New appointment booked",
+                    patient: "أحمد محمد",
+                    time: "25 دقيقة",
+                    icon: Calendar,
+                    color: "text-primary",
+                  },
+                  {
+                    action: isArabic ? "تم إرسال تذكير" : "Reminder sent",
+                    patient: "فاطمة سالم",
+                    time: "45 دقيقة",
+                    icon: Mail,
+                    color: "text-warning",
+                  },
+                ] : [
                   {
                     action: isArabic
                       ? "تم تسجيل مريض جديد"
@@ -902,7 +928,7 @@ export default function Dashboard() {
                     icon: FileText,
                     color: "text-warning",
                   },
-                ].map((activity, index) => (
+                ]).map((activity, index) => (
                   <div
                     key={index}
                     className="flex items-start gap-3 p-2 rounded-lg hover:bg-accent/50 transition-medical"
