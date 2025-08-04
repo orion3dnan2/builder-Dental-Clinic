@@ -580,7 +580,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="hidden sm:flex items-center gap-2">
                 <Activity className="h-5 w-5 text-success" />
                 <span className="text-sm text-muted-foreground">
-                  {isArabic ? "نشط الآن" : "Online Now"}
+                  {isArabic ? "ن��ط الآن" : "Online Now"}
                 </span>
               </div>
             </div>
@@ -640,8 +640,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                         return (
                           <div
                             key={notification.id}
-                            className={`p-4 border-b last:border-b-0 hover:bg-accent cursor-pointer transition-colors ${
-                              !notification.isRead ? 'bg-muted/30' : ''
+                            className={`p-4 border-b last:border-b-0 hover:bg-accent/50 cursor-pointer transition-all duration-200 ${
+                              !notification.isRead ? 'bg-primary/5 border-l-4 border-l-primary' : ''
                             }`}
                             onClick={() => {
                               markAsRead(notification.id);
@@ -651,30 +651,57 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                             }}
                           >
                             <div className="flex items-start gap-3">
-                              <div className={`p-2 rounded-full bg-muted ${getNotificationColor(notification.type)}`}>
-                                <IconComponent className="h-4 w-4" />
+                              <div className={`p-2 rounded-full ${
+                                notification.type === 'urgent' ? 'bg-destructive/10' :
+                                notification.type === 'reminder' ? 'bg-warning/10' :
+                                notification.type === 'activity' ? 'bg-success/10' :
+                                'bg-primary/10'
+                              }`}>
+                                <IconComponent className={`h-4 w-4 ${getNotificationColor(notification.type)}`} />
                               </div>
                               <div className="flex-1 min-w-0">
-                                <div className="flex items-center justify-between">
-                                  <h4 className={`text-sm font-medium ${!notification.isRead ? 'text-foreground' : 'text-muted-foreground'}`}>
+                                <div className="flex items-start justify-between">
+                                  <h4 className={`text-sm font-medium leading-tight ${
+                                    !notification.isRead ? 'text-foreground' : 'text-muted-foreground'
+                                  }`}>
                                     {notification.title}
                                   </h4>
-                                  {!notification.isRead && (
-                                    <div className="w-2 h-2 bg-primary rounded-full"></div>
-                                  )}
+                                  <div className="flex items-center gap-2 ml-2">
+                                    {!notification.isRead && (
+                                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                                    )}
+                                    <span className="text-xs text-muted-foreground whitespace-nowrap">
+                                      {notification.time}
+                                    </span>
+                                  </div>
                                 </div>
                                 <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
                                   {notification.message}
                                 </p>
-                                <div className="flex items-center justify-between mt-2">
-                                  <span className="text-xs text-muted-foreground">
-                                    {notification.time}
-                                  </span>
+                                <div className="flex items-center justify-between mt-3">
                                   {notification.patientName && (
-                                    <Badge variant="outline" className="text-xs">
-                                      {notification.patientName}
-                                    </Badge>
+                                    <div className="flex items-center gap-1">
+                                      <User className="h-3 w-3 text-muted-foreground" />
+                                      <Badge variant="outline" className="text-xs">
+                                        {notification.patientName}
+                                      </Badge>
+                                    </div>
                                   )}
+                                  <div className="flex items-center gap-1">
+                                    {notification.actionUrl && (
+                                      <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className="h-6 px-2 text-xs"
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          navigate(notification.actionUrl!);
+                                        }}
+                                      >
+                                        {isArabic ? "عرض" : "View"}
+                                      </Button>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
                             </div>
