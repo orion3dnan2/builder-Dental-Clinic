@@ -103,10 +103,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const t = content[isArabic ? 'ar' : 'en'];
 
+  // تحديد لوحة التحكم المناسبة حسب نوع المستخدم
+  const getDashboardHref = () => {
+    if (user?.type === 'accountant') {
+      return '/dashboard'; // لوحة تحكم عامة مع إحصائيات مالية
+    }
+    return '/dashboard'; // لوحة تحكم عامة للجميع
+  };
+
   const navigationItems = [
     {
       name: t.dashboard,
-      href: '/dashboard',
+      href: getDashboardHref(),
       icon: LayoutDashboard,
       roles: ['admin', 'doctor', 'receptionist', 'accountant']
     },
