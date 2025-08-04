@@ -295,7 +295,7 @@ export default function Dashboard() {
                   {isArabic ? "العيادة رقم 1 - الطابق الأول" : "Clinic 1 - First Floor"}
                 </Badge>
                 <Badge variant="secondary" className="text-xs">
-                  {isArabic ? "متوفر للحالات الطارئة" : "Available for Emergencies"}
+                  {isArabic ? "متوفر ��لحالات الطارئة" : "Available for Emergencies"}
                 </Badge>
               </div>
             )}
@@ -478,7 +478,7 @@ export default function Dashboard() {
         <div
           className={`grid gap-6 ${user?.type === "receptionist" || user?.type === "doctor" || user?.type === "admin" ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-1 lg:grid-cols-2"}`}
         >
-          {/* Waiting List - لموظف الاستقبال فقط */}
+          {/* Waiting List - ��موظف الاستقبال فقط */}
           {user?.type === "receptionist" && (
             <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between">
@@ -566,7 +566,7 @@ export default function Dashboard() {
                   {[
                     { id: "1", name: "أحمد محمد العلي", appointmentTime: "09:30", waitingTime: "15 دقيقة", condition: "فحص دور��", priority: "normal" },
                     { id: "2", name: "فاطمة سالم", appointmentTime: "10:00", waitingTime: "5 دقائق", condition: "متابعة علاج", priority: "normal" },
-                    { id: "3", name: "محمد الأحمد", appointmentTime: "10:30", waitingTime: "��ستعداد", condition: "ألم شديد", priority: "urgent" },
+                    { id: "3", name: "محمد الأحمد", appointmentTime: "10:30", waitingTime: "استعداد", condition: "ألم شديد", priority: "urgent" },
                   ].map((patient) => (
                     <div
                       key={patient.id}
@@ -922,7 +922,7 @@ export default function Dashboard() {
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-success" />
                 {user?.type === "receptionist" ?
-                  (isArabic ? "أداء الاستقبال" : "Reception Performance") :
+                  (isArabic ? "مؤشرات أداء الاستقبال" : "Reception Performance") :
                   user?.type === "doctor" ?
                   t.doctorPerformance :
                   t.clinicPerformance
@@ -930,10 +930,10 @@ export default function Dashboard() {
               </CardTitle>
               <CardDescription>
                 {user?.type === "receptionist" ?
-                  (isArabic ? "إحصائيات عملك اليوم" : "Your work statistics today") :
+                  (isArabic ? "إحصائيات أداء العمل اليوم" : "Your work statistics today") :
                   user?.type === "doctor" ?
-                  (isArabic ? "إحصائيات عملك الطبي اليوم" : "Your medical work statistics today") :
-                  (isArabic ? "أداء العيادة هذا الشهر" : "Clinic performance this month")
+                  (isArabic ? "إحصائيات النشاط الطبي اليوم" : "Your medical work statistics today") :
+                  (isArabic ? "مؤشرات أداء العيادة هذا الشهر" : "Clinic performance this month")
                 }
               </CardDescription>
             </CardHeader>
