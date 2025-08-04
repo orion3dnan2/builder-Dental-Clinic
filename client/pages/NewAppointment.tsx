@@ -831,6 +831,8 @@ export default function NewAppointment() {
       case 3:
         return selectedDate && selectedTime && selectedTreatment;
       case 4:
+        return true; // Notes are optional
+      case 5:
         const hasPatient = selectedPatient || (isNewPatient && newPatientData.name.trim());
         return hasPatient && selectedDoctor && selectedDate && selectedTime && selectedTreatment;
       default:
@@ -847,6 +849,8 @@ export default function NewAppointment() {
       case 3:
         return t.dateTimeSelection + " & " + t.treatmentType;
       case 4:
+        return t.appointmentNotes;
+      case 5:
         return t.confirmation;
       default:
         return "";
