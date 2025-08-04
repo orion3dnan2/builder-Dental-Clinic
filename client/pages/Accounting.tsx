@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import DashboardLayout from "@/components/DashboardLayout";
 import {
   Card,
@@ -163,7 +164,7 @@ export default function Accounting() {
       type: "expense",
       category: "مواد طبية",
       subcategory: "مواد حشو",
-      description: "شراء مواد حشو كومبوزيت - دفعة جديدة",
+      description: "شراء مواد حشو كومبوزيت - دفعة جدي��ة",
       amount: 1200,
       status: "completed",
       paymentMethod: "تحويل بنكي",
