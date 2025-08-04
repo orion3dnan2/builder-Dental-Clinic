@@ -111,7 +111,7 @@ export default function Dashboard() {
 
   const content = {
     ar: {
-      welcome: "أهل��ً وسهلاً",
+      welcome: "أهلاً وسهلاً",
       todayOverview: "ملخص اليوم",
       todayAppointments: "حجوزات اليوم",
       totalPatients: "عدد المرضى الكلي",
@@ -145,24 +145,24 @@ export default function Dashboard() {
       viewDetails: "عرض التفاصيل",
       appointmentsToday: "مواعيد اليوم",
       appointmentsCompleted: "الحجوزات المُنجزة اليوم",
-      patientsExamined: "مرضى تم فحصهم",
-      averageTime: "متوسط وقت الفحص",
-      patientSatisfaction: "رضا المرضى",
-      patientsThisMonth: "مرضى هذا الشهر",
-      revenue: "الإيرادات",
-      sar: "ريال",
-      time: "الوقت",
+      patientsExamined: "المرضى المُفحوصون",
+      averageTime: "متوسط مدة الكشف",
+      patientSatisfaction: "مستوى رضا المرضى",
+      patientsThisMonth: "مرضى الشهر الجاري",
+      revenue: "الإيرادات المالية",
+      sar: "ريال سعودي",
+      time: "التوقيت",
       patient: "المريض",
-      type: "نوع العلاج",
-      status: "الحالة",
-      contact: "التواصل",
+      type: "نوع المعالجة",
+      status: "الوضع الحالي",
+      contact: "وسائل التواصل",
       from: "من",
-      growth: "نمو",
-      todaySchedule: "جدول اليوم",
-      patientHistory: "سجل المريض",
-      medicalNotes: "الملاحظات الطبية",
-      prescription: "الوصفة الطبية",
-      nextPatient: "المريض التالي",
+      growth: "معدل النمو",
+      todaySchedule: "جدول أعمال اليوم",
+      patientHistory: "التاريخ المرضي",
+      medicalNotes: "الملاحظات الإكلينيكية",
+      prescription: "الروشتة الطبية",
+      nextPatient: "المريض القادم",
     },
     en: {
       welcome: "Welcome",
@@ -505,7 +505,7 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-3">
                   {[
-                    { id: "1", name: "عبدالله محمد", time: "09:15", waitingTime: "15 دقيقة", priority: "normal" },
+                    { id: "1", name: "عبد��لله محمد", time: "09:15", waitingTime: "15 دقيقة", priority: "normal" },
                     { id: "2", name: "منى أحمد", time: "09:30", waitingTime: "30 دقيقة", priority: "urgent" },
                     { id: "3", name: "سعد الخالدي", time: "10:00", waitingTime: "10 دقائق", priority: "normal" },
                   ].map((patient) => (
@@ -814,7 +814,7 @@ export default function Dashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {/* موظف الاستقبال - إجراءات الاستقبا�� ��لأساسية */}
+              {/* موظف الاستقبال - إجراءات الاستقبا�� الأساسية */}
               {(user?.type === "receptionist" || user?.type === "admin") && (
                 <>
                   <Link to="/appointments/new" className="block">
