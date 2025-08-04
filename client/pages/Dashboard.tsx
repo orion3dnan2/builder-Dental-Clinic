@@ -50,7 +50,7 @@ interface Appointment {
 }
 
 export default function Dashboard() {
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic, toggleLanguage } = useLanguage();
   const [user, setUser] = useState<any>(null);
   const [stats, setStats] = useState<DashboardStats>({
     todayAppointments: 12,
@@ -163,7 +163,7 @@ export default function Dashboard() {
       todaySchedule: "جدول أعمال اليوم",
       patientHistory: "التاريخ المرضي",
       medicalNotes: "الملاحظات الإكلينيكية",
-      prescription: "الرو��تة الطبية",
+      prescription: "الروشتة الطبية",
       nextPatient: "المريض القادم",
     },
     en: {
@@ -403,7 +403,7 @@ export default function Dashboard() {
               <div className="text-2xl font-bold">{stats.waitingPatients}</div>
               <p className="text-xs text-muted-foreground">
                 {isArabic
-                  ? "مرضى في انتظار الفحص"
+                  ? "مرض�� في انتظار الفحص"
                   : "patients waiting for examination"}
               </p>
             </CardContent>
@@ -633,7 +633,7 @@ export default function Dashboard() {
                       name: "فاطمة سالم",
                       appointmentTime: "10:00",
                       waitingTime: "5 دقائق",
-                      condition: "م��ابعة علاج",
+                      condition: "متابعة علاج",
                       priority: "normal",
                     },
                     {
@@ -1056,7 +1056,7 @@ export default function Dashboard() {
                     : "Your work statistics today"
                   : user?.type === "doctor"
                     ? isArabic
-                      ? "إحصائيات النشاط الطبي اليوم"
+                      ? "إحصائيات النشاط الطبي اليو��"
                       : "Your medical work statistics today"
                     : isArabic
                       ? "مؤشرات أداء العيادة هذا ا��شهر"
@@ -1230,7 +1230,7 @@ export default function Dashboard() {
                         },
                         {
                           action: isArabic
-                            ? "تم تحرير ا��روشتة الطبية"
+                            ? "تم تحرير الروشتة الطبية"
                             : "Prescription written",
                           patient: "نورا سالم",
                           time: "20 دقيقة",
