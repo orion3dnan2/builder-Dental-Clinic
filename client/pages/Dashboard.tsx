@@ -118,7 +118,7 @@ export default function Dashboard() {
       waitingPatients: "مرضى في الانتظار",
       appointmentStatus: "حالة المواعيد",
       completed: "مكتملة",
-      pending: "في ��لانتظار",
+      pending: "في الانتظار",
       cancelled: "ملغية",
       confirmed: "مؤكدة",
       callsToMake: "اتصالات مطلوبة",
@@ -779,50 +779,86 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        {/* Recent Activity & Performance */}
+        {/* Recent Activity & Reception Performance */}
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-success" />
-                {t.clinicPerformance}
+                {user?.type === "receptionist" ?
+                  (isArabic ? "أداء الاستقبال" : "Reception Performance") :
+                  t.clinicPerformance
+                }
               </CardTitle>
               <CardDescription>
-                {isArabic
-                  ? "أداء العيادة هذا الشهر"
-                  : "Clinic performance this month"}
+                {user?.type === "receptionist" ?
+                  (isArabic ? "إحصائيات عملك اليوم" : "Your work statistics today") :
+                  (isArabic ? "أداء العيادة هذا الشهر" : "Clinic performance this month")
+                }
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">
-                    {t.appointmentsToday}
-                  </span>
-                  <span className="font-medium">{stats.todayAppointments}</span>
-                </div>
-                <Progress value={85} className="h-2" />
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">
-                    {t.patientsThisMonth}
-                  </span>
-                  <span className="font-medium">156</span>
-                </div>
-                <Progress value={72} className="h-2" />
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">
-                    {t.revenue}
-                  </span>
-                  <span className="font-medium">
-                    {stats.monthlyRevenue.toLocaleString()} {t.sar}
-                  </span>
-                </div>
-                <Progress value={93} className="h-2" />
-              </div>
+              {user?.type === "receptionist" ? (
+                <>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {isArabic ? "مواعيد محجوزة اليوم" : "Appointments booked today"}
+                      </span>
+                      <span className="font-medium">8</span>
+                    </div>
+                    <Progress value={80} className="h-2" />
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {isArabic ? "مكالمات مكتملة" : "Calls completed"}
+                      </span>
+                      <span className="font-medium">12</span>
+                    </div>
+                    <Progress value={92} className="h-2" />
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {isArabic ? "مرضى مسجلين جدد" : "New patients registered"}
+                      </span>
+                      <span className="font-medium">3</span>
+                    </div>
+                    <Progress value={60} className="h-2" />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {t.appointmentsToday}
+                      </span>
+                      <span className="font-medium">{stats.todayAppointments}</span>
+                    </div>
+                    <Progress value={85} className="h-2" />
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {t.patientsThisMonth}
+                      </span>
+                      <span className="font-medium">156</span>
+                    </div>
+                    <Progress value={72} className="h-2" />
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-muted-foreground">
+                        {isArabic ? "معدل الحضور" : "Attendance Rate"}
+                      </span>
+                      <span className="font-medium">89%</span>
+                    </div>
+                    <Progress value={89} className="h-2" />
+                  </div>
+                </>
+              )}
             </CardContent>
           </Card>
 
