@@ -28,6 +28,25 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/patients" element={<Patients />} />
           <Route path="/accounting" element={<Accounting />} />
+          <Route
+            path="/appointments/new"
+            element={
+              <PlaceholderPage
+                title="حجز موعد جديد"
+                description="نظام حجز موعد جديد للمريض"
+                features={[
+                  'اختيار الطبيب المناسب',
+                  'اختيار التاريخ والوقت',
+                  'تحديد نوع العلاج',
+                  'بيانات المريض',
+                  'ملاحظات خاصة',
+                  'تأكيد الموعد',
+                  'إرسال تذكير SMS',
+                  'طباعة بطاقة الموعد'
+                ]}
+              />
+            }
+          />
           <Route 
             path="/appointments" 
             element={
@@ -57,7 +76,7 @@ const App = () => (
                   'إنشاء فاتورة جديدة',
                   'تتبع المدفوعات والمتأخرات',
                   'طرق دفع متعددة (نقد، كارت، تحويل)',
-                  'طباعة الفواتير والإيصالات',
+                  'طباعة الفوا��ير والإيصالات',
                   'تقارير مالية تفصيلية',
                   'إدارة خطط التقسيط',
                   'تكامل مع أنظمة المحاسبة',
