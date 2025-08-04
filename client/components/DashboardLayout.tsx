@@ -17,7 +17,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import {
-  Tooth,
+  Activity,
   LayoutDashboard,
   Users,
   Calendar,
@@ -175,7 +175,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           <div className="flex h-16 shrink-0 items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="bg-primary rounded-lg p-2">
-                <Tooth className="h-6 w-6 text-primary-foreground" />
+                <Activity className="h-6 w-6 text-primary-foreground" />
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-sidebar-foreground">{t.clinicName}</span>
