@@ -92,7 +92,7 @@ export default function NewAppointment() {
     {
       id: "3",
       name: "د. محمد الأحمد",
-      specialization: "جراحة الفم و��لأسنان",
+      specialization: "جراحة الفم والأسنان",
       availability: ["08:00", "10:00", "13:00", "15:00"],
     },
   ];
@@ -132,7 +132,7 @@ export default function NewAppointment() {
   const content = {
     ar: {
       newAppointment: "حجز موعد جديد",
-      appointmentBooking: "حجز موعد",
+      appointmentBooking: "حج�� موعد",
       patientInfo: "بيانات المريض",
       doctorSelection: "اختيار الطبيب",
       dateTimeSelection: "التاريخ والوقت",
@@ -423,13 +423,17 @@ export default function NewAppointment() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Calendar
-            mode="single"
-            selected={selectedDate}
-            onSelect={setSelectedDate}
-            disabled={(date) => date < new Date() || date.getDay() === 5 || date.getDay() === 6}
-            className="rounded-md border"
-          />
+          <div className="space-y-4">
+            <Label htmlFor="appointmentDate">{t.selectDate}</Label>
+            <Input
+              id="appointmentDate"
+              type="date"
+              min={new Date().toISOString().split('T')[0]}
+              value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''}
+              onChange={(e) => setSelectedDate(new Date(e.target.value))}
+              className="w-full"
+            />
+          </div>
         </CardContent>
       </Card>
 
