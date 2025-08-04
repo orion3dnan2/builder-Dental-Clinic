@@ -127,7 +127,7 @@ export default function Dashboard() {
       quickActions: "الإجراءات السريعة",
       newAppointment: "حجز موعد جديد",
       newPatient: "تسجيل مريض جديد",
-      viewReports: "استعراض التقارير",
+      viewReports: "استعراض ال��قارير",
       manageSettings: "إعدادات النظام",
       viewPatients: "سجل المرضى",
       invoices: "الفواتير المالية",
@@ -278,10 +278,10 @@ export default function Dashboard() {
             {user?.type === "receptionist" && (
               <div className="mt-3 flex flex-wrap gap-2">
                 <Badge variant="outline" className="text-xs">
-                  {isArabic ? "شيفت الصباح: 8:00 ص - 2:00 م" : "Morning Shift: 8:00 AM - 2:00 PM"}
+                  {isArabic ? "الوردية الصباحية: 8:00 ص - 2:00 م" : "Morning Shift: 8:00 AM - 2:00 PM"}
                 </Badge>
                 <Badge variant="outline" className="text-xs">
-                  {isArabic ? "الطبيب الحالي: د. أحمد محمد" : "Current Doctor: Dr. Ahmed Mohammed"}
+                  {isArabic ? "الطبيب المُناوب: د. أحمد محمد" : "Current Doctor: Dr. Ahmed Mohammed"}
                 </Badge>
               </div>
             )}
@@ -882,7 +882,7 @@ export default function Dashboard() {
                   <Link to="/invoices" className="block">
                     <Button className="w-full justify-start" variant="outline">
                       <Receipt className="h-4 w-4 mr-2" />
-                      {isArabic ? "ال��واتير" : "Invoices"}
+                      {isArabic ? "الفواتير" : "Invoices"}
                     </Button>
                   </Link>
                   <Link to="/reports" className="block">
@@ -1075,7 +1075,7 @@ export default function Dashboard() {
                     color: "text-primary",
                   },
                   {
-                    action: isArabic ? "تم إرسال تذكير" : "Reminder sent",
+                    action: isArabic ? "تم إرسال تذك��ر" : "Reminder sent",
                     patient: "فاطمة سالم",
                     time: "45 دقيقة",
                     icon: Mail,
