@@ -41,7 +41,6 @@ import {
   Phone,
   Mail,
   Calendar as CalendarIcon,
-  Clock,
   Globe,
   Stethoscope,
 } from "lucide-react";
