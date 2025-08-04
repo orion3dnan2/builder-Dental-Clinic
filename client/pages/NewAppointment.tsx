@@ -281,7 +281,7 @@ export default function NewAppointment() {
           {t.patientInfo}
         </CardTitle>
         <CardDescription>
-          {isArabic ? "اختر مريض موجود أو أضف مريض جديد" : "Select existing patient or add new patient"}
+          {isArabic ? "اختر مريض موجود أ�� أضف مريض جديد" : "Select existing patient or add new patient"}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -777,12 +777,20 @@ export default function NewAppointment() {
               <CalendarIcon className="h-8 w-8 text-primary" />
               {t.newAppointment}
             </h1>
-            <p className="text-muted-foreground mt-1">
-              {t.step} {currentStep} {t.of} 4
-            </p>
+            <div className="mt-2 space-y-1">
+              <p className="text-muted-foreground">
+                {t.step} {currentStep} {t.of} 4 • {getStepTitle()}
+              </p>
+              <div className="w-full sm:w-64 bg-muted rounded-full h-2">
+                <div
+                  className="bg-primary h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${(currentStep / 4) * 100}%` }}
+                />
+              </div>
+            </div>
           </div>
           <Link to="/dashboard">
-            <Button variant="outline">
+            <Button variant="outline" size="lg">
               <ChevronLeft className="h-4 w-4 mr-2" />
               {t.cancel}
             </Button>
