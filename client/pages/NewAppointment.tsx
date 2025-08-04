@@ -139,7 +139,7 @@ export default function NewAppointment() {
       treatmentType: "نوع العلاج",
       appointmentDetails: "تفاصيل الموعد",
       confirmation: "تأكيد الموعد",
-      next: "التال��",
+      next: "التالي",
       previous: "السابق",
       save: "حفظ",
       cancel: "إلغاء",
@@ -496,21 +496,36 @@ export default function NewAppointment() {
         </CardHeader>
         <CardContent>
           {selectedDoctor && selectedDate ? (
-            <div className="grid gap-2 grid-cols-3">
-              {selectedDoctor.availability.map((time) => (
-                <Button
-                  key={time}
-                  variant={selectedTime === time ? "default" : "outline"}
-                  className="h-12"
-                  onClick={() => setSelectedTime(time)}
-                >
-                  {time}
-                </Button>
-              ))}
+            <div className="space-y-4">
+              <div className="p-3 bg-muted/50 rounded-lg">
+                <p className="text-sm font-medium">{selectedDoctor.name}</p>
+                <p className="text-xs text-muted-foreground">{selectedDoctor.specialization}</p>
+              </div>
+              <div className="grid gap-3 grid-cols-2 sm:grid-cols-3">
+                {selectedDoctor.availability.map((time) => (
+                  <Button
+                    key={time}
+                    variant={selectedTime === time ? "default" : "outline"}
+                    className={cn(
+                      "h-14 text-sm font-medium transition-all duration-200",
+                      selectedTime === time
+                        ? "bg-primary text-primary-foreground shadow-lg"
+                        : "hover:bg-primary/10 hover:border-primary/50"
+                    )}
+                    onClick={() => setSelectedTime(time)}
+                  >
+                    <Clock className="h-4 w-4 mb-1" />
+                    {time}
+                  </Button>
+                ))}
+              </div>
             </div>
           ) : (
-            <div className="text-center text-muted-foreground py-8">
-              {isArabic ? "يرجى اختيار طبيب وتاريخ أولاً" : "Please select doctor and date first"}
+            <div className="text-center text-muted-foreground py-12">
+              <Clock className="h-12 w-12 mx-auto mb-3 opacity-50" />
+              <p className="text-sm">
+                {isArabic ? "يرجى اختيار طبيب وتاريخ أولاً" : "Please select doctor and date first"}
+              </p>
             </div>
           )}
         </CardContent>
