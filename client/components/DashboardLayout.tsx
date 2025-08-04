@@ -97,8 +97,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {
         id: "3",
         type: "urgent" as const,
-        title: isArabic ? "موعد عاجل" : "Urgent Appointment",
-        message: isArabic ? "مريض في الانتظار لأكثر من 30 دقيقة" : "Patient waiting for more than 30 minutes",
+        title: isArabic ? "حالة عاجلة" : "Urgent Appointment",
+        message: isArabic ? "يوجد مريض في الانتظار لأكثر من 30 دقيقة" : "Patient waiting for more than 30 minutes",
         time: isArabic ? "منذ 30 دقيقة" : "30 minutes ago",
         isRead: false,
         actionUrl: "/dashboard",
