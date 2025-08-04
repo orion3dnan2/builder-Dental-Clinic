@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import DashboardLayout from "@/components/DashboardLayout";
 import {
   Card,
@@ -162,7 +163,7 @@ export default function Dashboard() {
       todaySchedule: "جدول أعمال اليوم",
       patientHistory: "التاريخ المرضي",
       medicalNotes: "الملاحظات الإكلينيكية",
-      prescription: "الروشتة الطبية",
+      prescription: "الرو��تة الطبية",
       nextPatient: "المريض القادم",
     },
     en: {
@@ -632,7 +633,7 @@ export default function Dashboard() {
                       name: "فاطمة سالم",
                       appointmentTime: "10:00",
                       waitingTime: "5 دقائق",
-                      condition: "متابعة علاج",
+                      condition: "م��ابعة علاج",
                       priority: "normal",
                     },
                     {
@@ -1023,7 +1024,7 @@ export default function Dashboard() {
                 </Link>
               )}
 
-              {/* إجراءات مشتركة للجميع */}
+              {/* ��جراءات مشتركة للجميع */}
               <Link to="/appointments" className="block">
                 <Button className="w-full justify-start" variant="outline">
                   <Clock className="h-4 w-4 mr-2" />
@@ -1058,7 +1059,7 @@ export default function Dashboard() {
                       ? "إحصائيات النشاط الطبي اليوم"
                       : "Your medical work statistics today"
                     : isArabic
-                      ? "مؤشرات أداء العيادة هذا الشهر"
+                      ? "مؤشرات أداء العيادة هذا ا��شهر"
                       : "Clinic performance this month"}
               </CardDescription>
             </CardHeader>
@@ -1229,7 +1230,7 @@ export default function Dashboard() {
                         },
                         {
                           action: isArabic
-                            ? "تم تحرير الروشتة الطبية"
+                            ? "تم تحرير ا��روشتة الطبية"
                             : "Prescription written",
                           patient: "نورا سالم",
                           time: "20 دقيقة",
