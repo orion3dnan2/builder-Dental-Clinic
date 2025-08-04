@@ -63,7 +63,8 @@ import {
   MoreHorizontal,
   RefreshCw,
   Star,
-  Bell
+  Bell,
+  Activity
 } from 'lucide-react';
 
 interface FinancialData {
@@ -236,7 +237,7 @@ export default function Accounting() {
       pendingPayments: 'مدفوعات معلقة',
       monthlyGrowth: 'النمو الشهري',
       avgDailyRevenue: 'متوسط الإيراد اليومي',
-      profitMargin: 'هامش الربح',
+      profitMargin: 'هام�� الربح',
       outstandingInvoices: 'فواتير مستحقة',
       addTransaction: 'إضافة معاملة جديدة',
       exportData: 'تصدير البيانات',
@@ -950,7 +951,7 @@ export default function Accounting() {
                 },
                 {
                   title: t.budgetPlanning,
-                  description: isArabic ? 'تخطيط وإدارة الميزا��ية' : 'Budget planning and management',
+                  description: isArabic ? 'تخطيط وإدارة الميزانية' : 'Budget planning and management',
                   icon: Target,
                   color: 'bg-orange-500'
                 },
