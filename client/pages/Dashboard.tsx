@@ -140,7 +140,7 @@ export default function Dashboard() {
       cancelled: "مُلغاة",
       confirmed: "مُؤكدة",
       callsToMake: "مكالمات مطلوبة",
-      checkedInToday: "الحاضرون اليوم",
+      checkedInToday: "الحاضرون ��ليوم",
       remindersSent: "التذكيرات المُرسلة",
       quickActions: "الإجراءات السريعة",
       newAppointment: "حجز موعد جديد",
@@ -164,7 +164,7 @@ export default function Dashboard() {
       appointmentsToday: "مواعيد اليوم",
       appointmentsCompleted: "الحجوزات المُنجزة اليوم",
       patientsExamined: "المرضى المُفحوصون",
-      averageTime: "متوسط مدة الكشف",
+      averageTime: "متوسط مدة ا��كشف",
       patientSatisfaction: "مستوى رضا ال��رضى",
       patientsThisMonth: "مرضى الشهر الجاري",
       revenue: "الإيرادات المالية",
@@ -627,7 +627,7 @@ export default function Dashboard() {
                   {[
                     {
                       id: "1",
-                      name: "أحمد محمد العلي",
+                      name: isArabic ? "أحمد محمد العلي" : "Ahmed Mohammed Al-Ali",
                       appointmentTime: "09:30",
                       waitingTime: "15 دقيقة",
                       condition: "فحص دور��",
