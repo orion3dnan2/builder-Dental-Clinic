@@ -287,7 +287,7 @@ export default function NewAppointment() {
           {t.patientInfo}
         </CardTitle>
         <CardDescription>
-          {isArabic ? "اختر مريض موجود أو أضف مريض جديد" : "Select existing patient or add new patient"}
+          {isArabic ? "اخت�� مريض موجود أو أضف مريض جديد" : "Select existing patient or add new patient"}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -910,11 +910,11 @@ export default function NewAppointment() {
 
           <div className="flex-1 text-center">
             <p className="text-sm text-muted-foreground">
-              {t.step} {currentStep} {t.of} 4
+              {t.step} {currentStep} {t.of} 5
             </p>
           </div>
 
-          {currentStep === 4 ? (
+          {currentStep === 5 ? (
             <Button
               onClick={handleSaveAppointment}
               disabled={!canProceedToNext()}
