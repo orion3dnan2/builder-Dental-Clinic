@@ -326,7 +326,7 @@ export default function Login() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setIsArabic(!isArabic)}
+              onClick={toggleLanguage}
               className="transition-medical"
             >
               {t.switchToEn}
@@ -480,7 +480,7 @@ export default function Login() {
 
                       <div className="pt-3 border-t">
                         <p className="text-xs text-muted-foreground mb-2">
-                          {isArabic ? "تسجيل دخول سريع:" : "Quick Login:"}
+                          {isArabic ? "تس��يل دخول سريع:" : "Quick Login:"}
                         </p>
                         <div className="flex flex-wrap gap-1">
                           {Object.entries(testUsers).map(
