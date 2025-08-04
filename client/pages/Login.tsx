@@ -370,10 +370,56 @@ export default function Login() {
                       {t.loginBtn}
                     </Button>
 
-                    <div className="text-center">
+                    <div className="text-center space-y-3">
                       <Link to="#" className="text-sm text-primary hover:underline">
                         {t.forgotPassword}
                       </Link>
+
+                      <div className="pt-3 border-t">
+                        <p className="text-xs text-muted-foreground mb-2">
+                          {isArabic ? 'تسجيل دخول سريع:' : 'Quick Login:'}
+                        </p>
+                        <div className="flex flex-wrap gap-1">
+                          {Object.entries(testUsers).map(([userType, userData]) => (
+                            <Button
+                              key={userType}
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              className="text-xs h-7"
+                              onClick={() => {
+                                setLoginForm({
+                                  username: userData.username,
+                                  password: '123456',
+                                  userType: userType as any
+                                });
+                                // Auto login after a short delay
+                                setTimeout(() => {
+                                  localStorage.setItem('user', JSON.stringify({
+                                    name: userData.name,
+                                    nameEn: userData.nameEn,
+                                    nameAr: userData.nameAr,
+                                    username: userData.username,
+                                    type: userType,
+                                    isAuthenticated: true
+                                  }));
+                                  navigate('/dashboard');
+                                }, 100);
+                              }}
+                            >
+                              {userType === 'admin' ? (
+                                isArabic ? 'مدير' : 'Admin'
+                              ) : userType === 'doctor' ? (
+                                isArabic ? 'طبيب' : 'Doctor'
+                              ) : userType === 'receptionist' ? (
+                                isArabic ? 'استقبال' : 'Reception'
+                              ) : (
+                                isArabic ? 'محاسب' : 'Accountant'
+                              )}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </form>
                 </CardContent>
