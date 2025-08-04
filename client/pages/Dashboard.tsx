@@ -352,36 +352,81 @@ export default function Dashboard() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              <Link to="/appointments/new" className="block">
-                <Button className="w-full justify-start" variant="outline">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  {t.newAppointment}
-                </Button>
-              </Link>
-              <Link to="/patients/new" className="block">
-                <Button className="w-full justify-start" variant="outline">
-                  <UserCheck className="h-4 w-4 mr-2" />
-                  {t.newPatient}
-                </Button>
-              </Link>
-              <Link to="/reports" className="block">
-                <Button className="w-full justify-start" variant="outline">
-                  <FileText className="h-4 w-4 mr-2" />
-                  {t.viewReports}
-                </Button>
-              </Link>
-              {user?.type === 'accountant' && (
-                <Link to="/accounting" className="block">
+              {/* موظف الاستقبال - حجز المواعيد وإضافة المرضى */}
+              {(user?.type === 'receptionist' || user?.type === 'admin') && (
+                <>
+                  <Link to="/appointments/new" className="block">
+                    <Button className="w-full justify-start" variant="outline">
+                      <Calendar className="h-4 w-4 mr-2" />
+                      {t.newAppointment}
+                    </Button>
+                  </Link>
+                  <Link to="/patients/new" className="block">
+                    <Button className="w-full justify-start" variant="outline">
+                      <UserCheck className="h-4 w-4 mr-2" />
+                      {t.newPatient}
+                    </Button>
+                  </Link>
+                </>
+              )}
+
+              {/* الطبيب - عرض المرضى والتقارير */}
+              {(user?.type === 'doctor' || user?.type === 'admin') && (
+                <>
+                  <Link to="/patients" className="block">
+                    <Button className="w-full justify-start" variant="outline">
+                      <Users className="h-4 w-4 mr-2" />
+                      {isArabic ? 'عرض المرضى' : 'View Patients'}
+                    </Button>
+                  </Link>
+                  <Link to="/reports" className="block">
+                    <Button className="w-full justify-start" variant="outline">
+                      <FileText className="h-4 w-4 mr-2" />
+                      {t.viewReports}
+                    </Button>
+                  </Link>
+                </>
+              )}
+
+              {/* المحاسب - ا��محاسبة والتقارير المالية */}
+              {(user?.type === 'accountant' || user?.type === 'admin') && (
+                <>
+                  <Link to="/accounting" className="block">
+                    <Button className="w-full justify-start" variant="outline">
+                      <DollarSign className="h-4 w-4 mr-2" />
+                      {isArabic ? 'المحاسبة' : 'Accounting'}
+                    </Button>
+                  </Link>
+                  <Link to="/invoices" className="block">
+                    <Button className="w-full justify-start" variant="outline">
+                      <Receipt className="h-4 w-4 mr-2" />
+                      {isArabic ? 'الفواتير' : 'Invoices'}
+                    </Button>
+                  </Link>
+                  <Link to="/reports" className="block">
+                    <Button className="w-full justify-start" variant="outline">
+                      <BarChart3 className="h-4 w-4 mr-2" />
+                      {isArabic ? 'تقارير مالية' : 'Financial Reports'}
+                    </Button>
+                  </Link>
+                </>
+              )}
+
+              {/* مدير النظام - إدارة الإعدادات */}
+              {user?.type === 'admin' && (
+                <Link to="/settings" className="block">
                   <Button className="w-full justify-start" variant="outline">
-                    <DollarSign className="h-4 w-4 mr-2" />
-                    {isArabic ? 'المحاسبة' : 'Accounting'}
+                    <Settings className="h-4 w-4 mr-2" />
+                    {t.manageSettings}
                   </Button>
                 </Link>
               )}
-              <Link to="/settings" className="block">
+
+              {/* إجراءات مشتركة للجميع */}
+              <Link to="/appointments" className="block">
                 <Button className="w-full justify-start" variant="outline">
-                  <Stethoscope className="h-4 w-4 mr-2" />
-                  {t.manageSettings}
+                  <Clock className="h-4 w-4 mr-2" />
+                  {isArabic ? 'عرض المواعيد' : 'View Appointments'}
                 </Button>
               </Link>
             </CardContent>
