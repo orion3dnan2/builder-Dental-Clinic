@@ -811,6 +811,8 @@ export default function NewAppointment() {
       case 3:
         return renderDateTimeStep();
       case 4:
+        return renderNotesStep();
+      case 5:
         return renderConfirmationStep();
       default:
         return renderPatientStep();
