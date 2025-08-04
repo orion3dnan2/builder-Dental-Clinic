@@ -27,6 +27,7 @@ import {
   Settings,
   Receipt,
   BarChart3,
+  Globe,
 } from "lucide-react";
 
 interface DashboardStats {
@@ -115,7 +116,7 @@ export default function Dashboard() {
       todayOverview: "ملخص اليوم",
       todayAppointments: "حجوزات اليوم",
       totalPatients: "عدد المرضى الكلي",
-      waitingPatients: "المرضى المنتظرون",
+      waitingPatients: "المرضى الم��تظرون",
       appointmentStatus: "حالة الحجوزات",
       completed: "مُنجزة",
       pending: "معلقة",
@@ -307,7 +308,7 @@ export default function Dashboard() {
                 </Badge>
                 <Badge variant="secondary" className="text-xs">
                   {isArabic
-                    ? "متوفر للحالات الطارئة"
+                    ? "متوفر للحالا�� الطارئة"
                     : "Available for Emergencies"}
                 </Badge>
               </div>
@@ -896,7 +897,7 @@ export default function Dashboard() {
               <CardTitle>{t.quickActions}</CardTitle>
               <CardDescription>
                 {isArabic
-                  ? `إجراءات سريعة لـ${
+                  ? `إجراءات سريعة ��ـ${
                       user?.type === "admin"
                         ? "مدير النظام"
                         : user?.type === "doctor"
@@ -946,7 +947,7 @@ export default function Dashboard() {
                   </Button>
                   <Button className="w-full justify-start" variant="outline">
                     <Mail className="h-4 w-4 mr-2" />
-                    {isArabic ? "إرسال تذكير" : "Send Reminder"}
+                    {isArabic ? "إرسال تذ��ير" : "Send Reminder"}
                   </Button>
                 </>
               )}
