@@ -35,7 +35,7 @@ import {
 
 interface User {
   name: string;
-  type: 'admin' | 'doctor' | 'receptionist';
+  type: 'admin' | 'doctor' | 'receptionist' | 'accountant';
   isAuthenticated: boolean;
 }
 
@@ -78,6 +78,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       admin: 'مدير النظام',
       doctor: 'طبيب',
       receptionist: 'موظف الاستقبال',
+      accountant: 'محاسب',
       clinicName: 'عيادة الأسنان المتطورة',
       switchLang: 'English'
     },
@@ -94,6 +95,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       admin: 'System Admin',
       doctor: 'Doctor',
       receptionist: 'Receptionist',
+      accountant: 'Accountant',
       clinicName: 'Advanced Dental Clinic',
       switchLang: 'العربية'
     }
@@ -124,13 +126,19 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       name: t.invoices,
       href: '/invoices',
       icon: DollarSign,
-      roles: ['admin', 'receptionist']
+      roles: ['admin', 'receptionist', 'accountant']
     },
     {
       name: t.reports,
       href: '/reports',
       icon: FileText,
-      roles: ['admin', 'doctor']
+      roles: ['admin', 'doctor', 'accountant']
+    },
+    {
+      name: isArabic ? 'المحاسبة' : 'Accounting',
+      href: '/accounting',
+      icon: DollarSign,
+      roles: ['admin', 'accountant']
     },
     {
       name: t.settings,
@@ -157,7 +165,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     const colors = {
       admin: 'bg-primary',
       doctor: 'bg-success',
-      receptionist: 'bg-warning'
+      receptionist: 'bg-warning',
+      accountant: 'bg-purple-500'
     };
     return colors[type as keyof typeof colors] || 'bg-muted';
   };
