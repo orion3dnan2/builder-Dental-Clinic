@@ -116,7 +116,7 @@ export default function Dashboard() {
       welcome: "أهلاً وسهلاً",
       todayOverview: "ملخص اليوم",
       todayAppointments: "حجوزات اليوم",
-      totalPatients: "عدد المرضى الكلي",
+      totalPatients: "ع��د المرضى الكلي",
       waitingPatients: "المرضى الم��تظرون",
       appointmentStatus: "حالة الحجوزات",
       completed: "مُنجزة",
@@ -320,7 +320,7 @@ export default function Dashboard() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setIsArabic(!isArabic)}
+              onClick={toggleLanguage}
               className="flex items-center gap-2"
             >
               <Globe className="h-4 w-4" />
@@ -403,7 +403,7 @@ export default function Dashboard() {
               <div className="text-2xl font-bold">{stats.waitingPatients}</div>
               <p className="text-xs text-muted-foreground">
                 {isArabic
-                  ? "مرض�� في انتظار الفحص"
+                  ? "مرضى في انتظار الفحص"
                   : "patients waiting for examination"}
               </p>
             </CardContent>
@@ -466,7 +466,7 @@ export default function Dashboard() {
                 <div className="text-2xl font-bold">5</div>
                 <p className="text-xs text-muted-foreground">
                   {isArabic
-                    ? "تذكير بالمواعيد غداً"
+                    ? "تذكير ��المواعيد غداً"
                     : "reminder calls for tomorrow"}
                 </p>
               </CardContent>
@@ -1056,10 +1056,10 @@ export default function Dashboard() {
                     : "Your work statistics today"
                   : user?.type === "doctor"
                     ? isArabic
-                      ? "إحصائيات النشاط الطبي اليو��"
+                      ? "إحصائيات النشاط الطبي اليوم"
                       : "Your medical work statistics today"
                     : isArabic
-                      ? "مؤشرات أداء العيادة هذا ا��شهر"
+                      ? "م��شرات أداء العيادة هذا ا��شهر"
                       : "Clinic performance this month"}
               </CardDescription>
             </CardHeader>
