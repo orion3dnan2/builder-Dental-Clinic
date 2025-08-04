@@ -139,7 +139,7 @@ export default function NewAppointment() {
       treatmentType: "نوع العلاج",
       appointmentDetails: "تفاصيل الموعد",
       confirmation: "تأكيد الموعد",
-      next: "التالي",
+      next: "التال��",
       previous: "السابق",
       save: "حفظ",
       cancel: "إلغاء",
@@ -414,37 +414,44 @@ export default function NewAppointment() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {doctors.map((doctor) => (
             <div
               key={doctor.id}
               className={cn(
-                "p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors",
-                selectedDoctor?.id === doctor.id && "border-primary bg-accent"
+                "p-6 border rounded-xl cursor-pointer hover:shadow-md transition-all duration-200",
+                selectedDoctor?.id === doctor.id
+                  ? "border-primary bg-primary/5 shadow-md"
+                  : "border-border hover:border-primary/50"
               )}
               onClick={() => setSelectedDoctor(doctor)}
             >
-              <div className="flex items-center justify-between mb-3">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Stethoscope className="h-6 w-6 text-primary" />
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg">
+                  <Stethoscope className="h-7 w-7 text-white" />
                 </div>
                 {selectedDoctor?.id === doctor.id && (
-                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                    <CheckCircle className="h-4 w-4 text-white" />
+                  </div>
                 )}
               </div>
-              <h4 className="font-medium mb-1">{doctor.name}</h4>
-              <p className="text-sm text-muted-foreground mb-3">{doctor.specialization}</p>
-              <div className="flex flex-wrap gap-1">
-                {doctor.availability.slice(0, 3).map((time) => (
-                  <Badge key={time} variant="outline" className="text-xs">
-                    {time}
-                  </Badge>
-                ))}
-                {doctor.availability.length > 3 && (
-                  <Badge variant="outline" className="text-xs">
-                    +{doctor.availability.length - 3}
-                  </Badge>
-                )}
+              <h4 className="font-semibold text-lg mb-2">{doctor.name}</h4>
+              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{doctor.specialization}</p>
+              <div className="space-y-2">
+                <Label className="text-xs font-medium text-muted-foreground">{t.available_times}</Label>
+                <div className="flex flex-wrap gap-1">
+                  {doctor.availability.slice(0, 4).map((time) => (
+                    <Badge key={time} variant="secondary" className="text-xs px-2 py-1">
+                      {time}
+                    </Badge>
+                  ))}
+                  {doctor.availability.length > 4 && (
+                    <Badge variant="outline" className="text-xs px-2 py-1">
+                      +{doctor.availability.length - 4}
+                    </Badge>
+                  )}
+                </div>
               </div>
             </div>
           ))}
