@@ -78,7 +78,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         id: "1",
         type: "reminder" as const,
         title: isArabic ? "تذكير بالموعد الطبي" : "Appointment Reminder",
-        message: isArabic ? "موعد المريض أحمد محمد غداً الساعة 10:00 صباحاً" : "Ahmed Mohammed appointment tomorrow at 10:00 AM",
+        message: isArabic
+          ? "موعد المريض أحمد محمد غداً الساعة 10:00 صباحاً"
+          : "Ahmed Mohammed appointment tomorrow at 10:00 AM",
         time: isArabic ? "منذ 5 دقائق" : "5 minutes ago",
         isRead: false,
         actionUrl: "/appointments",
@@ -88,7 +90,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         id: "2",
         type: "activity" as const,
         title: isArabic ? "تسجيل مريض جديد" : "New Patient",
-        message: isArabic ? "تم تسجيل المريضة فاطمة أحمد بنجاح" : "New patient registered: Fatima Ahmed",
+        message: isArabic
+          ? "تم تسجيل المريضة فاطمة أحمد بنجاح"
+          : "New patient registered: Fatima Ahmed",
         time: isArabic ? "منذ 15 دقيقة" : "15 minutes ago",
         isRead: false,
         actionUrl: "/patients",
@@ -98,7 +102,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         id: "3",
         type: "urgent" as const,
         title: isArabic ? "حالة عاجلة" : "Urgent Appointment",
-        message: isArabic ? "يوجد مريض في الانتظار لأكثر من 30 دقيقة" : "Patient waiting for more than 30 minutes",
+        message: isArabic
+          ? "يوجد مريض في الانتظار لأكثر من 30 دقيقة"
+          : "Patient waiting for more than 30 minutes",
         time: isArabic ? "منذ 30 دقيقة" : "30 minutes ago",
         isRead: false,
         actionUrl: "/dashboard",
@@ -113,7 +119,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           id: "4",
           type: "reminder" as const,
           title: isArabic ? "مكالمة مطلوبة" : "Call Required",
-          message: isArabic ? "تذكير: اتصال بخالد أحمد لتأكيد الموعد" : "Reminder: Call Khalid Ahmed to confirm appointment",
+          message: isArabic
+            ? "تذكير: اتصال بخالد أحمد لتأكيد الموعد"
+            : "Reminder: Call Khalid Ahmed to confirm appointment",
           time: isArabic ? "منذ ساعة" : "1 hour ago",
           isRead: false,
           actionUrl: "/appointments",
@@ -123,7 +131,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           id: "5",
           type: "activity" as const,
           title: isArabic ? "موعد ملغي" : "Appointment Cancelled",
-          message: isArabic ? "تم إلغاء موعد نورا سالم" : "Nora Salem appointment cancelled",
+          message: isArabic
+            ? "تم إلغاء موعد نورا سالم"
+            : "Nora Salem appointment cancelled",
           time: isArabic ? "منذ ساعتين" : "2 hours ago",
           isRead: true,
           actionUrl: "/appointments",
@@ -139,7 +149,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           id: "6",
           type: "appointment" as const,
           title: isArabic ? "المريض التالي" : "Next Patient",
-          message: isArabic ? "المريض التالي: سعد الخالدي في الساعة 2:30 م" : "Next patient: Saad Al-Khalidi at 2:30 PM",
+          message: isArabic
+            ? "المريض التالي: سعد الخالدي في الساعة 2:30 م"
+            : "Next patient: Saad Al-Khalidi at 2:30 PM",
           time: isArabic ? "منذ 10 دقائق" : "10 minutes ago",
           isRead: false,
           actionUrl: "/patients",
@@ -149,7 +161,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           id: "7",
           type: "urgent" as const,
           title: isArabic ? "حالة طارئة" : "Emergency Case",
-          message: isArabic ? "مريض يحتاج فحص عاجل" : "Patient needs urgent examination",
+          message: isArabic
+            ? "مريض يحتاج فحص عاجل"
+            : "Patient needs urgent examination",
           time: isArabic ? "منذ 45 دقيقة" : "45 minutes ago",
           isRead: false,
           actionUrl: "/dashboard",
@@ -164,7 +178,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           id: "8",
           type: "activity" as const,
           title: isArabic ? "فاتورة جديدة" : "New Invoice",
-          message: isArabic ? "فاتورة جديدة بقيمة 450 ريال" : "New invoice worth 450 SAR",
+          message: isArabic
+            ? "فاتورة جديدة بقيمة 450 ريال"
+            : "New invoice worth 450 SAR",
           time: isArabic ? "منذ 20 دقيقة" : "20 minutes ago",
           isRead: false,
           actionUrl: "/accounting",
@@ -174,7 +190,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           id: "9",
           type: "reminder" as const,
           title: isArabic ? "دفعة متأخرة" : "Overdue Payment",
-          message: isArabic ? "دفعة متأخرة من أحمد سالم" : "Overdue payment from Ahmed Salem",
+          message: isArabic
+            ? "دفعة متأخرة من أحمد سالم"
+            : "Overdue payment from Ahmed Salem",
           time: isArabic ? "منذ ساعة" : "1 hour ago",
           isRead: false,
           actionUrl: "/accounting",
@@ -184,7 +202,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           id: "10",
           type: "activity" as const,
           title: isArabic ? "تقرير شهري" : "Monthly Report",
-          message: isArabic ? "تقرير الإيرادات الشهرية جاهز" : "Monthly revenue report ready",
+          message: isArabic
+            ? "تقرير الإيرادات الشهرية جاهز"
+            : "Monthly revenue report ready",
           time: isArabic ? "منذ 3 ساعات" : "3 hours ago",
           isRead: true,
           actionUrl: "/reports",
@@ -196,7 +216,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   };
 
   const [notifications, setNotifications] = useState<Notification[]>(
-    getNotificationsForUser(user?.type || "admin")
+    getNotificationsForUser(user?.type || "admin"),
   );
 
   useEffect(() => {
@@ -213,7 +233,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           id: Date.now().toString(),
           type: "reminder" as const,
           title: isArabic ? "تذكير جديد" : "New Reminder",
-          message: isArabic ? "حان وقت مراجعة المواعيد" : "Time to review appointments",
+          message: isArabic
+            ? "حان وقت مراجعة المواعيد"
+            : "Time to review appointments",
           time: isArabic ? "الآن" : "now",
           isRead: false,
           actionUrl: "/appointments",
@@ -221,7 +243,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       ];
 
       // Add new notification only if we have fewer than 10
-      setNotifications(prev => {
+      setNotifications((prev) => {
         if (prev.length < 10) {
           return [newNotifications[0], ...prev];
         }
@@ -241,45 +263,45 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     }
   }, [navigate]);
 
-  const unreadCount = notifications.filter(n => !n.isRead).length;
+  const unreadCount = notifications.filter((n) => !n.isRead).length;
 
   const markAsRead = (notificationId: string) => {
-    setNotifications(prev =>
-      prev.map(n => n.id === notificationId ? { ...n, isRead: true } : n)
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === notificationId ? { ...n, isRead: true } : n)),
     );
   };
 
   const markAllAsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, isRead: true })));
+    setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
   };
 
-  const getNotificationIcon = (type: Notification['type']) => {
+  const getNotificationIcon = (type: Notification["type"]) => {
     switch (type) {
-      case 'appointment':
+      case "appointment":
         return CalendarIcon;
-      case 'reminder':
+      case "reminder":
         return Clock;
-      case 'activity':
+      case "activity":
         return UserCheck;
-      case 'urgent':
+      case "urgent":
         return AlertTriangle;
       default:
         return Bell;
     }
   };
 
-  const getNotificationColor = (type: Notification['type']) => {
+  const getNotificationColor = (type: Notification["type"]) => {
     switch (type) {
-      case 'appointment':
-        return 'text-primary';
-      case 'reminder':
-        return 'text-warning';
-      case 'activity':
-        return 'text-success';
-      case 'urgent':
-        return 'text-destructive';
+      case "appointment":
+        return "text-primary";
+      case "reminder":
+        return "text-warning";
+      case "activity":
+        return "text-success";
+      case "urgent":
+        return "text-destructive";
       default:
-        return 'text-muted-foreground';
+        return "text-muted-foreground";
     }
   };
 
@@ -621,13 +643,22 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                       )}
                     </div>
                     <div className="flex gap-1">
-                      <Badge variant="outline" className="text-xs cursor-pointer hover:bg-accent">
+                      <Badge
+                        variant="outline"
+                        className="text-xs cursor-pointer hover:bg-accent"
+                      >
                         {isArabic ? "الكل" : "All"}
                       </Badge>
-                      <Badge variant="outline" className="text-xs cursor-pointer hover:bg-accent">
+                      <Badge
+                        variant="outline"
+                        className="text-xs cursor-pointer hover:bg-accent"
+                      >
                         {isArabic ? "تذكيرات" : "Reminders"}
                       </Badge>
-                      <Badge variant="outline" className="text-xs cursor-pointer hover:bg-accent">
+                      <Badge
+                        variant="outline"
+                        className="text-xs cursor-pointer hover:bg-accent"
+                      >
                         {isArabic ? "عاجل" : "Urgent"}
                       </Badge>
                     </div>
@@ -635,12 +666,16 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                   <div className="max-h-96 overflow-y-auto">
                     {notifications.length > 0 ? (
                       notifications.map((notification) => {
-                        const IconComponent = getNotificationIcon(notification.type);
+                        const IconComponent = getNotificationIcon(
+                          notification.type,
+                        );
                         return (
                           <div
                             key={notification.id}
                             className={`p-4 border-b last:border-b-0 hover:bg-accent/50 cursor-pointer transition-all duration-200 ${
-                              !notification.isRead ? 'bg-primary/5 border-l-4 border-l-primary' : ''
+                              !notification.isRead
+                                ? "bg-primary/5 border-l-4 border-l-primary"
+                                : ""
                             }`}
                             onClick={() => {
                               markAsRead(notification.id);
@@ -650,19 +685,30 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                             }}
                           >
                             <div className="flex items-start gap-3">
-                              <div className={`p-2 rounded-full ${
-                                notification.type === 'urgent' ? 'bg-destructive/10' :
-                                notification.type === 'reminder' ? 'bg-warning/10' :
-                                notification.type === 'activity' ? 'bg-success/10' :
-                                'bg-primary/10'
-                              }`}>
-                                <IconComponent className={`h-4 w-4 ${getNotificationColor(notification.type)}`} />
+                              <div
+                                className={`p-2 rounded-full ${
+                                  notification.type === "urgent"
+                                    ? "bg-destructive/10"
+                                    : notification.type === "reminder"
+                                      ? "bg-warning/10"
+                                      : notification.type === "activity"
+                                        ? "bg-success/10"
+                                        : "bg-primary/10"
+                                }`}
+                              >
+                                <IconComponent
+                                  className={`h-4 w-4 ${getNotificationColor(notification.type)}`}
+                                />
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-start justify-between">
-                                  <h4 className={`text-sm font-medium leading-tight ${
-                                    !notification.isRead ? 'text-foreground' : 'text-muted-foreground'
-                                  }`}>
+                                  <h4
+                                    className={`text-sm font-medium leading-tight ${
+                                      !notification.isRead
+                                        ? "text-foreground"
+                                        : "text-muted-foreground"
+                                    }`}
+                                  >
                                     {notification.title}
                                   </h4>
                                   <div className="flex items-center gap-2 ml-2">
@@ -681,7 +727,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                                   {notification.patientName && (
                                     <div className="flex items-center gap-1">
                                       <User className="h-3 w-3 text-muted-foreground" />
-                                      <Badge variant="outline" className="text-xs">
+                                      <Badge
+                                        variant="outline"
+                                        className="text-xs"
+                                      >
                                         {notification.patientName}
                                       </Badge>
                                     </div>
@@ -716,7 +765,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                           {isArabic ? "لا توجد إشعارات" : "No notifications"}
                         </h4>
                         <p className="text-sm text-muted-foreground">
-                          {isArabic ? "ستظهر الإشعارات الجديدة هنا" : "New notifications will appear here"}
+                          {isArabic
+                            ? "ستظهر الإشعارات الجديدة هنا"
+                            : "New notifications will appear here"}
                         </p>
                       </div>
                     )}
@@ -734,7 +785,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                           {isArabic ? "جميع الإشعارات" : "All notifications"}
                         </Button>
                         <span className="text-xs text-muted-foreground">
-                          {notifications.length} {isArabic ? "إشعار" : "notifications"}
+                          {notifications.length}{" "}
+                          {isArabic ? "إشعار" : "notifications"}
                         </span>
                       </div>
                     </div>

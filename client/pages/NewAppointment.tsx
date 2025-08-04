@@ -70,7 +70,8 @@ export default function NewAppointment() {
   const [selectedTime, setSelectedTime] = useState("");
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
   const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
-  const [selectedTreatment, setSelectedTreatment] = useState<TreatmentType | null>(null);
+  const [selectedTreatment, setSelectedTreatment] =
+    useState<TreatmentType | null>(null);
   const [patientSearch, setPatientSearch] = useState("");
   const [notes, setNotes] = useState("");
   const [isNewPatient, setIsNewPatient] = useState(false);
@@ -105,11 +106,35 @@ export default function NewAppointment() {
 
   const treatmentTypes: TreatmentType[] = [
     { id: "1", name: "فحص دوري", duration: 30, price: 150, category: "فحص" },
-    { id: "2", name: "تنظيف أسنان", duration: 45, price: 200, category: "وقاية" },
+    {
+      id: "2",
+      name: "تنظيف أسنان",
+      duration: 45,
+      price: 200,
+      category: "وقاية",
+    },
     { id: "3", name: "حشو ضرس", duration: 60, price: 300, category: "علاج" },
-    { id: "4", name: "تقويم أسنان", duration: 90, price: 500, category: "تقويم" },
-    { id: "5", name: "زراعة أسنان", duration: 120, price: 2000, category: "جراحة" },
-    { id: "6", name: "تبييض أسنان", duration: 60, price: 800, category: "تجميل" },
+    {
+      id: "4",
+      name: "تقويم أسنان",
+      duration: 90,
+      price: 500,
+      category: "تقويم",
+    },
+    {
+      id: "5",
+      name: "زراعة أسنان",
+      duration: 120,
+      price: 2000,
+      category: "جراحة",
+    },
+    {
+      id: "6",
+      name: "تبييض أسنان",
+      duration: 60,
+      price: 800,
+      category: "تجميل",
+    },
   ];
 
   const patients: Patient[] = [
@@ -236,16 +261,17 @@ export default function NewAppointment() {
       treatment: selectedTreatment,
       notes,
     });
-    
+
     // Show success message and navigate back
     alert(t.appointment_confirmed);
     navigate("/dashboard");
   };
 
-  const filteredPatients = patients.filter(patient =>
-    patient.name.toLowerCase().includes(patientSearch.toLowerCase()) ||
-    patient.phone.includes(patientSearch) ||
-    patient.nationalId.includes(patientSearch)
+  const filteredPatients = patients.filter(
+    (patient) =>
+      patient.name.toLowerCase().includes(patientSearch.toLowerCase()) ||
+      patient.phone.includes(patientSearch) ||
+      patient.nationalId.includes(patientSearch),
   );
 
   const renderStepIndicator = () => (
@@ -257,20 +283,16 @@ export default function NewAppointment() {
               "w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium",
               step <= currentStep
                 ? "bg-primary text-primary-foreground"
-                : "bg-muted text-muted-foreground"
+                : "bg-muted text-muted-foreground",
             )}
           >
-            {step < currentStep ? (
-              <CheckCircle className="h-4 w-4" />
-            ) : (
-              step
-            )}
+            {step < currentStep ? <CheckCircle className="h-4 w-4" /> : step}
           </div>
           {step < 5 && (
             <div
               className={cn(
                 "w-8 h-px mx-2",
-                step < currentStep ? "bg-primary" : "bg-muted"
+                step < currentStep ? "bg-primary" : "bg-muted",
               )}
             />
           )}
@@ -287,7 +309,9 @@ export default function NewAppointment() {
           {t.patientInfo}
         </CardTitle>
         <CardDescription>
-          {isArabic ? "اخت�� مريض موجود أو أضف مريض جديد" : "Select existing patient or add new patient"}
+          {isArabic
+            ? "اخت�� مريض موجود أو أضف مريض جديد"
+            : "Select existing patient or add new patient"}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -330,7 +354,8 @@ export default function NewAppointment() {
                     key={patient.id}
                     className={cn(
                       "p-4 border rounded-lg cursor-pointer hover:bg-accent transition-medical",
-                      selectedPatient?.id === patient.id && "border-primary bg-accent"
+                      selectedPatient?.id === patient.id &&
+                        "border-primary bg-accent",
                     )}
                     onClick={() => setSelectedPatient(patient)}
                   >
@@ -358,7 +383,9 @@ export default function NewAppointment() {
               ) : (
                 <div className="text-center py-8 text-muted-foreground">
                   <User className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                  <p>{isArabic ? "لا توجد نتائج للبحث" : "No patients found"}</p>
+                  <p>
+                    {isArabic ? "لا توجد نتائج للبحث" : "No patients found"}
+                  </p>
                 </div>
               )}
             </div>
@@ -373,9 +400,18 @@ export default function NewAppointment() {
                 </Label>
                 <Input
                   id="patientName"
-                  placeholder={isArabic ? "أدخل اسم المريض الكامل" : "Enter full patient name"}
+                  placeholder={
+                    isArabic
+                      ? "أدخل اسم المريض الكامل"
+                      : "Enter full patient name"
+                  }
                   value={newPatientData.name}
-                  onChange={(e) => setNewPatientData(prev => ({ ...prev, name: e.target.value }))}
+                  onChange={(e) =>
+                    setNewPatientData((prev) => ({
+                      ...prev,
+                      name: e.target.value,
+                    }))
+                  }
                 />
               </div>
               <div className="space-y-2">
@@ -387,7 +423,12 @@ export default function NewAppointment() {
                   id="phone"
                   placeholder="+966xxxxxxxxx"
                   value={newPatientData.phone}
-                  onChange={(e) => setNewPatientData(prev => ({ ...prev, phone: e.target.value }))}
+                  onChange={(e) =>
+                    setNewPatientData((prev) => ({
+                      ...prev,
+                      phone: e.target.value,
+                    }))
+                  }
                 />
               </div>
             </div>
@@ -402,7 +443,12 @@ export default function NewAppointment() {
                   type="email"
                   placeholder="example@email.com"
                   value={newPatientData.email}
-                  onChange={(e) => setNewPatientData(prev => ({ ...prev, email: e.target.value }))}
+                  onChange={(e) =>
+                    setNewPatientData((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
+                  }
                 />
               </div>
               <div className="space-y-2">
@@ -414,13 +460,20 @@ export default function NewAppointment() {
                   id="nationalId"
                   placeholder="1234567890"
                   value={newPatientData.nationalId}
-                  onChange={(e) => setNewPatientData(prev => ({ ...prev, nationalId: e.target.value }))}
+                  onChange={(e) =>
+                    setNewPatientData((prev) => ({
+                      ...prev,
+                      nationalId: e.target.value,
+                    }))
+                  }
                 />
               </div>
             </div>
             <div className="p-3 bg-muted/50 rounded-lg border-l-4 border-l-primary">
               <p className="text-sm text-muted-foreground">
-                {isArabic ? "الحقول المطلوبة مميزة بعلامة *" : "Required fields are marked with *"}
+                {isArabic
+                  ? "الحقول المطلوبة مميزة بعلامة *"
+                  : "Required fields are marked with *"}
               </p>
             </div>
           </div>
@@ -437,7 +490,9 @@ export default function NewAppointment() {
           {t.doctorSelection}
         </CardTitle>
         <CardDescription>
-          {isArabic ? "اختر الطبيب المناسب للموعد" : "Select the appropriate doctor for the appointment"}
+          {isArabic
+            ? "اختر الطبيب المناسب للموعد"
+            : "Select the appropriate doctor for the appointment"}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -449,7 +504,7 @@ export default function NewAppointment() {
                 "p-6 border rounded-xl cursor-pointer hover:shadow-md transition-all duration-200",
                 selectedDoctor?.id === doctor.id
                   ? "border-primary bg-primary/5 shadow-md"
-                  : "border-border hover:border-primary/50"
+                  : "border-border hover:border-primary/50",
               )}
               onClick={() => setSelectedDoctor(doctor)}
             >
@@ -464,12 +519,20 @@ export default function NewAppointment() {
                 )}
               </div>
               <h4 className="font-semibold text-lg mb-2">{doctor.name}</h4>
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{doctor.specialization}</p>
+              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                {doctor.specialization}
+              </p>
               <div className="space-y-2">
-                <Label className="text-xs font-medium text-muted-foreground">{t.available_times}</Label>
+                <Label className="text-xs font-medium text-muted-foreground">
+                  {t.available_times}
+                </Label>
                 <div className="flex flex-wrap gap-1">
                   {doctor.availability.slice(0, 4).map((time) => (
-                    <Badge key={time} variant="secondary" className="text-xs px-2 py-1">
+                    <Badge
+                      key={time}
+                      variant="secondary"
+                      className="text-xs px-2 py-1"
+                    >
                       {time}
                     </Badge>
                   ))}
@@ -503,8 +566,10 @@ export default function NewAppointment() {
               <Input
                 id="appointmentDate"
                 type="date"
-                min={new Date().toISOString().split('T')[0]}
-                value={selectedDate ? selectedDate.toISOString().split('T')[0] : ''}
+                min={new Date().toISOString().split("T")[0]}
+                value={
+                  selectedDate ? selectedDate.toISOString().split("T")[0] : ""
+                }
                 onChange={(e) => setSelectedDate(new Date(e.target.value))}
                 className="w-full"
               />
@@ -527,7 +592,9 @@ export default function NewAppointment() {
               <div className="space-y-4">
                 <div className="p-3 bg-muted/50 rounded-lg">
                   <p className="text-sm font-medium">{selectedDoctor.name}</p>
-                  <p className="text-xs text-muted-foreground">{selectedDoctor.specialization}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {selectedDoctor.specialization}
+                  </p>
                 </div>
                 <div className="grid gap-3 grid-cols-2 sm:grid-cols-3">
                   {selectedDoctor.availability.map((time) => (
@@ -538,7 +605,7 @@ export default function NewAppointment() {
                         "h-14 text-sm font-medium transition-all duration-200",
                         selectedTime === time
                           ? "bg-primary text-primary-foreground shadow-lg"
-                          : "hover:bg-primary/10 hover:border-primary/50"
+                          : "hover:bg-primary/10 hover:border-primary/50",
                       )}
                       onClick={() => setSelectedTime(time)}
                     >
@@ -552,7 +619,9 @@ export default function NewAppointment() {
               <div className="text-center text-muted-foreground py-12">
                 <Clock className="h-12 w-12 mx-auto mb-3 opacity-50" />
                 <p className="text-sm">
-                  {isArabic ? "يرجى اختيار طبيب وتاريخ أولاً" : "Please select doctor and date first"}
+                  {isArabic
+                    ? "يرجى اختيار طبيب وتاريخ أولاً"
+                    : "Please select doctor and date first"}
                 </p>
               </div>
             )}
@@ -568,7 +637,9 @@ export default function NewAppointment() {
             {t.selectTreatment}
           </CardTitle>
           <CardDescription>
-            {isArabic ? "اختر نوع العلاج المطلوب" : "Select the required treatment type"}
+            {isArabic
+              ? "اختر نوع العلاج المطلوب"
+              : "Select the required treatment type"}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -580,7 +651,7 @@ export default function NewAppointment() {
                   "p-5 border rounded-xl cursor-pointer transition-all duration-200",
                   selectedTreatment?.id === treatment.id
                     ? "border-primary bg-primary/5 shadow-lg"
-                    : "border-border hover:border-primary/50 hover:shadow-md"
+                    : "border-border hover:border-primary/50 hover:shadow-md",
                 )}
                 onClick={() => setSelectedTreatment(treatment)}
               >
@@ -594,12 +665,16 @@ export default function NewAppointment() {
                     </div>
                   )}
                 </div>
-                <h4 className="font-semibold text-lg mb-3 leading-tight">{treatment.name}</h4>
+                <h4 className="font-semibold text-lg mb-3 leading-tight">
+                  {treatment.name}
+                </h4>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center gap-1 text-muted-foreground">
                       <Clock className="h-3 w-3" />
-                      <span>{treatment.duration} {t.minutes}</span>
+                      <span>
+                        {treatment.duration} {t.minutes}
+                      </span>
                     </div>
                     <div className="font-semibold text-primary">
                       {treatment.price.toLocaleString()} {t.sar}
@@ -622,7 +697,9 @@ export default function NewAppointment() {
           {t.appointmentNotes}
         </CardTitle>
         <CardDescription>
-          {isArabic ? "أضف أي ملاحظات أو تعليمات خاصة بالموعد" : "Add any special notes or instructions for the appointment"}
+          {isArabic
+            ? "أضف أي ملاحظات أو تعليمات خاصة بالموعد"
+            : "Add any special notes or instructions for the appointment"}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -630,7 +707,11 @@ export default function NewAppointment() {
           <Label htmlFor="appointmentNotes">{t.appointmentNotes}</Label>
           <Textarea
             id="appointmentNotes"
-            placeholder={isArabic ? "أضف أي ملاحظات خاصة بالموعد..." : "Add any special notes for the appointment..."}
+            placeholder={
+              isArabic
+                ? "أضف أي ملاحظات خاصة بالموعد..."
+                : "Add any special notes for the appointment..."
+            }
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows={6}
@@ -648,17 +729,24 @@ export default function NewAppointment() {
             <div className="flex justify-between">
               <span className="text-muted-foreground">{t.patientInfo}:</span>
               <span className="font-medium">
-                {selectedPatient?.name || newPatientData.name || (isArabic ? "مريض جديد" : "New Patient")}
+                {selectedPatient?.name ||
+                  newPatientData.name ||
+                  (isArabic ? "مريض جديد" : "New Patient")}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">{t.doctorSelection}:</span>
+              <span className="text-muted-foreground">
+                {t.doctorSelection}:
+              </span>
               <span className="font-medium">{selectedDoctor?.name}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">{t.dateTimeSelection}:</span>
+              <span className="text-muted-foreground">
+                {t.dateTimeSelection}:
+              </span>
               <span className="font-medium">
-                {selectedDate?.toLocaleDateString(isArabic ? "ar-SA" : "en-US")} {selectedTime}
+                {selectedDate?.toLocaleDateString(isArabic ? "ar-SA" : "en-US")}{" "}
+                {selectedTime}
               </span>
             </div>
             <div className="flex justify-between">
@@ -690,7 +778,9 @@ export default function NewAppointment() {
             {isArabic ? "ملخص الموعد" : "Appointment Summary"}
           </h3>
           <p className="text-muted-foreground">
-            {isArabic ? "يرجى مراجعة التفاصيل قبل التأكيد" : "Please review details before confirming"}
+            {isArabic
+              ? "يرجى مراجعة التفاصيل قبل التأكيد"
+              : "Please review details before confirming"}
           </p>
         </div>
 
@@ -707,16 +797,22 @@ export default function NewAppointment() {
               </div>
               <div className="space-y-2">
                 <p className="font-medium text-lg">
-                  {selectedPatient?.name || newPatientData.name || (isArabic ? "مريض جديد" : "New Patient")}
+                  {selectedPatient?.name ||
+                    newPatientData.name ||
+                    (isArabic ? "مريض جديد" : "New Patient")}
                 </p>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Phone className="h-3 w-3" />
-                  <span>{selectedPatient?.phone || newPatientData.phone || "---"}</span>
+                  <span>
+                    {selectedPatient?.phone || newPatientData.phone || "---"}
+                  </span>
                 </div>
                 {(selectedPatient?.email || newPatientData.email) && (
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Mail className="h-3 w-3" />
-                    <span>{selectedPatient?.email || newPatientData.email}</span>
+                    <span>
+                      {selectedPatient?.email || newPatientData.email}
+                    </span>
                   </div>
                 )}
               </div>
@@ -727,11 +823,15 @@ export default function NewAppointment() {
                 <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                   <Stethoscope className="h-4 w-4 text-primary" />
                 </div>
-                <Label className="text-sm font-semibold">{t.doctorSelection}</Label>
+                <Label className="text-sm font-semibold">
+                  {t.doctorSelection}
+                </Label>
               </div>
               <div className="space-y-2">
                 <p className="font-medium text-lg">{selectedDoctor?.name}</p>
-                <p className="text-sm text-muted-foreground">{selectedDoctor?.specialization}</p>
+                <p className="text-sm text-muted-foreground">
+                  {selectedDoctor?.specialization}
+                </p>
               </div>
             </div>
           </div>
@@ -743,16 +843,21 @@ export default function NewAppointment() {
                 <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                   <CalendarIcon className="h-4 w-4 text-primary" />
                 </div>
-                <Label className="text-sm font-semibold">{t.dateTimeSelection}</Label>
+                <Label className="text-sm font-semibold">
+                  {t.dateTimeSelection}
+                </Label>
               </div>
               <div className="space-y-2">
                 <p className="font-medium text-lg">
-                  {selectedDate?.toLocaleDateString(isArabic ? "ar-SA" : "en-US", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                  {selectedDate?.toLocaleDateString(
+                    isArabic ? "ar-SA" : "en-US",
+                    {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    },
+                  )}
                 </p>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Clock className="h-3 w-3" />
@@ -766,14 +871,18 @@ export default function NewAppointment() {
                 <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
                   <Stethoscope className="h-4 w-4 text-primary" />
                 </div>
-                <Label className="text-sm font-semibold">{t.treatmentType}</Label>
+                <Label className="text-sm font-semibold">
+                  {t.treatmentType}
+                </Label>
               </div>
               <div className="space-y-2">
                 <p className="font-medium text-lg">{selectedTreatment?.name}</p>
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-1 text-muted-foreground">
                     <Clock className="h-3 w-3" />
-                    <span>{selectedTreatment?.duration} {t.minutes}</span>
+                    <span>
+                      {selectedTreatment?.duration} {t.minutes}
+                    </span>
                   </div>
                   <div className="font-semibold text-primary">
                     {selectedTreatment?.price?.toLocaleString()} {t.sar}
@@ -823,7 +932,11 @@ export default function NewAppointment() {
     switch (currentStep) {
       case 1:
         if (isNewPatient) {
-          return newPatientData.name.trim() && newPatientData.phone.trim() && newPatientData.nationalId.trim();
+          return (
+            newPatientData.name.trim() &&
+            newPatientData.phone.trim() &&
+            newPatientData.nationalId.trim()
+          );
         }
         return selectedPatient !== null;
       case 2:
@@ -833,8 +946,15 @@ export default function NewAppointment() {
       case 4:
         return true; // Notes are optional
       case 5:
-        const hasPatient = selectedPatient || (isNewPatient && newPatientData.name.trim());
-        return hasPatient && selectedDoctor && selectedDate && selectedTime && selectedTreatment;
+        const hasPatient =
+          selectedPatient || (isNewPatient && newPatientData.name.trim());
+        return (
+          hasPatient &&
+          selectedDoctor &&
+          selectedDate &&
+          selectedTime &&
+          selectedTreatment
+        );
       default:
         return false;
     }
@@ -859,7 +979,10 @@ export default function NewAppointment() {
 
   return (
     <DashboardLayout>
-      <div className={`space-y-6 ${isArabic ? "rtl" : "ltr"}`} lang={isArabic ? "ar" : "en"}>
+      <div
+        className={`space-y-6 ${isArabic ? "rtl" : "ltr"}`}
+        lang={isArabic ? "ar" : "en"}
+      >
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
@@ -891,9 +1014,7 @@ export default function NewAppointment() {
         {renderStepIndicator()}
 
         {/* Step Content */}
-        <div className="min-h-[500px]">
-          {getCurrentStepContent()}
-        </div>
+        <div className="min-h-[500px]">{getCurrentStepContent()}</div>
 
         {/* Navigation Buttons */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-6 bg-muted/30 rounded-xl border">

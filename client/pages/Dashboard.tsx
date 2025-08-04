@@ -264,10 +264,12 @@ export default function Dashboard() {
                 : ""}
             </h1>
             <p className="text-muted-foreground mt-1">
-              {user?.type === "receptionist" ?
-                (isArabic ? "لوحة الاستقبال الطبي" : "Reception Dashboard") :
-                t.todayOverview
-              } •{" "}
+              {user?.type === "receptionist"
+                ? isArabic
+                  ? "لوحة الاستقبال الطبي"
+                  : "Reception Dashboard"
+                : t.todayOverview}{" "}
+              •{" "}
               {new Date().toLocaleDateString(isArabic ? "ar-SA" : "en-US", {
                 weekday: "long",
                 year: "numeric",
@@ -278,24 +280,35 @@ export default function Dashboard() {
             {user?.type === "receptionist" && (
               <div className="mt-3 flex flex-wrap gap-2">
                 <Badge variant="outline" className="text-xs">
-                  {isArabic ? "الوردية الصباحية: 8:00 ص - 2:00 م" : "Morning Shift: 8:00 AM - 2:00 PM"}
+                  {isArabic
+                    ? "الوردية الصباحية: 8:00 ص - 2:00 م"
+                    : "Morning Shift: 8:00 AM - 2:00 PM"}
                 </Badge>
                 <Badge variant="outline" className="text-xs">
-                  {isArabic ? "الطبيب المُناوب: د. أحمد محمد" : "Current Doctor: Dr. Ahmed Mohammed"}
+                  {isArabic
+                    ? "الطبيب المُناوب: د. أحمد محمد"
+                    : "Current Doctor: Dr. Ahmed Mohammed"}
                 </Badge>
               </div>
             )}
             {user?.type === "doctor" && (
               <div className="mt-3 flex flex-wrap gap-2">
-                <Badge variant="outline" className="text-xs flex items-center gap-1">
+                <Badge
+                  variant="outline"
+                  className="text-xs flex items-center gap-1"
+                >
                   <Stethoscope className="h-3 w-3" />
                   {isArabic ? "أخصائي طب الأسنان العام" : "General Dentistry"}
                 </Badge>
                 <Badge variant="outline" className="text-xs">
-                  {isArabic ? "العيادة رقم 1 - الطابق الأول" : "Clinic 1 - First Floor"}
+                  {isArabic
+                    ? "العيادة رقم 1 - الطابق الأول"
+                    : "Clinic 1 - First Floor"}
                 </Badge>
                 <Badge variant="secondary" className="text-xs">
-                  {isArabic ? "متوفر للحالات الطارئة" : "Available for Emergencies"}
+                  {isArabic
+                    ? "متوفر للحالات الطارئة"
+                    : "Available for Emergencies"}
                 </Badge>
               </div>
             )}
@@ -374,11 +387,11 @@ export default function Dashboard() {
               <AlertCircle className="h-4 w-4 text-warning" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
-                {stats.waitingPatients}
-              </div>
+              <div className="text-2xl font-bold">{stats.waitingPatients}</div>
               <p className="text-xs text-muted-foreground">
-                {isArabic ? "مرضى في انتظار الفحص" : "patients waiting for examination"}
+                {isArabic
+                  ? "مرضى في انتظار الفحص"
+                  : "patients waiting for examination"}
               </p>
             </CardContent>
           </Card>
@@ -422,7 +435,9 @@ export default function Dashboard() {
               <CardContent>
                 <div className="text-2xl font-bold">9</div>
                 <p className="text-xs text-muted-foreground">
-                  {isArabic ? "مواعيد مؤكدة اليوم" : "confirmed appointments today"}
+                  {isArabic
+                    ? "مواعيد مؤكدة اليوم"
+                    : "confirmed appointments today"}
                 </p>
               </CardContent>
             </Card>
@@ -437,7 +452,9 @@ export default function Dashboard() {
               <CardContent>
                 <div className="text-2xl font-bold">5</div>
                 <p className="text-xs text-muted-foreground">
-                  {isArabic ? "تذكير بالمواعيد غداً" : "reminder calls for tomorrow"}
+                  {isArabic
+                    ? "تذكير بالمواعيد غداً"
+                    : "reminder calls for tomorrow"}
                 </p>
               </CardContent>
             </Card>
@@ -488,7 +505,8 @@ export default function Dashboard() {
                     {isArabic ? "قائمة الانتظار" : "Waiting List"}
                   </CardTitle>
                   <CardDescription>
-                    {stats.waitingPatients} {isArabic ? "مريض في الانتظار" : "patients waiting"}
+                    {stats.waitingPatients}{" "}
+                    {isArabic ? "مريض في الانتظار" : "patients waiting"}
                   </CardDescription>
                 </div>
                 <div className="flex gap-2">
@@ -505,20 +523,42 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-3">
                   {[
-                    { id: "1", name: "عبدالله محمد", time: "09:15", waitingTime: "15 دقيقة", priority: "normal" },
-                    { id: "2", name: "منى أحمد", time: "09:30", waitingTime: "30 دقيقة", priority: "urgent" },
-                    { id: "3", name: "سعد الخالدي", time: "10:00", waitingTime: "10 دقائق", priority: "normal" },
+                    {
+                      id: "1",
+                      name: "عبدالله محمد",
+                      time: "09:15",
+                      waitingTime: "15 دقيقة",
+                      priority: "normal",
+                    },
+                    {
+                      id: "2",
+                      name: "منى أحمد",
+                      time: "09:30",
+                      waitingTime: "30 دقيقة",
+                      priority: "urgent",
+                    },
+                    {
+                      id: "3",
+                      name: "سعد الخالدي",
+                      time: "10:00",
+                      waitingTime: "10 دقائق",
+                      priority: "normal",
+                    },
                   ].map((patient) => (
                     <div
                       key={patient.id}
                       className="flex items-center justify-between p-4 rounded-lg border border-border hover:bg-accent/50 transition-medical"
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-3 h-3 rounded-full ${patient.priority === "urgent" ? "bg-destructive" : "bg-success"}`}></div>
+                        <div
+                          className={`w-3 h-3 rounded-full ${patient.priority === "urgent" ? "bg-destructive" : "bg-success"}`}
+                        ></div>
                         <div>
                           <h4 className="font-medium">{patient.name}</h4>
                           <p className="text-sm text-muted-foreground">
-                            {isArabic ? "موعد" : "Appointment"} {patient.time} • {isArabic ? "ينتظر" : "waiting"} {patient.waitingTime}
+                            {isArabic ? "موعد" : "Appointment"} {patient.time} •{" "}
+                            {isArabic ? "ينتظر" : "waiting"}{" "}
+                            {patient.waitingTime}
                           </p>
                         </div>
                       </div>
@@ -547,7 +587,10 @@ export default function Dashboard() {
                     {isArabic ? "المرضى في قائمة الانتظار" : "Patients Waiting"}
                   </CardTitle>
                   <CardDescription>
-                    {stats.waitingPatients} {isArabic ? "مريض في انتظار الكشف الطبي" : "patients waiting for examination"}
+                    {stats.waitingPatients}{" "}
+                    {isArabic
+                      ? "مريض في انتظار الكشف الطبي"
+                      : "patients waiting for examination"}
                   </CardDescription>
                 </div>
                 <div className="flex gap-2">
@@ -564,33 +607,68 @@ export default function Dashboard() {
               <CardContent>
                 <div className="space-y-3">
                   {[
-                    { id: "1", name: "أحمد محمد العلي", appointmentTime: "09:30", waitingTime: "15 دقيقة", condition: "فحص دور��", priority: "normal" },
-                    { id: "2", name: "فاطمة سالم", appointmentTime: "10:00", waitingTime: "5 دقائق", condition: "متابعة علاج", priority: "normal" },
-                    { id: "3", name: "محمد الأحمد", appointmentTime: "10:30", waitingTime: "استعداد", condition: "ألم شديد", priority: "urgent" },
+                    {
+                      id: "1",
+                      name: "أحمد محمد العلي",
+                      appointmentTime: "09:30",
+                      waitingTime: "15 دقيقة",
+                      condition: "فحص دور��",
+                      priority: "normal",
+                    },
+                    {
+                      id: "2",
+                      name: "فاطمة سالم",
+                      appointmentTime: "10:00",
+                      waitingTime: "5 دقائق",
+                      condition: "متابعة علاج",
+                      priority: "normal",
+                    },
+                    {
+                      id: "3",
+                      name: "محمد الأحمد",
+                      appointmentTime: "10:30",
+                      waitingTime: "استعداد",
+                      condition: "ألم شديد",
+                      priority: "urgent",
+                    },
                   ].map((patient) => (
                     <div
                       key={patient.id}
                       className={`flex items-center justify-between p-4 rounded-lg border transition-medical ${
-                        patient.priority === "urgent" ? "border-destructive/50 bg-destructive/5" : "border-border hover:bg-accent/50"
+                        patient.priority === "urgent"
+                          ? "border-destructive/50 bg-destructive/5"
+                          : "border-border hover:bg-accent/50"
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-3 h-3 rounded-full ${patient.priority === "urgent" ? "bg-destructive animate-pulse" : "bg-primary"}`}></div>
+                        <div
+                          className={`w-3 h-3 rounded-full ${patient.priority === "urgent" ? "bg-destructive animate-pulse" : "bg-primary"}`}
+                        ></div>
                         <div>
                           <h4 className="font-medium">{patient.name}</h4>
                           <p className="text-sm text-muted-foreground">
-                            {isArabic ? "موعد" : "Appointment"} {patient.appointmentTime} • {patient.condition}
+                            {isArabic ? "موعد" : "Appointment"}{" "}
+                            {patient.appointmentTime} • {patient.condition}
                           </p>
                           <p className="text-xs text-muted-foreground">
-                            {isArabic ? "ينتظر منذ" : "Waiting for"} {patient.waitingTime}
+                            {isArabic ? "ينتظر منذ" : "Waiting for"}{" "}
+                            {patient.waitingTime}
                           </p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                        >
                           <FileText className="h-4 w-4" />
                         </Button>
-                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                        >
                           <Phone className="h-4 w-4" />
                         </Button>
                       </div>
@@ -740,32 +818,61 @@ export default function Dashboard() {
                   {isArabic ? "مكالمات مطلوبة" : "Required Calls"}
                 </CardTitle>
                 <CardDescription>
-                  {isArabic ? "تذكيرات ومتابعات اليوم" : "Today's reminders and follow-ups"}
+                  {isArabic
+                    ? "تذكيرات ومتابعات اليوم"
+                    : "Today's reminders and follow-ups"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   {[
-                    { name: "أحمد سالم", reason: "تذكي�� بموعد غداً", phone: "+966501234567", priority: "normal" },
-                    { name: "فاطمة علي", reason: "تأكيد موعد الأسبوع ال��ادم", phone: "+966507654321", priority: "normal" },
-                    { name: "محمد الأحمد", reason: "إلغاء وإعادة جدولة", phone: "+966509876543", priority: "urgent" },
+                    {
+                      name: "أحمد سالم",
+                      reason: "تذكي�� بموعد غداً",
+                      phone: "+966501234567",
+                      priority: "normal",
+                    },
+                    {
+                      name: "فاطمة علي",
+                      reason: "تأكيد موعد الأسبوع ال��ادم",
+                      phone: "+966507654321",
+                      priority: "normal",
+                    },
+                    {
+                      name: "محمد الأحمد",
+                      reason: "إلغاء وإعادة جدولة",
+                      phone: "+966509876543",
+                      priority: "urgent",
+                    },
                   ].map((call, index) => (
                     <div
                       key={index}
                       className="flex items-center justify-between p-3 rounded-lg border border-border hover:bg-accent/50 transition-medical"
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-2 h-2 rounded-full ${call.priority === "urgent" ? "bg-destructive" : "bg-warning"}`}></div>
+                        <div
+                          className={`w-2 h-2 rounded-full ${call.priority === "urgent" ? "bg-destructive" : "bg-warning"}`}
+                        ></div>
                         <div>
                           <h4 className="font-medium text-sm">{call.name}</h4>
-                          <p className="text-xs text-muted-foreground">{call.reason}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {call.reason}
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                        >
                           <Phone className="h-4 w-4" />
                         </Button>
-                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                        >
                           <Mail className="h-4 w-4" />
                         </Button>
                       </div>
@@ -921,20 +1028,26 @@ export default function Dashboard() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-success" />
-                {user?.type === "receptionist" ?
-                  (isArabic ? "مؤشرات أداء الاستقبال" : "Reception Performance") :
-                  user?.type === "doctor" ?
-                  t.doctorPerformance :
-                  t.clinicPerformance
-                }
+                {user?.type === "receptionist"
+                  ? isArabic
+                    ? "مؤشرات أداء الاستقبال"
+                    : "Reception Performance"
+                  : user?.type === "doctor"
+                    ? t.doctorPerformance
+                    : t.clinicPerformance}
               </CardTitle>
               <CardDescription>
-                {user?.type === "receptionist" ?
-                  (isArabic ? "إحصائيات أداء العمل اليوم" : "Your work statistics today") :
-                  user?.type === "doctor" ?
-                  (isArabic ? "إحصائيات النشاط الطبي اليوم" : "Your medical work statistics today") :
-                  (isArabic ? "مؤشرات أداء العيادة هذا الشهر" : "Clinic performance this month")
-                }
+                {user?.type === "receptionist"
+                  ? isArabic
+                    ? "إحصائيات أداء العمل اليوم"
+                    : "Your work statistics today"
+                  : user?.type === "doctor"
+                    ? isArabic
+                      ? "إحصائيات النشاط الطبي اليوم"
+                      : "Your medical work statistics today"
+                    : isArabic
+                      ? "مؤشرات أداء العيادة هذا الشهر"
+                      : "Clinic performance this month"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -943,7 +1056,9 @@ export default function Dashboard() {
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-muted-foreground">
-                        {isArabic ? "مواعيد محجوزة اليوم" : "Appointments booked today"}
+                        {isArabic
+                          ? "مواعيد محجوزة اليوم"
+                          : "Appointments booked today"}
                       </span>
                       <span className="font-medium">8</span>
                     </div>
@@ -961,7 +1076,9 @@ export default function Dashboard() {
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-muted-foreground">
-                        {isArabic ? "مرضى مسجلين جدد" : "New patients registered"}
+                        {isArabic
+                          ? "مرضى مسجلين جدد"
+                          : "New patients registered"}
                       </span>
                       <span className="font-medium">3</span>
                     </div>
@@ -993,7 +1110,9 @@ export default function Dashboard() {
                       <span className="text-sm text-muted-foreground">
                         {t.averageTime}
                       </span>
-                      <span className="font-medium">{isArabic ? "25 دقيقة" : "25 min"}</span>
+                      <span className="font-medium">
+                        {isArabic ? "25 دقيقة" : "25 min"}
+                      </span>
                     </div>
                     <Progress value={80} className="h-2" />
                   </div>
@@ -1014,7 +1133,9 @@ export default function Dashboard() {
                       <span className="text-sm text-muted-foreground">
                         {t.appointmentsToday}
                       </span>
-                      <span className="font-medium">{stats.todayAppointments}</span>
+                      <span className="font-medium">
+                        {stats.todayAppointments}
+                      </span>
                     </div>
                     <Progress value={85} className="h-2" />
                   </div>
@@ -1055,87 +1176,92 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {(user?.type === "receptionist" ? [
-                  {
-                    action: isArabic
-                      ? "تم تسجيل مريض جديد"
-                      : "New patient registered",
-                    patient: "سارة أحمد",
-                    time: "10 دقائق",
-                    icon: UserCheck,
-                    color: "text-success",
-                  },
-                  {
-                    action: isArabic
-                      ? "تم حجز موعد جديد"
-                      : "New appointment booked",
-                    patient: "أحمد محمد",
-                    time: "25 دقيقة",
-                    icon: Calendar,
-                    color: "text-primary",
-                  },
-                  {
-                    action: isArabic ? "تم إرسال تذكير" : "Reminder sent",
-                    patient: "فاطمة سالم",
-                    time: "45 دقيقة",
-                    icon: Mail,
-                    color: "text-warning",
-                  },
-                ] : user?.type === "doctor" ? [
-                  {
-                    action: isArabic
-                      ? "تم إنجاز الكشف الطبي"
-                      : "Patient examination completed",
-                    patient: "محمد علي",
-                    time: "10 دقائق",
-                    icon: Stethoscope,
-                    color: "text-success",
-                  },
-                  {
-                    action: isArabic
-                      ? "تم تحرير الروشتة الطبية"
-                      : "Prescription written",
-                    patient: "نورا سالم",
-                    time: "20 دقيقة",
-                    icon: FileText,
-                    color: "text-primary",
-                  },
-                  {
-                    action: isArabic
-                      ? "تم تحديث الملف الطبي"
-                      : "Medical record updated",
-                    patient: "سعد الخالدي",
-                    time: "35 دقيقة",
-                    icon: UserCheck,
-                    color: "text-warning",
-                  },
-                ] : [
-                  {
-                    action: isArabic
-                      ? "تم تسجيل مريض جديد"
-                      : "New patient registered",
-                    patient: "سارة أحمد",
-                    time: "10 دقائق",
-                    icon: UserCheck,
-                    color: "text-success",
-                  },
-                  {
-                    action: isArabic
-                      ? "تم إكمال موعد"
-                      : "Appointment completed",
-                    patient: "محمد علي",
-                    time: "30 دقيقة",
-                    icon: Clock,
-                    color: "text-primary",
-                  },
-                  {
-                    action: isArabic ? "تم إرسال فاتورة" : "Invoice sent",
-                    patient: "فاطمة سالم",
-                    time: "1 ساعة",
-                    icon: FileText,
-                    color: "text-warning",
-                  },
-                ]).map((activity, index) => (
+                {(user?.type === "receptionist"
+                  ? [
+                      {
+                        action: isArabic
+                          ? "تم تسجيل مريض جديد"
+                          : "New patient registered",
+                        patient: "سارة أحمد",
+                        time: "10 دقائق",
+                        icon: UserCheck,
+                        color: "text-success",
+                      },
+                      {
+                        action: isArabic
+                          ? "تم حجز موعد جديد"
+                          : "New appointment booked",
+                        patient: "أحمد محمد",
+                        time: "25 دقيقة",
+                        icon: Calendar,
+                        color: "text-primary",
+                      },
+                      {
+                        action: isArabic ? "تم إرسال تذكير" : "Reminder sent",
+                        patient: "فاطمة سالم",
+                        time: "45 دقيقة",
+                        icon: Mail,
+                        color: "text-warning",
+                      },
+                    ]
+                  : user?.type === "doctor"
+                    ? [
+                        {
+                          action: isArabic
+                            ? "تم إنجاز الكشف الطبي"
+                            : "Patient examination completed",
+                          patient: "محمد علي",
+                          time: "10 دقائق",
+                          icon: Stethoscope,
+                          color: "text-success",
+                        },
+                        {
+                          action: isArabic
+                            ? "تم تحرير الروشتة الطبية"
+                            : "Prescription written",
+                          patient: "نورا سالم",
+                          time: "20 دقيقة",
+                          icon: FileText,
+                          color: "text-primary",
+                        },
+                        {
+                          action: isArabic
+                            ? "تم تحديث الملف الطبي"
+                            : "Medical record updated",
+                          patient: "سعد الخالدي",
+                          time: "35 دقيقة",
+                          icon: UserCheck,
+                          color: "text-warning",
+                        },
+                      ]
+                    : [
+                        {
+                          action: isArabic
+                            ? "تم تسجيل مريض جديد"
+                            : "New patient registered",
+                          patient: "سارة أحمد",
+                          time: "10 دقائق",
+                          icon: UserCheck,
+                          color: "text-success",
+                        },
+                        {
+                          action: isArabic
+                            ? "تم إكمال موعد"
+                            : "Appointment completed",
+                          patient: "محمد علي",
+                          time: "30 دقيقة",
+                          icon: Clock,
+                          color: "text-primary",
+                        },
+                        {
+                          action: isArabic ? "تم إرسال فاتورة" : "Invoice sent",
+                          patient: "فاطمة سالم",
+                          time: "1 ساعة",
+                          icon: FileText,
+                          color: "text-warning",
+                        },
+                      ]
+                ).map((activity, index) => (
                   <div
                     key={index}
                     className="flex items-start gap-3 p-2 rounded-lg hover:bg-accent/50 transition-medical"
