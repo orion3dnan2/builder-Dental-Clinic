@@ -543,29 +543,40 @@ export default function NewAppointment() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {treatmentTypes.map((treatment) => (
               <div
                 key={treatment.id}
                 className={cn(
-                  "p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors",
-                  selectedTreatment?.id === treatment.id && "border-primary bg-accent"
+                  "p-5 border rounded-xl cursor-pointer transition-all duration-200",
+                  selectedTreatment?.id === treatment.id
+                    ? "border-primary bg-primary/5 shadow-lg"
+                    : "border-border hover:border-primary/50 hover:shadow-md"
                 )}
                 onClick={() => setSelectedTreatment(treatment)}
               >
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-medium">{treatment.name}</h4>
+                <div className="flex items-start justify-between mb-3">
+                  <Badge variant="outline" className="text-xs font-medium">
+                    {treatment.category}
+                  </Badge>
                   {selectedTreatment?.id === treatment.id && (
-                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                      <CheckCircle className="h-3 w-3 text-white" />
+                    </div>
                   )}
                 </div>
-                <div className="flex items-center justify-between text-sm text-muted-foreground">
-                  <span>{treatment.duration} {t.minutes}</span>
-                  <span>{treatment.price} {t.sar}</span>
+                <h4 className="font-semibold text-lg mb-3 leading-tight">{treatment.name}</h4>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center gap-1 text-muted-foreground">
+                      <Clock className="h-3 w-3" />
+                      <span>{treatment.duration} {t.minutes}</span>
+                    </div>
+                    <div className="font-semibold text-primary">
+                      {treatment.price.toLocaleString()} {t.sar}
+                    </div>
+                  </div>
                 </div>
-                <Badge variant="outline" className="mt-2 text-xs">
-                  {treatment.category}
-                </Badge>
               </div>
             ))}
           </div>
@@ -578,7 +589,7 @@ export default function NewAppointment() {
         </CardHeader>
         <CardContent>
           <Textarea
-            placeholder={isArabic ? "أضف أي ملاحظات خاصة بالموعد..." : "Add any special notes for the appointment..."}
+            placeholder={isArabic ? "أضف أي ملاحظات خاصة بال��وعد..." : "Add any special notes for the appointment..."}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows={4}
