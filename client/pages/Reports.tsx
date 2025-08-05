@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Card,
   CardContent,
@@ -80,7 +81,7 @@ interface DoctorPerformance {
 }
 
 export default function Reports() {
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic } = useLanguage();
   const [user, setUser] = useState<any>(null);
   const [activeTab, setActiveTab] = useState("overview");
   const [dateRange, setDateRange] = useState("month");
@@ -158,7 +159,7 @@ export default function Reports() {
       doctors: "أداء الأطباء",
       treatments: "إحصائيات العلاجات",
       dailyReport: "التقرير اليومي",
-      monthlyReport: "التقرير الشهري",
+      monthlyReport: "التقرير ال��هري",
       yearlyReport: "التقرير السنوي",
       revenue: "الإيرادات",
       patients: "المرضى",

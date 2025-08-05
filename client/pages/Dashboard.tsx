@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import DashboardLayout from "@/components/DashboardLayout";
 import {
   Card,
@@ -27,6 +28,7 @@ import {
   Settings,
   Receipt,
   BarChart3,
+  Globe,
 } from "lucide-react";
 
 interface DashboardStats {
@@ -48,7 +50,7 @@ interface Appointment {
 }
 
 export default function Dashboard() {
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic, toggleLanguage } = useLanguage();
   const [user, setUser] = useState<any>(null);
   const [stats, setStats] = useState<DashboardStats>({
     todayAppointments: 12,
@@ -114,8 +116,8 @@ export default function Dashboard() {
       welcome: "أهلاً وسهلاً",
       todayOverview: "ملخص اليوم",
       todayAppointments: "حجوزات اليوم",
-      totalPatients: "عدد المرضى الكلي",
-      waitingPatients: "المرضى المنتظرون",
+      totalPatients: "ع��د المرضى الكلي",
+      waitingPatients: "المرضى الم��تظرون",
       appointmentStatus: "حالة الحجوزات",
       completed: "مُنجزة",
       pending: "معلقة",
@@ -307,38 +309,49 @@ export default function Dashboard() {
                 </Badge>
                 <Badge variant="secondary" className="text-xs">
                   {isArabic
-                    ? "متوفر للحالات الطارئة"
+                    ? "متوفر للحالا�� الطارئة"
                     : "Available for Emergencies"}
                 </Badge>
               </div>
             )}
           </div>
           {/* أزرار الإجراءات السريعة */}
-          {user?.type === "receptionist" || user?.type === "admin" ? (
-            <div className="flex gap-2">
-              <Link to="/appointments/new">
-                <Button>
-                  <Calendar className="h-4 w-4 mr-2" />
-                  {t.newAppointment}
+          <div className="flex gap-2 items-center flex-wrap">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleLanguage}
+              className="flex items-center gap-2"
+            >
+              <Globe className="h-4 w-4" />
+              {isArabic ? "EN" : "AR"}
+            </Button>
+            {user?.type === "receptionist" || user?.type === "admin" ? (
+              <div className="flex gap-2">
+                <Link to="/appointments/new">
+                  <Button>
+                    <Calendar className="h-4 w-4 mr-2" />
+                    {t.newAppointment}
+                  </Button>
+                </Link>
+              </div>
+            ) : user?.type === "doctor" ? (
+              <div className="flex gap-2">
+                <Button size="sm" variant="outline">
+                  <UserCheck className="h-4 w-4 mr-2" />
+                  {isArabic ? "المريض القادم" : "Next Patient"}
                 </Button>
-              </Link>
-            </div>
-          ) : user?.type === "doctor" ? (
-            <div className="flex gap-2">
-              <Button size="sm" variant="outline">
-                <UserCheck className="h-4 w-4 mr-2" />
-                {isArabic ? "المريض القادم" : "Next Patient"}
-              </Button>
-              <Button size="sm" variant="outline">
-                <FileText className="h-4 w-4 mr-2" />
-                {isArabic ? "تحرير روشتة" : "Prescription"}
-              </Button>
-              <Button size="sm">
-                <Clock className="h-4 w-4 mr-2" />
-                {isArabic ? "فترة راحة" : "Break"}
-              </Button>
-            </div>
-          ) : null}
+                <Button size="sm" variant="outline">
+                  <FileText className="h-4 w-4 mr-2" />
+                  {isArabic ? "تحرير روشتة" : "Prescription"}
+                </Button>
+                <Button size="sm">
+                  <Clock className="h-4 w-4 mr-2" />
+                  {isArabic ? "فترة راحة" : "Break"}
+                </Button>
+              </div>
+            ) : null}
+          </div>
         </div>
 
         {/* Stats Overview */}
@@ -453,7 +466,7 @@ export default function Dashboard() {
                 <div className="text-2xl font-bold">5</div>
                 <p className="text-xs text-muted-foreground">
                   {isArabic
-                    ? "تذكير بالمواعيد غداً"
+                    ? "تذكير ��المواعيد غداً"
                     : "reminder calls for tomorrow"}
                 </p>
               </CardContent>
@@ -896,7 +909,7 @@ export default function Dashboard() {
               <CardTitle>{t.quickActions}</CardTitle>
               <CardDescription>
                 {isArabic
-                  ? `إجراءات سريعة لـ${
+                  ? `إجراءات سريعة ��ـ${
                       user?.type === "admin"
                         ? "مدير النظام"
                         : user?.type === "doctor"
@@ -946,7 +959,7 @@ export default function Dashboard() {
                   </Button>
                   <Button className="w-full justify-start" variant="outline">
                     <Mail className="h-4 w-4 mr-2" />
-                    {isArabic ? "إرسال تذكير" : "Send Reminder"}
+                    {isArabic ? "إرسال تذ��ير" : "Send Reminder"}
                   </Button>
                 </>
               )}
@@ -1011,7 +1024,7 @@ export default function Dashboard() {
                 </Link>
               )}
 
-              {/* إجراءات مشتركة للجميع */}
+              {/* ��جراءات مشتركة للجميع */}
               <Link to="/appointments" className="block">
                 <Button className="w-full justify-start" variant="outline">
                   <Clock className="h-4 w-4 mr-2" />
@@ -1046,7 +1059,7 @@ export default function Dashboard() {
                       ? "إحصائيات النشاط الطبي اليوم"
                       : "Your medical work statistics today"
                     : isArabic
-                      ? "مؤشرات أداء العيادة هذا الشهر"
+                      ? "م��شرات أداء العيادة هذا ا��شهر"
                       : "Clinic performance this month"}
               </CardDescription>
             </CardHeader>

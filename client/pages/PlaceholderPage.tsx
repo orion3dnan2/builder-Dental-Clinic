@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Card,
   CardContent,
@@ -23,7 +24,7 @@ export default function PlaceholderPage({
   description,
   features = [],
 }: PlaceholderPageProps) {
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic } = useLanguage();
 
   const content = {
     ar: {

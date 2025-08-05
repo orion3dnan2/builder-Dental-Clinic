@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,7 +42,7 @@ interface RegisterForm {
 
 export default function Login() {
   const navigate = useNavigate();
-  const [isArabic, setIsArabic] = useState(true);
+  const { isArabic, toggleLanguage } = useLanguage();
   const [loginForm, setLoginForm] = useState<LoginForm>({
     username: "",
     password: "",
@@ -325,7 +326,7 @@ export default function Login() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setIsArabic(!isArabic)}
+              onClick={toggleLanguage}
               className="transition-medical"
             >
               {t.switchToEn}
@@ -479,7 +480,7 @@ export default function Login() {
 
                       <div className="pt-3 border-t">
                         <p className="text-xs text-muted-foreground mb-2">
-                          {isArabic ? "تسجيل دخول سريع:" : "Quick Login:"}
+                          {isArabic ? "تس��يل دخول سريع:" : "Quick Login:"}
                         </p>
                         <div className="flex flex-wrap gap-1">
                           {Object.entries(testUsers).map(
